@@ -1,0 +1,41 @@
+﻿@{ 
+    Layout = "_LayoutBase";
+}
+
+<header class="bg-yellow">
+    <nav class="navbar navbar-expand-lg navbar-light py-4">
+        <div class="container-fluid col-8 fw-500">
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand me-5">APP NAME</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item me-4">
+                        <a asp-controller="Home" asp-action="Index" class="nav-link active" aria-current="page">Inicio</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a asp-controller="User" asp-action="Login" class="nav-link me-3 fw-500">Iniciar Sesión</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="User" asp-action="Register" class="btn btn-light fw-bold text-dark">Registrarse</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>    
+</header>
+
+<div>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="footer">
+        
+</footer>

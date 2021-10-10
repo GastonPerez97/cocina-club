@@ -1,0 +1,128 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --black: #23211b;
+    --yellow: #fabb2d;
+    --yellow-dark: #e8ae2a;
+    --grey: #edeae1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif !important;
+}
+
+.header-rounded-corners {
+    border-radius: 0 0 25px 25px;
+}
+
+.home-image-container {
+    border-radius: 0 0 50px 50px;
+    padding: 30px 0 90px 0;
+}
+
+.home-banner-text {
+    font-size: 5rem;
+    line-height: 1.2;
+}
+
+.home-recipe-text {
+    position: relative;
+    left: 100px;
+}
+
+.bg-yellow {
+    background-color: var(--yellow);
+}
+
+.border-radius-15px {
+    border-radius: 15px;
+}
+
+/* ------------- Available Rubik's Font Weights ------------- */
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-800 {
+    font-weight: 800;
+}
+
+
+/* ------------- Custom Bootstrap Buttons ------------- */
+
+.btn-outline-black {
+    color: var(--black);
+    border-color: var(--black);
+}
+
+.btn-outline-black:hover {
+    color: #fff;
+    background-color: var(--black);
+    border-color: var(--black);
+}
+
+.btn-yellow {
+    color: #000;
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.btn-yellow:hover {
+    color: #000;
+    background-color: var(--yellow-dark);
+    border-color: var(--yellow-dark);
+}
+
+/* ------------- Media Queries ------------- */
+
+@media screen and (max-width: 991px) {
+    .home-banner-text {
+        font-size: 4rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .home-image-container {
+        padding: 30px 0 60px 0;
+    }
+
+    .home-banner-text {
+        font-size: 3rem;
+    }
+
+    .home-recipe-text {
+        left: 50px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .home-image-container {
+        padding: 30px 0 40px 0;
+    }
+
+    .home-banner-text {
+        font-size: 2rem;
+    }
+
+    .home-recipe-text {
+        left: 50px;
+    }
+}
