@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using pw3_proyecto.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,12 +25,6 @@ namespace pw3_proyecto.Controllers
 		public IActionResult Privacy()
 		{
 			return View();
-		}
-
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-		public IActionResult Error()
-		{
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 	}
 }
