@@ -11,18 +11,27 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+                    <li class="nav-item me-4">
+                        <a asp-controller="Cocineros" asp-action="Recetas" class="nav-link active" aria-current="page">Crear Receta</a>
+                    </li>
+                    <li class="nav-item me-4">
+                        <a asp-controller="Cocineros" asp-action="Eventos" class="nav-link active" aria-current="page">Crear Evento de Cocina</a>
+                    </li>
+                    <li class="nav-item me-4">
+                        <a asp-controller="Cocineros" asp-action="Cancelacion" class="nav-link active" aria-current="page">Cancelar Evento</a>
+                    </li>
                     <li class="nav-item">
-                        <a asp-controller="Home" asp-action="Index" class="nav-link active" aria-current="page">Inicio</a>
+                        <a asp-controller="Cocineros" asp-action="Perfil" class="nav-link active" aria-current="page">Mi Perfil</a>
                     </li>
                 </ul>
 
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a asp-controller="User" asp-action="Login" class="nav-link me-3 fw-500">Iniciar Sesión</a>
+                <ul class="navbar-nav ms-auto d-inline d-lg-flex align-items-center">
+                    <li class="me-4">
+                        <p class="m-0">Hola <b>USER</b>!</p>
                     </li>
 
                     <li class="nav-item">
-                        <a asp-controller="User" asp-action="Register" class="btn btn-light fw-bold text-dark">Registrarse</a>
+                        <a asp-controller="User" asp-action="Logout" class="nav-link me-3 fw-500">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>
