@@ -51,6 +51,10 @@
     border-radius: 15px;
 }
 
+.border-radius-top-15px {
+    border-radius: 15px 15px 0 0;
+}
+
 /* ------------- Available Rubik's Font Weights ------------- */
 .fw-300 {
     font-weight: 300;
