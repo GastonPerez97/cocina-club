@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\pw3-proyecto.Entities\pw3-proyecto.Entities.csproj" />
   </ItemGroup>
 
 </Project>

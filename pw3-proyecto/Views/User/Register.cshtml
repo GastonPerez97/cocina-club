@@ -1,9 +1,13 @@
-﻿@{
+﻿@model pw3_proyecto.Entities.Usuario
+
+@{
     ViewData["Title"] = "Registrarse";
     Layout = "_LayoutAnonimo";
 }
 
 <section class="container mx-auto my-5">
+    <p class="display-6 fw-bold text-center mb-5">@ViewBag.RegisterError</p>
+
     <div class="p-4 p-md-5 border-radius-15px shadow">
         <div class="row d-flex justify-content-between align-items-center">
             <div class="col-12 col-lg-6">
@@ -14,58 +18,66 @@
                 <form method="POST">
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="form-label" for="nombre">Nombre</label>
-                            <div class="input-group">
+                            <label asp-for="Nombre" class="form-label"></label>
+                            <div class="input-group mb-1">
                                 <span class="input-group-text"><i class="fas fa-user fa-fw"></i></span>
-                                <input id="nombre" type="text" class="form-control" placeholder="Ingresa tu nombre" autofocus required />
+                                <input asp-for="Nombre" class="form-control rounded" placeholder="Ingresa tu nombre" autofocus required />
                             </div>
+
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="form-label" for="email">E-Mail</label>
-                            <div class="input-group">
+                            <label asp-for="Email" class="form-label"></label>
+                            <div class="input-group mb-1">
                                 <span class="input-group-text"><i class="fas fa-envelope fa-fw"></i></span>
-                                <input id="email" type="email" class="form-control" placeholder="Ingresa tu E-Mail" required />
+                                <input asp-for="Email" class="form-control rounded" placeholder="Ingresa tu E-Mail" required />
                             </div>
+
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="form-label" for="pass">Contraseña</label>
-                            <div class="input-group">
+                            <label asp-for="Password" class="form-label"></label>
+                            <div class="input-group mb-1">
                                 <span class="input-group-text"><i class="fas fa-lock fa-fw"></i></span>
-                                <input id="pass" type="password" class="form-control" placeholder="Ingresa una contraseña" required />
+                                <input asp-for="Password" type="password" class="form-control rounded" placeholder="Ingresa una contraseña" required />
                             </div>
+
+                            <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="form-label" for="confirmpass">Confirmar Contraseña</label>
-                            <div class="input-group">
+                            <label asp-for="ConfirmPassword" class="form-label"></label>
+                            <div class="input-group mb-1">
                                 <span class="input-group-text"><i class="fas fa-lock fa-fw"></i></span>
-                                <input id="confirmpass" type="password" class="form-control" placeholder="Repite tu contraseña" required />
+                                <input asp-for="ConfirmPassword" type="password" class="form-control rounded" placeholder="Repite tu contraseña" required />
                             </div>
+
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="row my-5">
-                        <div class="col d-flex">
-                            <label class="me-3" for="gender">Selecciona un perfil:</label>
+                        <div class="col d-flex mb-1">
+                            <label class="me-3" for="Perfil">Selecciona un perfil:</label>
 
                             <div class="form-check me-3">
-                                <input class="form-check-input" type="radio" name="profile" id="Comensal" required>
-                                <label class="form-check-label" for="Comensal">
+                                <input class="form-check-input" type="radio" name="Perfil" id="comensal" value="0" required>
+                                <label class="form-check-label" for="comensal">
                                     Comensal
                                 </label>
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="profile" id="Cocinero" required>
-                                <label class="form-check-label" for="Cocinero">
+                                <input class="form-check-input" type="radio" name="Perfil" id="cocinero" value="1" required>
+                                <label class="form-check-label" for="cocinero">
                                     Cocinero
                                 </label>
                             </div>
@@ -76,14 +88,15 @@
                         <button type="submit" class="btn btn-lg btn-yellow">Registrarse</button>
                     </div>
 
-                    <p class="fs-5 text-center">¿Ya tienes una cuenta? 
+                    <p class="fs-5 text-center">
+                        ¿Ya tienes una cuenta?
                         <a asp-controller="User" asp-action="Login" class="text-decoration-none">Acceder</a>
                     </p>
                 </form>
             </div>
 
             <div class="d-none d-lg-block col-lg-6 ps-5">
-                <div >
+                <div>
                     <div><img class="img-fluid rounded-circle" src="~/img/smartphone-and-chef.png" alt="Mini chef arriba de la pantalla de un celular" /></div>
                 </div>
             </div>

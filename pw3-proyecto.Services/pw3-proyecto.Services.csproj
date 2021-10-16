@@ -6,11 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\pw3-proyecto.Entities\pw3-proyecto.Entities.csproj" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\pw3-proyecto.Entities\pw3-proyecto.Entities.csproj" />
+    <ProjectReference Include="..\pw3-proyecto.Repositories\pw3-proyecto.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

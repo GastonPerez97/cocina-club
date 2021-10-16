@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using pw3_proyecto.Entities;
+using pw3_proyecto.Repositories;
+using pw3_proyecto.Repositories.Interfaces;
+using pw3_proyecto.Services;
+using pw3_proyecto.Services.Interfaces;
 
 namespace pw3_proyecto
 {
@@ -24,7 +24,11 @@ namespace pw3_proyecto
 		public void ConfigureServices(IServiceCollection services)
 		{
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-		}
+
+            services.AddTransient<_20212C_TPContext>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+        }
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
