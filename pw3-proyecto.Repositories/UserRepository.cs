@@ -22,6 +22,11 @@ namespace pw3_proyecto.Repositories
             return _dbContext.Usuarios.FirstOrDefault(user => user.Email == email);
         }
 
+        public Usuario GetBy(int id)
+        {
+            return _dbContext.Usuarios.Find(id);
+        }
+
         public void Save(Usuario user)
         {
             _dbContext.Usuarios.Add(user);

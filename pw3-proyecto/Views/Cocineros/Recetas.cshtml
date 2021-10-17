@@ -1,0 +1,90 @@
+﻿@model pw3_proyecto.Entities.Receta
+
+@{
+    ViewData["Title"] = "Crear Receta";
+    Layout = "_LayoutCocinero";
+}
+
+<section class="container mx-auto mt-4 mb-5">
+    <p class="display-4 fw-bold text-center mb-4">Crear Receta</p>
+    <p class="display-6 fw-bold text-center mb-4">@TempData["RecipeResult"]</p>
+
+    <div class="col-12 col-md-6 mx-auto p-4 p-md-5 border-radius-15px shadow">
+        <div class="row d-flex justify-content-between align-items-center">
+            <form asp-controller="Cocineros" asp-action="Recetas" method="POST">
+                <input asp-for="IdCocinero" type="hidden" value="@ViewBag.UserId" />
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label asp-for="Nombre" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-cookie-bite fa-fw"></i></span>
+                            <input asp-for="Nombre" class="form-control rounded" placeholder="Ingresa el nombre" />
+                        </div>
+
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label asp-for="TiempoCoccion" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-clock fa-fw"></i></span>
+                            <input asp-for="TiempoCoccion" class="form-control rounded" placeholder="Ingresa el tiempo de cocción" />
+                        </div>
+
+                        <span asp-validation-for="TiempoCoccion" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label asp-for="Descripcion" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-list-ol fa-fw"></i></span>
+                            <textarea asp-for="Descripcion" class="form-control rounded" placeholder="Ingresa la descripción y los pasos a seguir"> </textarea>
+                        </div>
+
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label asp-for="Ingredientes" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-list-alt fa-fw"></i></span>
+                            <input asp-for="Ingredientes" class="form-control rounded" placeholder="Ingresa los ingredientes" />
+                        </div>
+
+                        <span asp-validation-for="Ingredientes" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label asp-for="IdTipoReceta" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-utensils fa-fw"></i></span>
+
+                            <select asp-for="IdTipoReceta" class="form-select rounded">
+                                <option selected disabled hidden>Seleccione un tipo de receta</option>
+                                @foreach (var tipoReceta in ViewBag.TipoRecetas)
+                                {
+                                    <option value="@tipoReceta.IdTipoReceta">@tipoReceta.Nombre</option>
+                                }
+                            </select>
+                        </div>
+
+                        <span asp-validation-for="IdTipoReceta" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5 mb-3">
+                    <button type="submit" class="btn btn-lg btn-yellow">Crear Receta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

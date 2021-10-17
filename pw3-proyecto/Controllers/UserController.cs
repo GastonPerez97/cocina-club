@@ -34,12 +34,13 @@ namespace pw3_proyecto.Controllers
 
             if (user != null)
             {
+                HttpContext.Session.SetInt32("UserId", user.IdUsuario);
                 HttpContext.Session.SetString("Name", user.Nombre);
                 HttpContext.Session.SetInt32("Profile", user.Perfil);
 
                 return user.Perfil == Profiles.Cocinero
-                    ? RedirectToAction("Perfil", "Cocinero")
-                    : RedirectToAction("Reservas", "Comensal");
+                    ? RedirectToAction("Perfil", "Cocineros")
+                    : RedirectToAction("Reservas", "Comensales");
             }
             else
             {
