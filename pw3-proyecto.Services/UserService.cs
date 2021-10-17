@@ -14,11 +14,26 @@ namespace pw3_proyecto.Services
             _userRepo = userRepo;
         }
 
-        public void Save(Usuario usuario)
+        public Usuario Login(string email, string password)
         {
-            usuario.FechaRegistracion = DateTime.Now;
-            usuario.Password = BCrypt.Net.BCrypt.HashPassword(usuario.Password);
-            _userRepo.Save(usuario);
+            Usuario dbUser = _userRepo.GetBy(email);
+
+            if (dbUser != null)
+            {
+                bool isValidPassword = BCrypt.Net.BCrypt.Verify(password, dbUser.Password);
+                return isValidPassword ? dbUser : null;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void Save(Usuario user)
+        {
+            user.FechaRegistracion = DateTime.Now;
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            _userRepo.Save(user);
             _userRepo.SaveChanges();
         }
     }

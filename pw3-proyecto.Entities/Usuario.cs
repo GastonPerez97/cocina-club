@@ -31,7 +31,7 @@ namespace pw3_proyecto.Entities
 
         [DisplayName("Contraseña")]
         [Required(ErrorMessage = "El campo Contraseña es obligatorio.")]
-        [RegularExpression(@"^[A-Z]{1}(?=.*\d)[A-Za-z\d]{7,29}$", ErrorMessage = "La contraseña debe tener mínimo 8 caracteres, empezar con mayúscula y contener al menos 1 número.")]
+        [RegularExpression(@"^[A-Z]{1}(?=.*\d)[A-Za-z\d]{7,}$", ErrorMessage = "La contraseña debe tener mínimo 8 caracteres, empezar con mayúscula y contener al menos 1 número.")]
         public string Password { get; set; }
 
         [DisplayName("Confirmar Contraseña")]

@@ -15,7 +15,7 @@
                     <p class="display-4 fw-bold">¡Registrate en APP!</p>
                 </div>
 
-                <form method="POST">
+                <form asp-controller="User" asp-action="Register" method="POST">
                     <div class="row mb-3">
                         <div class="col">
                             <label asp-for="Nombre" class="form-label"></label>

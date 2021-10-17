@@ -9,6 +9,7 @@ namespace pw3_proyecto.Services.Interfaces
 {
     public interface IUserService
     {
-        public void Save(Usuario usuario);
+        public void Save(Usuario user);
+        public Usuario Login(string email, string password);
     }
 }

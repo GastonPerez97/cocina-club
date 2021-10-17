@@ -10,21 +10,26 @@ namespace pw3_proyecto.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private _20212C_TPContext _ctx;
+        private _20212C_TPContext _dbContext;
 
-        public UserRepository(_20212C_TPContext ctx)
+        public UserRepository(_20212C_TPContext dbContext)
         {
-            _ctx = ctx;
+            _dbContext = dbContext;
         }
 
-        public void Save(Usuario usuario)
+        public Usuario GetBy(string email)
         {
-            _ctx.Usuarios.Add(usuario);
+            return _dbContext.Usuarios.FirstOrDefault(user => user.Email == email);
+        }
+
+        public void Save(Usuario user)
+        {
+            _dbContext.Usuarios.Add(user);
         }
 
         public void SaveChanges()
         {
-            _ctx.SaveChanges();
+            _dbContext.SaveChanges();
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿@{ 
+﻿@{
     Layout = "_LayoutBase";
+
+    @using Microsoft.AspNetCore.Http
+    var userName = Context.Session.GetString("Name");
 }
 
 <header class="bg-yellow header-rounded-corners">
@@ -24,7 +27,7 @@
 
                 <ul class="navbar-nav ms-auto d-inline d-lg-flex align-items-center">
                     <li class="me-4">
-                        <p class="m-0">Hola <b>USER</b>!</p>
+                        <p class="m-0">Hola <b>@userName</b>!</p>
                     </li>
 
                     <li class="nav-item">
@@ -33,7 +36,7 @@
                 </ul>
             </div>
         </div>
-    </nav>    
+    </nav>
 </header>
 
 <div class="container">

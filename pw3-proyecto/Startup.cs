@@ -8,6 +8,7 @@ using pw3_proyecto.Repositories;
 using pw3_proyecto.Repositories.Interfaces;
 using pw3_proyecto.Services;
 using pw3_proyecto.Services.Interfaces;
+using System;
 
 namespace pw3_proyecto
 {
@@ -28,10 +29,17 @@ namespace pw3_proyecto
             services.AddTransient<_20212C_TPContext>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".MiAPP.Session";
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+
         }
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			if (env.IsDevelopment())
 			{
@@ -50,7 +58,9 @@ namespace pw3_proyecto
 
 			app.UseAuthorization();
 
-			app.UseEndpoints(endpoints =>
+            app.UseSession();
+
+            app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
