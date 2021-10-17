@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     Layout = "_LayoutBase";
 }
 
@@ -27,7 +27,7 @@
                 </ul>
             </div>
         </div>
-    </nav>    
+    </nav>
 </header>
 
 <div class="container">
@@ -35,3 +35,7 @@
         @RenderBody()
     </main>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
