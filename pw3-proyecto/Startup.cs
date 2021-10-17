@@ -29,6 +29,10 @@ namespace pw3_proyecto
             services.AddTransient<_20212C_TPContext>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITipoRecetaRepository, TipoRecetaRepository>();
+            services.AddScoped<ITipoRecetaService, TipoRecetaService>();
+            services.AddScoped<IRecetaRepository, RecetaRepository>();
+            services.AddScoped<IRecetaService, RecetaService>();
 
             services.AddSession(options =>
             {

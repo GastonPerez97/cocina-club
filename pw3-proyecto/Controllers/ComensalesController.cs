@@ -2,7 +2,7 @@
 
 namespace pw3_proyecto.Controllers
 {
-    public class ComensalController : Controller
+    public class ComensalesController : Controller
     {
         public IActionResult Index()
         {

@@ -36,5 +36,11 @@ namespace pw3_proyecto.Services
             _userRepo.Save(user);
             _userRepo.SaveChanges();
         }
+
+        public bool CheckIfUserExists(int id)
+        {
+            Usuario user = _userRepo.GetBy(id);
+            return user != null ? true : false;
+        }
     }
 }
