@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using pw3_proyecto.Entities;
 using pw3_proyecto.Services.Interfaces;
@@ -17,7 +16,7 @@ namespace pw3_proyecto.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Login");
         }
 
         public IActionResult Login()
