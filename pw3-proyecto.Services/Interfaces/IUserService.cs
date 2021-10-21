@@ -12,5 +12,6 @@ namespace pw3_proyecto.Services.Interfaces
         public void Save(Usuario user);
         public Usuario Login(string email, string password);
         public bool CheckIfUserExists(int id);
+        public bool CheckIfUserExists(string email);
     }
 }

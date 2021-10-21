@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using pw3_proyecto.Entities;
 using pw3_proyecto.Services.Common.CustomExceptions;
 using pw3_proyecto.Services.Interfaces;
