@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +27,9 @@ namespace pw3_proyecto
 		{
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+            services.AddDbContext<_20212C_TPContext>(options => options.UseLazyLoadingProxies()
+                                                                       .UseSqlServer(Configuration.GetConnectionString("EFCoreContext")));
+
             services.AddTransient<_20212C_TPContext>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
@@ -33,10 +37,12 @@ namespace pw3_proyecto
             services.AddScoped<ITipoRecetaService, TipoRecetaService>();
             services.AddScoped<IRecetaRepository, RecetaRepository>();
             services.AddScoped<IRecetaService, RecetaService>();
+            services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IEventoRepository, EventoRepository>();
             services.AddScoped<IReservaService, ReservaService>();
             services.AddScoped<IReservaRepository, ReservaRepository>();
-			services.AddScoped<IEventoService, EventoService>();
-			services.AddScoped<IEventoRepository, EventoRepository>();
+			
 
 			services.AddSession(options =>
             {

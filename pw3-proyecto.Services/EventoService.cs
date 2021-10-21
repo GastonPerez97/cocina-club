@@ -11,21 +11,39 @@ namespace pw3_proyecto.Services
 {
     public class EventoService : IEventoService
     {
-        private IEventoRepository _eventoRepository;
+        private IEventoRepository _eventoRepo;
 
-        public EventoService(IEventoRepository eventoRepository)
+        public EventoService(IEventoRepository eventoRepo)
         {
-            _eventoRepository = eventoRepository;
-        }
-        
-        public void Register(Evento evento)
-        {
-            _eventoRepository.Register(evento);
+            _eventoRepo = eventoRepo;
         }
 
-        public List<Evento> EventAvailable()
+        public void Save(Evento evento)
         {
-            return _eventoRepository.EventAvailable();
+            _eventoRepo.Save(evento);
+            _eventoRepo.SaveChanges();
         }
+
+        public void LinkRecipesToEvent(Evento evento, List<int> recetasId)
+        {
+            foreach(int recetaId in recetasId)
+            {
+                EventosReceta eventoReceta = new EventosReceta();
+                eventoReceta.IdEvento = evento.IdEvento;
+                eventoReceta.IdReceta = recetaId;
+
+                evento.EventosReceta.Add(eventoReceta);
+            }
+
+            _eventoRepo.SaveChanges();
+        }
+
+        public List<Evento> GetAllBy(int userId)
+        {
+            return _eventoRepo.GetAllBy(userId);
+        }
+    public List<Evento> EventAvailable()
+    {
+        return _eventoRepo.EventAvailable();
     }
 }

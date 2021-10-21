@@ -170,7 +170,7 @@ namespace pw3_proyecto.Entities
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(30);
+                    .HasMaxLength(60);
             });
 
             OnModelCreatingPartial(modelBuilder);

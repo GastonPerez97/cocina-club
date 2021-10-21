@@ -65,7 +65,12 @@ namespace pw3_proyecto.Controllers
         [HttpPost]
         public IActionResult Register(Usuario user)
         {
-            if (ModelState.IsValid)
+            if (_userService.CheckIfUserExists(user.Email))
+            {
+                ViewBag.RegisterError = "El E-Mail ya se encuentra en uso, utiliza otro.";
+                return View();
+            }
+            else if (ModelState.IsValid)
             {
                 _userService.Save(user);
                 TempData["RegisterOk"] = "¡Registrado correctamente! Ya puedes iniciar sesión.";
@@ -74,7 +79,7 @@ namespace pw3_proyecto.Controllers
             else
             {
                 ViewBag.RegisterError = "Ocurrió un error al momento del registro, intente nuevamente.";
-                return View(user);
+                return View();
             }
         }
     }
