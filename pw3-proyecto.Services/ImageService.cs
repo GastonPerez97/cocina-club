@@ -19,10 +19,8 @@ namespace pw3_proyecto.Services
 
             if (fileExtension == ".jpg" || fileExtension == ".png")
             {
-                string fileName = imageName + fileExtension;
-
                 string partialPath = Path.Combine(webRootPath, folderName);
-                string fullPath = Path.Combine(partialPath, fileName);
+                string fullPath = Path.Combine(partialPath, imageName);
 
                 if (!Directory.Exists(partialPath))
                     Directory.CreateDirectory(partialPath);

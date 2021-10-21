@@ -3,4 +3,93 @@
     Layout = "_LayoutCocinero";
 }
 
-<p>Perfil cocinero</p>
+<section class="container mt-5">
+    <article class="profile text-light mb-5 p-4 px-md-5 border-radius-15px 
+                    shadow d-flex flex-column flex-md-row justify-content-end justify-content-md-between">
+
+        <div class="p-3 align-self-md-end shadow border-radius-15px bg-custom-dark">
+            <h3 class="fs-5 mb-0">@ViewBag.User.Nombre</h3>
+            <p class="mb-4">@ViewBag.User.Email</p>
+            <p class="mb-0">Registrado el @ViewBag.User.FechaRegistracion.ToString("dd/MM/yyyy")</p>
+        </div>
+        
+        <div class="d-flex justify-content-center justify-content-end p-3 mt-3 mt-md-0
+                    align-self-md-end shadow border-radius-15px bg-custom-dark">
+
+            <div class="d-flex flex-column ps-md-3 me-md-4 mx-auto">
+                <p class="fs-3 m-0 fw-600 text-center">@ViewBag.RecipeCount</p>
+                <p class="fs-5 m-0">Recetas</p>
+            </div>
+
+            <span class="border-end border-dark"></span>
+            
+            <div class="d-flex flex-column pe-md-3 mx-auto ms-md-4">
+                <p class="fs-3 m-0 fw-600 text-center">@ViewBag.EventCount</p>
+                <p class="fs-5 m-0">Eventos</p>
+            </div>
+        </div>
+    </article>
+
+    <article>
+        <h2 class="display-6 fw-600 mb-4">Recetas</h2>
+        <div class="row row-cols-1 row-cols-lg-3 g-4" data-masonry='{"percentPosition": true }'>
+            @foreach (var recipe in ViewBag.Recipes)
+            {
+                <div class="col">
+                    <div class="bg-grey p-4 border-radius-15px shadow">
+                        <div class="text-center">
+                            <img class="note-pin" src="~/img/paper-note-pin.png" alt="Pin de nota" />
+                        </div>
+                        
+                        <h4 class="mb-4">@recipe.Nombre</h4>
+                        <p class="mb-4"><b>Ingredientes: </b>@recipe.Ingredientes</p>
+                        <p><b>Descripción: </b>@recipe.Descripcion</p>
+                        <div class="mt-5 d-flex justify-content-between">
+                            <p class="m-0"><i class="fas fa-utensils me-2"></i>@recipe.IdTipoRecetaNavigation.Nombre</p>
+                            <p class="m-0"><i class="far fa-clock me-2"></i>@recipe.TiempoCoccion'</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </article>
+
+    <article>
+        <h2 class="display-6 fw-600 mt-5 mb-4">Eventos</h2>
+
+        <div class="g-5 row row-cols-1 row-cols-lg-3">
+            @foreach (var evento in ViewBag.Events)
+            {
+                <article class="col">
+                    <div class="card border-radius-15px shadow">
+                        <img src="~/img/events/@evento.Foto" class="card-img-top border-radius-top-15px" alt="Foto de evento">
+
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">@evento.Nombre</h5>
+                            <p><b>Fecha: </b>@evento.Fecha</p>
+                            <p><b>Cantidad máxima de comensales: </b>@evento.CantidadComensales</p>
+                            <p><b>Reservas realizadas: </b>@evento.Reservas.Count</p>
+                            <p>
+                                <b>Estado: </b>
+                                @if (evento.Estado == 0)
+                                {
+                                    <span>Pendiente</span>
+                                }
+                                else if (evento.Estado == 1)
+                                {
+                                    <span>Finalizado</span>
+                                }
+                                else
+                                {
+                                    <span>Cancelado</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </article>
+             }
+        </div>
+    </article>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>

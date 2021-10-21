@@ -33,5 +33,10 @@ namespace pw3_proyecto.Services
 
             _eventoRepo.SaveChanges();
         }
+
+        public List<Evento> GetAllBy(int userId)
+        {
+            return _eventoRepo.GetAllBy(userId);
+        }
     }
 }

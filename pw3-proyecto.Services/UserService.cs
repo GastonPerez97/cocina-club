@@ -48,5 +48,10 @@ namespace pw3_proyecto.Services
             Usuario user = _userRepo.GetBy(email);
             return user != null ? true : false;
         }
+
+        public Usuario GetBy(int id)
+        {
+            return _userRepo.GetBy(id);
+        }
     }
 }

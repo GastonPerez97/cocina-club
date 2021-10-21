@@ -6,6 +6,7 @@ using pw3_proyecto.Services.Common.CustomExceptions;
 using pw3_proyecto.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace pw3_proyecto.Controllers
 {
@@ -40,6 +41,17 @@ namespace pw3_proyecto.Controllers
 
         public IActionResult Perfil()
         {
+            int userId = (int) HttpContext.Session.GetInt32("UserId");
+
+            List<Receta> recipes = _recetaService.GetAllByChef(userId);
+            List<Evento> eventos = _eventoService.GetAllBy(userId);
+
+            ViewBag.User = _userService.GetBy(userId);
+            ViewBag.Events = eventos;
+            ViewBag.EventCount = eventos.Count;
+            ViewBag.Recipes = recipes;
+            ViewBag.RecipeCount = recipes.Count;
+
             return View();
         }
 
@@ -78,7 +90,7 @@ namespace pw3_proyecto.Controllers
         [HttpPost]
         public IActionResult Eventos(Evento evento, IFormFile imageFile)
         {
-            evento.Foto = Guid.NewGuid().ToString();
+            evento.Foto = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
             evento.Estado = EventStates.Pendiente;
 
             if (ModelState.IsValid)
