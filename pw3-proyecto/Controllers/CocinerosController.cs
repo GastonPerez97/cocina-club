@@ -6,8 +6,6 @@ using pw3_proyecto.Services.Common.CustomExceptions;
 using pw3_proyecto.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace pw3_proyecto.Controllers
 {

@@ -27,7 +27,8 @@ namespace pw3_proyecto
 		{
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-            services.AddDbContext<_20212C_TPContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EFCoreContext")));
+            services.AddDbContext<_20212C_TPContext>(options => options.UseLazyLoadingProxies()
+                                                                       .UseSqlServer(Configuration.GetConnectionString("EFCoreContext")));
 
             services.AddTransient<_20212C_TPContext>();
             services.AddScoped<IUserRepository, UserRepository>();
