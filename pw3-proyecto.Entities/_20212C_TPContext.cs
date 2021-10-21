@@ -25,15 +25,6 @@ namespace pw3_proyecto.Entities
         public virtual DbSet<TipoReceta> TipoRecetas { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=20212C_TP;Trusted_Connection=True;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
@@ -170,7 +161,7 @@ namespace pw3_proyecto.Entities
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(30);
+                    .HasMaxLength(60);
             });
 
             OnModelCreatingPartial(modelBuilder);
