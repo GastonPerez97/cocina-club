@@ -1,0 +1,42 @@
+﻿
+@model IList<pw3_proyecto.Entities.Evento>
+
+@{
+    ViewData["Title"] = "Reserva";
+    Layout = "_LayoutComensal";
+}
+<h4>Reserva</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if (Model == null || Model.Count == 0)
+        {
+            <h3>No hay reservas disponibles</h3>
+        }
+        else
+        {
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>CantidadComensales</th>
+        </tr>
+        @foreach (var evento in Model)
+        {
+            <tr>
+                <td>@evento.Nombre</td>
+                <td>@evento.Fecha</td>
+                <td>@evento.CantidadComensales</td>
+                <td><a class="btn btn-primary" asp-action="Comensales/ConfirmarReserva?idEvento=@evento.IdEvento">Reservar</a></td>
+            </tr>
+
+        }
+    </table>
+                }
+        </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver</a>
+</div>
+

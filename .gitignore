@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+appsettings.json
+_20212C_TPContext.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
