@@ -1,28 +1,27 @@
 ﻿using pw3_proyecto.Entities;
 using pw3_proyecto.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace pw3_proyecto.Repositories
 {
-    public class RecetaRepository : IRecetaRepository
+    public class EventoRepository : IEventoRepository
     {
         private _20212C_TPContext _dbContext;
 
-        public RecetaRepository(_20212C_TPContext dbContext)
+        public EventoRepository(_20212C_TPContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public void Save(Receta recipe)
+        public List<Evento> GetAllBy(int userId)
         {
-            _dbContext.Recetas.Add(recipe);
+            return _dbContext.Eventos.Where(evento => evento.IdCocinero == userId).ToList();
         }
 
-        public List<Receta> GetAllByChef(int id)
+        public void Save(Evento evento)
         {
-            return _dbContext.Recetas.Where(recipe => recipe.IdCocinero == id).ToList();
+            _dbContext.Eventos.Add(evento);
         }
 
         public void SaveChanges()

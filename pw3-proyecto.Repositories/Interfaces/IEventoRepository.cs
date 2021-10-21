@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace pw3_proyecto.Repositories.Interfaces
 {
-    public interface IRecetaRepository
+    public interface IEventoRepository
     {
-        public void Save(Receta recipe);
-        public List<Receta> GetAllByChef(int id);
+        public void Save(Evento evento);
+        public List<Evento> GetAllBy(int userId);
         public void SaveChanges();
     }
 }

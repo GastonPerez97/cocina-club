@@ -26,7 +26,7 @@ namespace pw3_proyecto.Entities
 
         public virtual Usuario IdCocineroNavigation { get; set; }
         public virtual ICollection<Calificacione> Calificaciones { get; set; }
-        public virtual ICollection<EventosReceta> EventosReceta { get; set; }
         public virtual ICollection<Reserva> Reservas { get; set; }
+        public virtual ICollection<EventosReceta> EventosReceta { get; set; }
     }
 }
