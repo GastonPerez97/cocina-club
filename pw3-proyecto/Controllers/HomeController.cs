@@ -8,5 +8,10 @@ namespace pw3_proyecto.Controllers
 		{
 			return View();
 		}
+
+        public IActionResult Error()
+        {
+            return View();
+        }
 	}
 }
