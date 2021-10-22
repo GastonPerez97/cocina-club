@@ -90,7 +90,7 @@ namespace pw3_proyecto.Controllers
         [HttpPost]
         public IActionResult Eventos(Evento evento, IFormFile imageFile)
         {
-            evento.Foto = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+            evento.Foto = Guid.NewGuid().ToString();
             evento.Estado = EventStates.Pendiente;
 
             if (ModelState.IsValid)
@@ -106,6 +106,8 @@ namespace pw3_proyecto.Controllers
                     }
 
                     _imageService.Save("events", evento.Foto, _hostingEnv.WebRootPath, imageFile);
+                    evento.Foto += Path.GetExtension(imageFile.FileName);
+
                     _eventoService.Save(evento);
                     _eventoService.LinkRecipesToEvent(evento, eventoRecetasId);
 
@@ -115,13 +117,9 @@ namespace pw3_proyecto.Controllers
                 }
                 catch (ImageNotSavedException)
                 {
-                    TempData["EventResult"] = "Ocurrió un error al intentar crear el evento.";
                     TempData["ImageNotSaved"] = "No se pudo guardar la imagen. Revisa que sea .JPG o .PNG.";
                 }
-                catch (Exception)
-                {
-                    TempData["EventResult"] = "Ocurrió un error al intentar crear el evento.";
-                }
+                catch (Exception) { }
             }
 
             TempData["EventResult"] = "Ocurrió un error al intentar crear el evento.";
