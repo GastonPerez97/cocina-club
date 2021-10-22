@@ -20,7 +20,7 @@
 
 .footer-base {
     position: relative;
-    height: 100px;
+    height: 108px;
     padding-top: 20px;
     width: 100%;
 }
@@ -74,7 +74,7 @@
 }
 
 .error-section {
-    min-height: calc(70vh - 21px);
+    min-height: calc(70vh - 29px);
 }
 
 /* ------------- Available Rubik's Font Weights ------------- */
