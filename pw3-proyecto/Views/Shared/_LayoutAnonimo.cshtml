@@ -1,8 +1,11 @@
 ﻿@{
     Layout = "_LayoutBase";
+
+    @using Microsoft.AspNetCore.Http
+    var currentPath = Context.Request.Path;
 }
 
-<header class="bg-yellow header-rounded-corners">
+<header class="@("bg-yellow " + (currentPath == "/" ? "" : "header-rounded-corners"))">
     <nav class="navbar navbar-expand-lg navbar-light py-4">
         <div class="container-fluid col-8 fw-500">
             <a asp-controller="Home" asp-action="Index" class="navbar-brand me-5">APP NAME</a>
@@ -30,7 +33,7 @@
     </nav>
 </header>
 
-<div class="container">
+<div @(currentPath == "/" ? "" : " class=container")>
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
