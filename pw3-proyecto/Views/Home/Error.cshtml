@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Oops, algo salió mal";
+    Layout = ViewBag.Layout;
+}
+
+<section class="error-section mx-auto mt-5">
+    <article class="p-4 p-md-5 border-radius-15px shadow">
+        <div class="row d-flex justify-content-center align-items-center px-0 px-lg-5">
+            <div class="col-12 col-lg-6">
+                <div class="fs-5 mb-5 text-center text-lg-start">
+                    <p class="display-4 fw-bold m-0">Oops!</p>
+                    <p class="display-6 fw-400">Parece que algo salió mal</p>
+
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-lg btn-yellow mt-5">Ir a Incio</a>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 ps-5">
+                <img class="img-fluid" src="~/img/cooking-fail.jpg" alt="Olla con humo en la cocina con un hombre preocupado al lado" />
+            </div>
+        </div>
+    </article>
+</section>
