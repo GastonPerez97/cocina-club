@@ -19,5 +19,15 @@ namespace pw3_proyecto.Services
             _recetaRepo.Save(receta);
             _recetaRepo.SaveChanges();
         }
+
+        public List<Receta> GetAllByChef(int id)
+        {
+            return _recetaRepo.GetAllByChef(id);
+        }
+
+        public Receta FindById(int id)
+        {
+            return _recetaRepo.FindById(id);
+        }
     }
 }

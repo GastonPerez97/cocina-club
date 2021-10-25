@@ -1,15 +1,15 @@
 ﻿using pw3_proyecto.Entities;
 using System.Collections.Generic;
 
-namespace pw3_proyecto.Services
+namespace pw3_proyecto.Repositories.Interfaces
 {
     public interface IEventoRepository
     {
-        public void SaveChanges();
+        
+        public List<Evento> EventAvailable();
         public void Save(Evento evento);
         public List<Evento> GetAllBy(int userId);
-        public List<Evento> EventAvailable();
-
-
+        public void SaveChanges();
+        public Evento FindById(int id);
     }
 }

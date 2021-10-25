@@ -5,6 +5,7 @@
     --yellow: #fabb2d;
     --yellow-dark: #e8ae2a;
     --grey: #edeae1;
+    --dark: #1c191a;
 }
 
 * {
@@ -47,12 +48,29 @@
     background-color: var(--grey);
 }
 
+.bg-custom-dark {
+    background-color: var(--dark);
+}
+
 .border-radius-15px {
     border-radius: 15px;
 }
 
 .border-radius-top-15px {
     border-radius: 15px 15px 0 0;
+}
+
+.profile {
+    height: 450px;
+    background-image: url(../img/ingredients-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 85%;
+}
+
+.note-pin {
+    width: 50px;
+    height: auto;
 }
 
 /* ------------- Available Rubik's Font Weights ------------- */

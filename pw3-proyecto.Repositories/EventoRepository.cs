@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace pw3_proyecto.Repositories
 {
-    public class EventoRepository 
+    public class EventoRepository : IEventoRepository
     {
         private _20212C_TPContext _dbContext;
 
@@ -21,6 +21,11 @@ namespace pw3_proyecto.Repositories
                         && e.CantidadComensales > 0
                         select e;
             return query.ToList();
+        }
+
+        public Evento FindById(int id)
+        {
+            return _dbContext.Eventos.Find(id);
         }
 
         public List<Evento> GetAllBy(int userId)

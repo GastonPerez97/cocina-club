@@ -7,34 +7,34 @@
 
 <header class="bg-yellow header-rounded-corners">
     <nav class="navbar navbar-expand-lg navbar-light py-4">
-        <div class="container-fluid col-8 fw-500">
+        <div class="container-fluid col-10 col-lg-12 col-xl-11 col-xxl-8 fw-500 text-start text-lg-center">
             <a asp-controller="Home" asp-action="Index" class="navbar-brand me-5">APP NAME</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-                    <li class="nav-item me-4">
-                        <a asp-controller="Cocineros" asp-action="Recetas" class="nav-link active" aria-current="page">Crear Receta</a>
+                    <li class="nav-item me-0 me-md-2 me-xl-3 me-xxl-4">
+                        <a asp-controller="Cocineros" asp-action="Recetas" class="nav-link active p-0" aria-current="page">Crear Receta</a>
                     </li>
-                    <li class="nav-item me-4">
-                        <a asp-controller="Cocineros" asp-action="Eventos" class="nav-link active" aria-current="page">Crear Evento de Cocina</a>
+                    <li class="nav-item me-0 me-md-2 me-xl-3 me-xxl-4">
+                        <a asp-controller="Cocineros" asp-action="Eventos" class="nav-link active p-0" aria-current="page">Crear Evento de Cocina</a>
                     </li>
-                    <li class="nav-item me-4">
-                        <a asp-controller="Cocineros" asp-action="Cancelacion" class="nav-link active" aria-current="page">Cancelar Evento</a>
+                    <li class="nav-item me-0 me-md-2 me-xl-3 me-xxl-4">
+                        <a asp-controller="Cocineros" asp-action="Cancelacion" class="nav-link active p-0" aria-current="page">Cancelar Evento</a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="Cocineros" asp-action="Perfil" class="nav-link active" aria-current="page">Mi Perfil</a>
+                    <li class="nav-item me-0 me-md-2 me-xl-3 me-xxl-4">
+                        <a asp-controller="Cocineros" asp-action="Perfil" class="nav-link active p-0" aria-current="page">Mi Perfil</a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto d-inline d-lg-flex align-items-center">
-                    <li class="me-4">
+                    <li class="me-2 me-xxl-4">
                         <p class="m-0">Hola <b>@userName</b>!</p>
                     </li>
 
                     <li class="nav-item">
-                        <a asp-controller="User" asp-action="Logout" class="nav-link me-3 fw-500">Cerrar Sesión</a>
+                        <a asp-controller="User" asp-action="Logout" class="nav-link me-3 fw-500 p-0">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>

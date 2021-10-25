@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace pw3_proyecto.Services
 {
     public class EventoService : IEventoService
-    //{
-    //    private IEventoRepository _eventoRepo;
+    {
+        private IEventoRepository _eventoRepo;
 
-    //    public EventoService(IEventoRepository eventoRepo)
-    //    {
-    //        _eventoRepo = eventoRepo;
-    //    }
+        public EventoService(IEventoRepository eventoRepo)
+        {
+            _eventoRepo = eventoRepo;
+        }
 
         public void Save(Evento evento)
         {
@@ -46,5 +46,12 @@ namespace pw3_proyecto.Services
         {
             return _eventoRepo.EventAvailable();
         }
+
+        public Evento FindById(int id)
+        {
+            return _eventoRepo.FindById(id);
+        }
+
+        
     }
 }
