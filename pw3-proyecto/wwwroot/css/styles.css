@@ -73,6 +73,10 @@
     height: auto;
 }
 
+.error-section {
+    min-height: calc(70vh - 29px);
+}
+
 /* ------------- Available Rubik's Font Weights ------------- */
 .fw-300 {
     font-weight: 300;

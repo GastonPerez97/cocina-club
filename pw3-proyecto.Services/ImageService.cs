@@ -16,6 +16,7 @@ namespace pw3_proyecto.Services
                 throw new ImageNotSavedException("File is null");
 
             string fileExtension = Path.GetExtension(imageFile.FileName);
+            imageName += fileExtension;
 
             if (fileExtension == ".jpg" || fileExtension == ".png")
             {

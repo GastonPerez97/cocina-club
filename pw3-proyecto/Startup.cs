@@ -50,6 +50,7 @@ namespace pw3_proyecto
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
+            services.AddRouting(options => options.LowercaseUrls = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,7 +77,7 @@ namespace pw3_proyecto
 
             app.UseEndpoints(endpoints =>
 			{
-				endpoints.MapControllerRoute(
+                endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});

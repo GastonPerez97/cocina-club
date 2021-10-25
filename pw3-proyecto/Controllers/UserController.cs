@@ -19,12 +19,14 @@ namespace pw3_proyecto.Controllers
             return RedirectToAction("Login");
         }
 
+        [Route("login")]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [Route("login")]
         public IActionResult Login(IFormCollection form)
         {
             string email = form["Email"];
@@ -57,12 +59,14 @@ namespace pw3_proyecto.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Route("registracion")]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [Route("registracion")]
         public IActionResult Register(Usuario user)
         {
             if (_userService.CheckIfUserExists(user.Email))
