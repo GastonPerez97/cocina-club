@@ -1,0 +1,42 @@
+﻿@model pw3_proyecto.Entities.Model.ConfirmarReserva
+
+@{
+    ViewData["Title"] = "Confirmar";
+    Layout = "~/Views/Shared/_LayoutComensal.cshtml";
+}
+
+<h4>Confirma tu Reserva</h4>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Confirmar" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group m-1">
+                
+                <input hidden asp-for="IdEvento"  class="form-control" asp-items="ViewBag.IdEvento" value="@Model.IdEvento"></input>
+            </div>
+            <div class="form-group">
+                
+                <input hidden asp-for="IdComensal"  class ="form-control" asp-items="ViewBag.IdComensal" value="@Model.IdComensal"></input>
+            </div>
+            <div class="form-group m-1">
+                <label asp-for="recetas" class="control-label"></label><br />
+                @foreach (var receta in Model.recetas)
+            {
+                <input name="IdRecetaElegida" type="radio" value="@receta.IdReceta" class="m-2 form-check-input"/> @receta.Nombre
+            }
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadComensales" class="control-label"></label>
+                <input asp-for="CantidadComensales" max="@Model.CantidadComensales" class="form-control" value="" />
+                <span asp-validation-for="CantidadComensales" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group m-2">
+                <input type="submit" value="Reservar" class="btn btn-primary" />
+                <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
