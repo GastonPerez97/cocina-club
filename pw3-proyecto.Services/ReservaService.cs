@@ -1,4 +1,5 @@
 ﻿using pw3_proyecto.Entities;
+using pw3_proyecto.Entities.Model;
 using pw3_proyecto.Repositories.Interfaces;
 using pw3_proyecto.Services.Interfaces;
 using System;
@@ -12,10 +13,32 @@ namespace pw3_proyecto.Services
     public class ReservaService : IReservaService
     {
         private IReservaRepository _reservaRepository;
+        private IRecetaService _recetaService;
+        private IEventoService _eventoService;
 
-        public ReservaService(IReservaRepository reservaRepository)
+        public ReservaService(IReservaRepository reservaRepository, IEventoService eventoService, IRecetaService recetaService)
         {
             _reservaRepository = reservaRepository;
+            _recetaService = recetaService;
+            _eventoService = eventoService;
+        }
+
+        public ConfirmarReserva details(int idE, int idC)
+        {
+            ConfirmarReserva confirmarReserva = new ConfirmarReserva();
+            List<Receta> recetasEvento = new List<Receta>();
+            Evento evento = _eventoService.FindById(idE);
+           
+            foreach (var a in evento.EventosReceta)
+            {
+                recetasEvento.Add(_recetaService.FindById(a.IdReceta));
+            }
+            confirmarReserva.IdEvento = evento.IdEvento;
+            confirmarReserva.IdComensal = idC;
+            confirmarReserva.recetas = recetasEvento;
+            confirmarReserva.CantidadComensales = evento.CantidadComensales;
+
+            return confirmarReserva;
         }
 
         public void Save(Reserva reservation)
@@ -23,9 +46,21 @@ namespace pw3_proyecto.Services
             _reservaRepository.Save(reservation);
             _reservaRepository.SaveChanges();
         }
-        public List<Reserva> ReservasDisponibles()
+
+        public void SaveReserva(ConfirmarReserva confirmarReserva)
         {
-            return _reservaRepository.ReservasDisponibles();
+            Reserva reserva = new Reserva();
+            reserva.FechaCreacion = DateTime.Now;
+            reserva.IdComensal = confirmarReserva.IdComensal;
+            reserva.IdEvento = confirmarReserva.IdEvento;
+            reserva.IdReceta = confirmarReserva.IdRecetaElegida;
+            reserva.CantidadComensales = confirmarReserva.CantidadComensales;
+            
+            Evento evento = _eventoService.FindById(confirmarReserva.IdEvento);
+            evento.CantidadComensales = (evento.CantidadComensales - confirmarReserva.CantidadComensales);
+           
+            this.Save(reserva);
+
         }
     }
 }

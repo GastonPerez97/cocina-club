@@ -29,5 +29,10 @@ namespace pw3_proyecto.Repositories
         {
             _dbContext.SaveChanges();
         }
+
+        public Receta FindById(int id)
+        {
+            return _dbContext.Recetas.Find(id);
+        }
     }
 }

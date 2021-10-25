@@ -10,5 +10,6 @@ namespace pw3_proyecto.Repositories.Interfaces
         public void Save(Evento evento);
         public List<Evento> GetAllBy(int userId);
         public void SaveChanges();
+        public Evento FindById(int id);
     }
 }

@@ -33,7 +33,7 @@ namespace pw3_proyecto.Entities
         public string Ubicacion { get; set; }
 
         [Required(ErrorMessage = "El campo Precio es obligatorio.")]
-        [DataType(DataType.Currency)]
+        //[DataType(DataType.Currency)]
         [Range(1.00D, double.MaxValue, ErrorMessage = "Un evento no puede ser gratuito.")]
         public decimal Precio { get; set; }
 

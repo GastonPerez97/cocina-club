@@ -23,6 +23,11 @@ namespace pw3_proyecto.Repositories
             return query.ToList();
         }
 
+        public Evento FindById(int id)
+        {
+            return _dbContext.Eventos.Find(id);
+        }
+
         public List<Evento> GetAllBy(int userId)
         {
             return _dbContext.Eventos.Where(evento => evento.IdCocinero == userId).ToList();

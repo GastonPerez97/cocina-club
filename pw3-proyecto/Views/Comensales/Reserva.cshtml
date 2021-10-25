@@ -26,8 +26,10 @@
             <tr>
                 <td>@evento.Nombre</td>
                 <td>@evento.Fecha</td>
+                <td>@evento.Ubicacion</td>
                 <td>@evento.CantidadComensales</td>
-                <td><a class="btn btn-primary" asp-action="Comensales/ConfirmarReserva?idEvento=@evento.IdEvento">Reservar</a></td>
+                <td>@evento.Estado</td>
+                <td><a class="btn btn-primary" asp-action="Confirmar" asp-route-id="@evento.IdEvento">Reservar</a></td>
             </tr>
 
         }

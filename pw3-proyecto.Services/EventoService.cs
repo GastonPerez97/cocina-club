@@ -26,7 +26,7 @@ namespace pw3_proyecto.Services
 
         public void LinkRecipesToEvent(Evento evento, List<int> recetasId)
         {
-            foreach(int recetaId in recetasId)
+            foreach (int recetaId in recetasId)
             {
                 EventosReceta eventoReceta = new EventosReceta();
                 eventoReceta.IdEvento = evento.IdEvento;
@@ -42,8 +42,16 @@ namespace pw3_proyecto.Services
         {
             return _eventoRepo.GetAllBy(userId);
         }
-    public List<Evento> EventAvailable()
-    {
-        return _eventoRepo.EventAvailable();
+        public List<Evento> EventAvailable()
+        {
+            return _eventoRepo.EventAvailable();
+        }
+
+        public Evento FindById(int id)
+        {
+            return _eventoRepo.FindById(id);
+        }
+
+        
     }
 }
