@@ -1,5 +1,6 @@
 ﻿using pw3_proyecto.Entities;
 using pw3_proyecto.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,6 +20,8 @@ namespace pw3_proyecto.Repositories
                         where e.Fecha > DateTime.Now
                         && e.CantidadComensales > 0
                         select e;
+            return query.ToList();
+        }
 
         public List<Evento> GetAllBy(int userId)
         {
