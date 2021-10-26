@@ -8,7 +8,5 @@ namespace pw3_proyecto.Services.Interfaces
         public void Save(Evento evento);
         public void LinkRecipesToEvent(Evento evento, List<int> recetasId);
         public List<Evento> GetAllBy(int userId);
-        public List<Evento> EventAvailable();
-        public Evento FindById(int id);        
     }
 }
