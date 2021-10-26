@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 pw3-proyecto/wwwroot/img/events/
+pw3-proyecto/appsettings.json
 
 # User-specific files
 *.rsuser

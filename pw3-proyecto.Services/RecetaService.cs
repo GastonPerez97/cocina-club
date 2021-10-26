@@ -24,5 +24,10 @@ namespace pw3_proyecto.Services
         {
             return _recetaRepo.GetAllByChef(id);
         }
+
+        public Receta FindById(int id)
+        {
+            return _recetaRepo.FindById(id);
+        }
     }
 }

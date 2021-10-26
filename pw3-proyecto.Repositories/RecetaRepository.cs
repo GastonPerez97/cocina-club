@@ -25,6 +25,11 @@ namespace pw3_proyecto.Repositories
             return _dbContext.Recetas.Where(recipe => recipe.IdCocinero == id).ToList();
         }
 
+        public Receta FindById(int id)
+        {
+            return _dbContext.Recetas.Find(id);
+        }
+
         public void SaveChanges()
         {
             _dbContext.SaveChanges();

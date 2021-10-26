@@ -40,6 +40,8 @@ namespace pw3_proyecto
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IEventoService, EventoService>();
             services.AddScoped<IEventoRepository, EventoRepository>();
+            services.AddScoped<IReservaService, ReservaService>();
+            services.AddScoped<IReservaRepository, ReservaRepository>();
 
             services.AddSession(options =>
             {

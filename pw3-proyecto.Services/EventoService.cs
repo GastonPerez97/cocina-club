@@ -34,6 +34,16 @@ namespace pw3_proyecto.Services
             _eventoRepo.SaveChanges();
         }
 
+        public List<Evento> EventAvailable()
+        {
+            return _eventoRepo.EventAvailable();
+        }
+
+        public Evento FindById(int id)
+        {
+            return _eventoRepo.FindById(id);
+        }
+
         public List<Evento> GetAllBy(int userId)
         {
             return _eventoRepo.GetAllBy(userId);
