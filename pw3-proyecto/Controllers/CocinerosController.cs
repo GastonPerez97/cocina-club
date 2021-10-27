@@ -41,25 +41,40 @@ namespace pw3_proyecto.Controllers
 
         public IActionResult Perfil()
         {
-            int userId = (int) HttpContext.Session.GetInt32("UserId");
+            try
+            {
+                int userId = (int) HttpContext.Session.GetInt32("UserId");
 
-            List<Receta> recipes = _recetaService.GetAllByChef(userId);
-            List<Evento> eventos = _eventoService.GetAllBy(userId);
+                List<Receta> recipes = _recetaService.GetAllByChef(userId);
+                List<Evento> eventos = _eventoService.GetAllBy(userId);
 
-            ViewBag.User = _userService.GetBy(userId);
-            ViewBag.Events = eventos;
-            ViewBag.EventCount = eventos.Count;
-            ViewBag.Recipes = recipes;
-            ViewBag.RecipeCount = recipes.Count;
+                ViewBag.User = _userService.GetBy(userId);
+                ViewBag.Events = eventos;
+                ViewBag.EventCount = eventos.Count;
+                ViewBag.Recipes = recipes;
+                ViewBag.RecipeCount = recipes.Count;
 
-            return View();
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Login", "User");
+            }
         }
 
         public IActionResult Recetas()
         {
-            ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
-            ViewBag.TipoRecetas = _tipoRecetaService.GetAll();
-            return View();
+            try
+            {
+                ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
+                ViewBag.TipoRecetas = _tipoRecetaService.GetAll();
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            
         }
 
         [HttpPost]
@@ -82,9 +97,16 @@ namespace pw3_proyecto.Controllers
 
         public IActionResult Eventos()
         {
-            ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
-            ViewBag.ChefRecipes = _recetaService.GetAllByChef(ViewBag.UserId);
-            return View();
+            try
+            {
+                ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
+                ViewBag.ChefRecipes = _recetaService.GetAllByChef(ViewBag.UserId);
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Login", "User");
+            }
         }
 
         [HttpPost]
