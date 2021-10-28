@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using pw3_proyecto.Entities;
 using pw3_proyecto.Entities.Model;
+using pw3_proyecto.Filters;
 using pw3_proyecto.Services.Interfaces;
 using System.Collections.Generic;
 
 namespace pw3_proyecto.Controllers
 {
+    [ComensalAuthorizationFilter]
     public class ComensalesController : Controller
     {
         private readonly IReservaService _reservaService;

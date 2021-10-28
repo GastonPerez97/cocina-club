@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using pw3_proyecto.Entities;
+using pw3_proyecto.Filters;
 using pw3_proyecto.Services.Common.CustomExceptions;
 using pw3_proyecto.Services.Interfaces;
 using System;
@@ -10,6 +11,7 @@ using System.IO;
 
 namespace pw3_proyecto.Controllers
 {
+    [CocineroAuthorizationFilter]
     public class CocinerosController : Controller
     {
         private readonly ITipoRecetaService _tipoRecetaService;
@@ -41,40 +43,25 @@ namespace pw3_proyecto.Controllers
 
         public IActionResult Perfil()
         {
-            try
-            {
-                int userId = (int) HttpContext.Session.GetInt32("UserId");
+            int userId = (int) HttpContext.Session.GetInt32("UserId");
 
-                List<Receta> recipes = _recetaService.GetAllByChef(userId);
-                List<Evento> eventos = _eventoService.GetAllBy(userId);
+            List<Receta> recipes = _recetaService.GetAllByChef(userId);
+            List<Evento> eventos = _eventoService.GetAllBy(userId);
 
-                ViewBag.User = _userService.GetBy(userId);
-                ViewBag.Events = eventos;
-                ViewBag.EventCount = eventos.Count;
-                ViewBag.Recipes = recipes;
-                ViewBag.RecipeCount = recipes.Count;
+            ViewBag.User = _userService.GetBy(userId);
+            ViewBag.Events = eventos;
+            ViewBag.EventCount = eventos.Count;
+            ViewBag.Recipes = recipes;
+            ViewBag.RecipeCount = recipes.Count;
 
-                return View();
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Login", "User");
-            }
+            return View();
         }
 
         public IActionResult Recetas()
         {
-            try
-            {
-                ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
-                ViewBag.TipoRecetas = _tipoRecetaService.GetAll();
-                return View();
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Login", "User");
-            }
-            
+            ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
+            ViewBag.TipoRecetas = _tipoRecetaService.GetAll();
+            return View();
         }
 
         [HttpPost]
@@ -97,16 +84,9 @@ namespace pw3_proyecto.Controllers
 
         public IActionResult Eventos()
         {
-            try
-            {
-                ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
-                ViewBag.ChefRecipes = _recetaService.GetAllByChef(ViewBag.UserId);
-                return View();
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Login", "User");
-            }
+            ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
+            ViewBag.ChefRecipes = _recetaService.GetAllByChef(ViewBag.UserId);
+            return View();
         }
 
         [HttpPost]
