@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using pw3_proyecto.Entities;
 
 namespace pw3_proyecto.Controllers
 {
@@ -26,7 +27,7 @@ namespace pw3_proyecto.Controllers
             {
                 ViewBag.Layout = "_LayoutAnonimo";
             }
-            else if (userId != null && userProfile == 0)
+            else if (userId != null && userProfile == Profiles.Comensal)
             {
                 ViewBag.Layout = "_LayoutComensal";
             }
