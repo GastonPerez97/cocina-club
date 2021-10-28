@@ -42,9 +42,8 @@ namespace pw3_proyecto
             services.AddScoped<IEventoRepository, EventoRepository>();
             services.AddScoped<IReservaService, ReservaService>();
             services.AddScoped<IReservaRepository, ReservaRepository>();
-			
 
-			services.AddSession(options =>
+            services.AddSession(options =>
             {
                 options.Cookie.Name = ".MiAPP.Session";
                 options.IdleTimeout = TimeSpan.FromMinutes(30);

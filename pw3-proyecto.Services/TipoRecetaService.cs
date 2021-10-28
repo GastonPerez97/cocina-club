@@ -7,7 +7,7 @@ namespace pw3_proyecto.Services
 {
     public class TipoRecetaService : ITipoRecetaService
     {
-        private ITipoRecetaRepository _tipoRecetaRepo;
+        private readonly ITipoRecetaRepository _tipoRecetaRepo;
 
         public TipoRecetaService(ITipoRecetaRepository tipoRecetaRepo)
         {

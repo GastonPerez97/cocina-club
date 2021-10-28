@@ -8,7 +8,7 @@ namespace pw3_proyecto.Repositories
 {
     public class RecetaRepository : IRecetaRepository
     {
-        private _20212C_TPContext _dbContext;
+        private readonly _20212C_TPContext _dbContext;
 
         public RecetaRepository(_20212C_TPContext dbContext)
         {
@@ -25,14 +25,14 @@ namespace pw3_proyecto.Repositories
             return _dbContext.Recetas.Where(recipe => recipe.IdCocinero == id).ToList();
         }
 
-        public void SaveChanges()
-        {
-            _dbContext.SaveChanges();
-        }
-
         public Receta FindById(int id)
         {
             return _dbContext.Recetas.Find(id);
+        }
+
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
         }
     }
 }

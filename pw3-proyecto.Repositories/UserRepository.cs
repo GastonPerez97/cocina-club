@@ -6,7 +6,7 @@ namespace pw3_proyecto.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private _20212C_TPContext _dbContext;
+        private readonly _20212C_TPContext _dbContext;
 
         public UserRepository(_20212C_TPContext dbContext)
         {

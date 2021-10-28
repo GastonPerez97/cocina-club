@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -12,7 +10,7 @@ namespace pw3_proyecto.Entities
         public int IdEvento { get; set; }
         public int IdComensal { get; set; }
         public int IdReceta { get; set; }
-        public int CantidadComensales { get; set; }        
+        public int CantidadComensales { get; set; }
         public DateTime FechaCreacion { get; set; }
 
         public virtual Usuario IdComensalNavigation { get; set; }

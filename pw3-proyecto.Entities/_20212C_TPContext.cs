@@ -25,7 +25,6 @@ namespace pw3_proyecto.Entities
         public virtual DbSet<TipoReceta> TipoRecetas { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
