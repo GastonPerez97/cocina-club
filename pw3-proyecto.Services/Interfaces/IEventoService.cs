@@ -10,5 +10,6 @@ namespace pw3_proyecto.Services.Interfaces
         public List<Evento> GetAllBy(int userId);
         public List<Evento> EventAvailable();
         public Evento FindById(int id);
+        public int ComensalesAvailable(int IdEvento);
     }
 }
