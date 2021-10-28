@@ -1,4 +1,5 @@
-﻿using pw3_proyecto.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using pw3_proyecto.Entities;
 using pw3_proyecto.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,16 +17,41 @@ namespace pw3_proyecto.Repositories
         }
         public List<Evento> EventAvailable()
         {
-            var query = from e in _dbContext.Eventos
-                        where e.Fecha > DateTime.Now
-                        && e.CantidadComensales > 0
-                        select e;
-            return query.ToList();
+             List<Evento> eventAvailable = new List<Evento>();
+             int Cantidad=0;
+                        
+        var queryDispo = from eventos in _dbContext.Eventos.Include("Reservas")
+                         where eventos.Fecha > DateTime.Now
+                         select eventos;
+            foreach(Evento evento in queryDispo)
+            {                
+                foreach (Reserva reserva in evento.Reservas)
+                {
+                    Cantidad += reserva.CantidadComensales;
+                }
+                if(Cantidad < evento.CantidadComensales)
+                {
+                    eventAvailable.Add(evento);
+                }else
+                {
+                    Cantidad = 0;
+                }
+            }
+                             
+            return eventAvailable;
         }
 
         public Evento FindById(int id)
         {
             return _dbContext.Eventos.Find(id);
+        }
+
+        public Evento FindEventoReserva(int id)
+        {
+            var query = from e in _dbContext.Eventos.Include("Reservas")
+                        where e.IdEvento == id
+                        select e;
+            return query.Single();
         }
 
         public List<Evento> GetAllBy(int userId)

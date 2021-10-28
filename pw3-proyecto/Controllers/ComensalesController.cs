@@ -38,16 +38,23 @@ namespace pw3_proyecto.Controllers
         public IActionResult Confirmar(string id)
         {
             ConfirmarReserva confirmarReserva = _reservaService.details(int.Parse(id), (int)HttpContext.Session.GetInt32("UserId"));
-                        
+            ViewBag.ComensalesAvailable = _eventoService.ComensalesAvailable(int.Parse(id));            
             return View(confirmarReserva);
         }
         [HttpPost]
         public IActionResult Confirmar(ConfirmarReserva confirmarReserva)
         {
+            int comensalesAvailable = _eventoService.ComensalesAvailable(confirmarReserva.IdEvento);
             if (ModelState.IsValid)
             {
+                if(comensalesAvailable >= confirmarReserva.CantidadComensales)
+                {
                 _reservaService.SaveReserva(confirmarReserva);
                 return RedirectToAction("Reservas");
+
+                }
+                else
+                    return RedirectToAction("Confirmar", confirmarReserva.IdEvento);
             }
             return RedirectToAction("Reserva");
         }
