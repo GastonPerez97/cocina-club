@@ -65,16 +65,6 @@ namespace pw3_proyecto.Repositories
             return query.Single();
         }
 
-        public List<Evento> GetAllBy(int userId)
-        {
-            return _dbContext.Eventos.Where(evento => evento.IdCocinero == userId).ToList();
-        }
-
-        public void Save(Evento evento)
-        {
-            _dbContext.Eventos.Add(evento);
-        }
-
         public void SaveChanges()
         {
             _dbContext.SaveChanges();
