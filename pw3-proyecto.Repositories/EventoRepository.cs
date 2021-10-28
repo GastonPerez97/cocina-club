@@ -8,7 +8,7 @@ namespace pw3_proyecto.Repositories
 {
     public class EventoRepository : IEventoRepository
     {
-        private _20212C_TPContext _dbContext;
+        private readonly _20212C_TPContext _dbContext;
 
         public EventoRepository(_20212C_TPContext dbContext)
         {

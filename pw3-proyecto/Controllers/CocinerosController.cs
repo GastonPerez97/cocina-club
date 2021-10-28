@@ -12,12 +12,12 @@ namespace pw3_proyecto.Controllers
 {
     public class CocinerosController : Controller
     {
-        private ITipoRecetaService _tipoRecetaService;
-        private IRecetaService _recetaService;
-        private IUserService _userService;
-        private IImageService _imageService;
-        private IEventoService _eventoService;
-        private IWebHostEnvironment _hostingEnv;
+        private readonly ITipoRecetaService _tipoRecetaService;
+        private readonly IRecetaService _recetaService;
+        private readonly IUserService _userService;
+        private readonly IImageService _imageService;
+        private readonly IEventoService _eventoService;
+        private readonly IWebHostEnvironment _hostingEnv;
 
         public CocinerosController(ITipoRecetaService tipoRecetaService,
                                    IRecetaService recetaService,

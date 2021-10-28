@@ -7,7 +7,7 @@ namespace pw3_proyecto.Services
 {
     public class RecetaService : IRecetaService
     {
-        private IRecetaRepository _recetaRepo;
+        private readonly IRecetaRepository _recetaRepo;
 
         public RecetaService(IRecetaRepository recetaRepo)
         {

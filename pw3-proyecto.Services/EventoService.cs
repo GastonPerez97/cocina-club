@@ -7,7 +7,7 @@ namespace pw3_proyecto.Services
 {
     public class EventoService : IEventoService
     {
-        private IEventoRepository _eventoRepo;
+        private readonly IEventoRepository _eventoRepo;
 
         public EventoService(IEventoRepository eventoRepo)
         {

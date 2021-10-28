@@ -12,9 +12,9 @@ namespace pw3_proyecto.Services
 {
     public class ReservaService : IReservaService
     {
-        private IReservaRepository _reservaRepository;
-        private IRecetaService _recetaService;
-        private IEventoService _eventoService;
+        private readonly IReservaRepository _reservaRepository;
+        private readonly IRecetaService _recetaService;
+        private readonly IEventoService _eventoService;
 
         public ReservaService(IReservaRepository reservaRepository, IEventoService eventoService, IRecetaService recetaService)
         {

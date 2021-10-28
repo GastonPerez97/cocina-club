@@ -9,8 +9,8 @@ namespace pw3_proyecto.Controllers
 {
     public class ComensalesController : Controller
     {
-        private IReservaService _reservaService;
-        private IEventoService _eventoService;
+        private readonly IReservaService _reservaService;
+        private readonly IEventoService _eventoService;
 
         public ComensalesController(IReservaService reservaService, IEventoService eventoService)
         {

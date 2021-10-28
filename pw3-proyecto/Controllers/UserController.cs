@@ -7,7 +7,7 @@ namespace pw3_proyecto.Controllers
 {
     public class UserController : Controller
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         public UserController(IUserService userService)
         {
