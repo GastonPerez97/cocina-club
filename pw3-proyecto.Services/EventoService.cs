@@ -7,7 +7,7 @@ namespace pw3_proyecto.Services
 {
     public class EventoService : IEventoService
     {
-        private IEventoRepository _eventoRepo;
+        private readonly IEventoRepository _eventoRepo;
 
         public EventoService(IEventoRepository eventoRepo)
         {
@@ -42,6 +42,17 @@ namespace pw3_proyecto.Services
         public Evento FindById(int id)
         {
             return _eventoRepo.FindById(id);
+        }
+
+        public int ComensalesAvailable(int IdEvento)
+        {
+            int CantidadComensales = 0;
+            Evento evento = _eventoRepo.FindEventoReserva(IdEvento);
+            foreach(Reserva reserva in evento.Reservas)
+            {
+                CantidadComensales += reserva.CantidadComensales;
+            }
+            return (evento.CantidadComensales - CantidadComensales);
         }
 
         public List<Evento> GetAllBy(int userId)

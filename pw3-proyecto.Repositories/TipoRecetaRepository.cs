@@ -10,7 +10,7 @@ namespace pw3_proyecto.Repositories
 {
     public class TipoRecetaRepository : ITipoRecetaRepository
     {
-        private _20212C_TPContext _dbContext;
+        private readonly _20212C_TPContext _dbContext;
 
         public TipoRecetaRepository(_20212C_TPContext dbContext)
         {

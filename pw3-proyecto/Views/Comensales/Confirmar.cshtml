@@ -28,7 +28,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="CantidadComensales" class="control-label"></label>
-                <input asp-for="CantidadComensales" max="@Model.CantidadComensales" class="form-control" value="" />
+                <input asp-for="CantidadComensales" max="@ViewBag.ComensalesAvailable" class="form-control" value="" />
+                <p>Solo quedan @ViewBag.ComensalesAvailable lugares disponibles</p>
                 <span asp-validation-for="CantidadComensales" class="text-danger"></span>
             </div>
             

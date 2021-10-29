@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using pw3_proyecto.Entities;
-using pw3_proyecto.Middlewares;
 using pw3_proyecto.Repositories;
 using pw3_proyecto.Repositories.Interfaces;
 using pw3_proyecto.Services;
@@ -74,8 +73,6 @@ namespace pw3_proyecto
 			app.UseAuthorization();
 
             app.UseSession();
-
-            app.UseMiddleware<AuthorizationMiddleware>();
 
             app.UseEndpoints(endpoints =>
 			{
