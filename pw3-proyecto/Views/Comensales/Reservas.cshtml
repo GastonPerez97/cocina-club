@@ -12,11 +12,6 @@
 
         <h2>Mis Reservas comensal</h2>
 
-        @foreach (var reserva in Model)
-        {
-
-            <p>@reserva.IdEvento</p>
-        }
     </div>
 
 
@@ -55,121 +50,42 @@
                 <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
 
                     @*Cards eventos pendientes*@
-                    <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
+
+                    @foreach (var reserva in Model)
+                    {
+
+
+                        <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
         background-size: cover;
         background-position: center;">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
+                            <div class="card-body text-white">
+                                <h5 class="card-title text-white">@reserva.IdEvento</h5>
+                                <p class="card-text text-white">Fecha: 2021-11-30</p>
 
-                            <hr />
+                                <hr />
 
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
-
-
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Pendiente <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:gold">
-                                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="        background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
-        background-size: cover;
-        background-position: center;">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                            <hr />
-
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
+                                <b class="text-light">Chef: Diego Maradona</b>
+                                <br />
+                                <b class="text-light">Ubicación: Av Gaona 2204</b>
 
 
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Pendiente <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:gold">
-                                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                    </svg>
-                                </p>
-                            </div>
+                                <div class="my-4">
+                                    <p class="m-0 text-white">
+                                        Estado: Pendiente <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:gold">
+                                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                        </svg>
+                                    </p>
+                                </div>
 
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                <div class="text-center">
+                                    <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="        background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
-        background-size: cover;
-        background-position: center;">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                            <hr />
-
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
 
 
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Pendiente <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:gold">
-                                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="        background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
-        background-size: cover;
-        background-position: center;">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                            <hr />
-
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
-
-
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Pendiente <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:gold">
-                                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
-                        </div>
-                    </div>
+                    }
 
                     @*Fin card eventos pendientes*@
 
