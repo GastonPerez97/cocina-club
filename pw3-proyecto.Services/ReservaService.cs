@@ -28,7 +28,7 @@ namespace pw3_proyecto.Services
             ConfirmarReserva confirmarReserva = new ConfirmarReserva();
             List<Receta> recetasEvento = new List<Receta>();
             Evento evento = _eventoService.FindById(idE);
-           
+
             foreach (var a in evento.EventosReceta)
             {
                 recetasEvento.Add(_recetaService.FindById(a.IdReceta));
@@ -55,12 +55,20 @@ namespace pw3_proyecto.Services
             reserva.IdEvento = confirmarReserva.IdEvento;
             reserva.IdReceta = confirmarReserva.IdRecetaElegida;
             reserva.CantidadComensales = confirmarReserva.CantidadComensales;
-            
+
             Evento evento = _eventoService.FindById(confirmarReserva.IdEvento);
             evento.CantidadComensales = (evento.CantidadComensales - confirmarReserva.CantidadComensales);
-           
+
             this.Save(reserva);
 
         }
+
+        public List<Reserva> GetAllByUser(int idUser)
+        {
+
+            return _reservaRepository.GetAllByUser(idUser);
+
+        }
+
     }
 }

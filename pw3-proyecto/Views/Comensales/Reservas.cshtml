@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<pw3_proyecto.Entities.Reserva>
+
+@{
     ViewData["Title"] = "Mis Reservas";
     Layout = "_LayoutComensal";
 }
@@ -10,6 +12,11 @@
 
         <h2>Mis Reservas comensal</h2>
 
+        @foreach (var reserva in Model)
+        {
+
+            <p>@reserva.IdEvento</p>
+        }
     </div>
 
 
@@ -43,7 +50,7 @@
 
         <div class="col-10">
 
-            <div id="section1" class="container-fluid text-white" style="padding:10px 10px 40px 0px;">
+            <div id="section1" class="container-fluid text-white" style="padding:0px 10px 40px 0px;">
                 <h3 class="text-dark ms-3 mb-1">Reservas pendientes</h3>
                 <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
 
@@ -168,7 +175,7 @@
 
                 </div>
             </div>
-            
+
             <div id="section2" class="container-fluid" style="padding:40px 10px;">
                 <h3 class="ms-3 mb-1">Reservas canceladas</h3>
                 <div style="display:grid; grid-template-columns:1fr 1fr 1fr">

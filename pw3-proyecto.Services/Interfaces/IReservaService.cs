@@ -13,5 +13,8 @@ namespace pw3_proyecto.Services.Interfaces
         public void Save(Reserva reservation);
         public ConfirmarReserva details(int idE, int idC);
         public void SaveReserva(ConfirmarReserva confirmarReserva);
+
+        public List<Reserva> GetAllByUser(int idUser);
+
     }
 }
