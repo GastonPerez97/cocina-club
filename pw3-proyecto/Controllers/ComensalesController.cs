@@ -29,7 +29,7 @@ namespace pw3_proyecto.Controllers
         {
             int userId = (int)HttpContext.Session.GetInt32("UserId");
 
-            return View(_reservaService.GetAllByUser(userId));
+            return View(_eventoService.GetAllEventosByUser(userId));
         }
 
         public IActionResult Reserva()

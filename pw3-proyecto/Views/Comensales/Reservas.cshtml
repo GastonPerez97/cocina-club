@@ -1,4 +1,4 @@
-﻿@model List<pw3_proyecto.Entities.Reserva>
+﻿@model List<pw3_proyecto.Entities.Evento>
 
 @{
     ViewData["Title"] = "Mis Reservas";
@@ -44,297 +44,171 @@
         </div>
 
         <div class="col-10">
+            @foreach (var evento in Model)
+            {
 
-            <div id="section1" class="container-fluid text-white" style="padding:0px 10px 40px 0px;">
-                <h3 class="text-dark ms-3 mb-1">Reservas pendientes</h3>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
+                if (evento.Estado == 0)
+                {
 
-                    @*Cards eventos pendientes*@
+                    <div id="section1" class="container-fluid text-white" style="padding:0px 10px 40px 0px;">
+                        <h3 class="text-dark ms-3 mb-1">Reservas pendientes</h3>
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
 
-                    @foreach (var reserva in Model)
-                    {
+                            @*Cards eventos pendientes*@
 
-
-                        <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
+                            <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url('/img/events/@evento.Foto');
         background-size: cover;
         background-position: center;">
-                            <div class="card-body text-white">
-                                <h5 class="card-title text-white">@reserva.IdEvento</h5>
-                                <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                                <hr />
-
-                                <b class="text-light">Chef: Diego Maradona</b>
-                                <br />
-                                <b class="text-light">Ubicación: Av Gaona 2204</b>
-
-
-                                <div class="my-4">
-                                    <p class="m-0 text-white">
-                                        Estado: Pendiente <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:gold">
-                                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                        </svg>
+                                <div class="card-body text-white">
+                                    <h5 class="card-title text-white">@evento.Nombre</h5>
+                                    <p class="card-text text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16" style="margin-bottom:4px;">
+                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp @evento.Fecha
                                     </p>
+
+                                    <hr />
+
+                                    <b class="text-light">$ @evento.Precio</b>
+                                    <br />
+                                    <b class="text-light">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin-bottom:4px;">
+                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                        </svg>&nbsp @evento.Ubicacion
+                                    </b>
+
+
+                                    <div class="my-4">
+                                        <p class="m-0 text-white">
+                                            Estado: Pendiente <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:gold">
+                                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                            </svg>
+                                        </p>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="text-center">
-                                    <a class="btn btn-outline-light" href="#">Ver Más</a>
+
+
+
+                            @*Fin card eventos pendientes*@
+
+                        </div>
+                    </div>
+
+                }
+
+                if (evento.Estado == 2)
+                {
+
+                    <div id="section2" class="container-fluid" style="padding:40px 10px;">
+                        <h3 class="ms-3 mb-1">Reservas canceladas</h3>
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
+
+                            @*Card eventos cancelados*@
+                            <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url('/img/events/@evento.Foto');
+        background-size: cover;
+        background-position: center;">
+                                <div class="card-body text-white">
+                                    <h5 class="card-title text-white">@evento.Nombre</h5>
+                                    <p class="card-text text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16" style="margin-bottom:4px;">
+                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp @evento.Fecha
+                                    </p>
+
+                                    <hr />
+
+                                    <b class="text-light">$ @evento.Precio</b>
+                                    <br />
+                                    <b class="text-light">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin-bottom:4px;">
+                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                        </svg>&nbsp @evento.Ubicacion
+                                    </b>
+
+
+                                    <div class="my-4">
+                                        <p class="m-0 text-white">
+                                            Estado: Cancelado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color: red;">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                        </p>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-
-                    }
-
-                    @*Fin card eventos pendientes*@
-
-                </div>
-            </div>
-
-            <div id="section2" class="container-fluid" style="padding:40px 10px;">
-                <h3 class="ms-3 mb-1">Reservas canceladas</h3>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
-
-                    @*Card eventos cancelados*@
-                    <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(94,94,94,0.9304096638655462) 0%, rgba(85,85,85,0.9556197478991597) 99%);">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                            <hr />
-
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
-
-
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Cancelado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color: red;">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
+                            @*Fin card eventos cancelados*@
                         </div>
                     </div>
 
-                    <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(94,94,94,0.9304096638655462) 0%, rgba(85,85,85,0.9556197478991597) 99%);">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
+                }
 
-                            <hr />
+                if (evento.Estado == 1)
+                {
 
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
+                    <div id="section3" class="container-fluid text-white" style="padding: 40px 10px;">
 
+                        <h3 class="text-dark ms-3 mb-1">Reservas realizadas</h3>
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
 
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Cancelado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color: red;">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(94,94,94,0.9304096638655462) 0%, rgba(85,85,85,0.9556197478991597) 99%);">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                            <hr />
-
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
-
-
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Cancelado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color: red;">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(94,94,94,0.9304096638655462) 0%, rgba(85,85,85,0.9556197478991597) 99%);">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                            <hr />
-
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
-
-
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Cancelado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color: red;">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    @*Fin card eventos cancelados*@
-                </div>
-            </div>
-
-            <div id="section3" class="container-fluid text-white" style="padding: 40px 10px;">
-
-                <h3 class="text-dark ms-3 mb-1">Reservas realizadas</h3>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
-
-                    @*Card eventos realizados*@
-                    <div class="card col border-0 ms-3 mt-3 border-radius-15px shadow" style="        background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
+                            @*Card eventos realizados*@
+                            <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url('/img/events/@evento.Foto');
         background-size: cover;
         background-position: center;">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
+                                <div class="card-body text-white">
+                                    <h5 class="card-title text-white">@evento.Nombre</h5>
+                                    <p class="card-text text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16" style="margin-bottom:4px;">
+                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp @evento.Fecha
+                                    </p>
 
-                            <hr />
+                                    <hr />
 
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
+                                    <b class="text-light">$ @evento.Precio</b>
+                                    <br />
+                                    <b class="text-light">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin-bottom:4px;">
+                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                        </svg>&nbsp @evento.Ubicacion
+                                    </b>
 
 
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Realizado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:greenyellow">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                    </svg>
-                                </p>
+                                    <div class="my-4">
+                                        <p class="m-0 text-white">
+                                            Estado: Realizado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:greenyellow">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                            </svg>
+                                        </p>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
+                            @*Fin card eventos realizados*@
                         </div>
+
                     </div>
-
-                    <div class="card col border-0 ms-3 mt-3 border-radius-15px shadow" style="        background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
-        background-size: cover;
-        background-position: center;">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                            <hr />
-
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
-
-
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Realizado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:greenyellow">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col border-0 ms-3 mt-3 border-radius-15px shadow" style="        background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
-        background-size: cover;
-        background-position: center;">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                            <hr />
-
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
-
-
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Realizado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:greenyellow">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col border-0 ms-3 mt-3 border-radius-15px shadow" style="        background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url(https://images.squarespace-cdn.com/content/v1/5975441dbebafb04b95f650f/1597210078357-TZDTYWC7J50PIRDOT6M3/IMG_3605.jpg);
-        background-size: cover;
-        background-position: center;">
-                        <div class="card-body text-white">
-                            <h5 class="card-title text-white">Nombre del evento</h5>
-                            <p class="card-text text-white">Fecha: 2021-11-30</p>
-
-                            <hr />
-
-                            <b class="text-light">Chef: Diego Maradona</b>
-                            <br />
-                            <b class="text-light">Ubicación: Av Gaona 2204</b>
-
-
-                            <div class="my-4">
-                                <p class="m-0 text-white">
-                                    Estado: Realizado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:greenyellow">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                    </svg>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <a class="btn btn-outline-light" href="#">Ver Más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    @*Fin card eventos realizados*@
-                </div>
-
-            </div>
+                }
+            }
 
         </div>
 

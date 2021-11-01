@@ -22,7 +22,7 @@ namespace pw3_proyecto.Services
 
         public void LinkRecipesToEvent(Evento evento, List<int> recetasId)
         {
-            foreach(int recetaId in recetasId)
+            foreach (int recetaId in recetasId)
             {
                 EventosReceta eventoReceta = new EventosReceta();
                 eventoReceta.IdEvento = evento.IdEvento;
@@ -48,7 +48,7 @@ namespace pw3_proyecto.Services
         {
             int CantidadComensales = 0;
             Evento evento = _eventoRepo.FindEventoReserva(IdEvento);
-            foreach(Reserva reserva in evento.Reservas)
+            foreach (Reserva reserva in evento.Reservas)
             {
                 CantidadComensales += reserva.CantidadComensales;
             }
@@ -59,5 +59,14 @@ namespace pw3_proyecto.Services
         {
             return _eventoRepo.GetAllBy(userId);
         }
+
+        public List<Evento> GetAllEventosByUser(int idUser)
+        {
+
+            return _eventoRepo.GetAllEventosByUser(idUser);
+
+        }
+
+
     }
 }
