@@ -11,6 +11,7 @@ namespace pw3_proyecto.Repositories.Interfaces
     {
         public void Save(Reserva reservation);
         public void SaveChanges();
-        
+        public List<Reserva> GetAllByUser(int idUser);
+
     }
 }
