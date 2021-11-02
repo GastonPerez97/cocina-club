@@ -32,6 +32,14 @@ namespace pw3_proyecto.Controllers
             return View(_eventoService.GetAllEventosByUser(userId));
         }
 
+        [HttpPost]
+        public IActionResult Reservas(Calificacione calificacione)
+        {
+
+            return View();
+
+        }
+
         public IActionResult Reserva()
         {
             List<Evento> eventos = _eventoService.EventAvailable();
