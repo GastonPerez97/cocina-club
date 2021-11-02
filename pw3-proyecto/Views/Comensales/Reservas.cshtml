@@ -1,4 +1,4 @@
-﻿@model List<pw3_proyecto.Entities.Evento>
+﻿@model pw3_proyecto.Entities.Models.EventosCalificaciones;
 
 @{
     ViewData["Title"] = "Mis Reservas";
@@ -51,7 +51,7 @@
 
                     @*Cards eventos pendientes*@
 
-                    @foreach (var evento in Model)
+                    @foreach (var evento in Model.Eventos)
                     {
 
                         if (evento.Estado == 0)
@@ -109,7 +109,7 @@
                 <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
                     @*Card eventos realizados*@
 
-                    @foreach (var evento in Model)
+                    @foreach (var evento in Model.Eventos)
                     {
                         if (evento.Estado == 1)
                         {
@@ -149,40 +149,40 @@
                                         <a class="btn btn-outline-light text-center" data-bs-toggle="modal" data-bs-target="#exampleModal">Calificar evento</a>
 
                                     </div>
-                                    @*<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-dark" id="exampleModalLabel">Calificar evento</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <form asp-controller="Comensales" asp-action="Reservas" method="post">
-                                                        <div class="modal-body">
-
-                                                            <div class="mb-3">
-                                                                <label asp-for="Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
-
-                                                                <input asp-for="Calificacion" class="form-control rounded" />
-                                                                <span asp-validation-for="Calificacion" class="text-danger"></span>
-
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="message-text" class="col-form-label text-dark text-start">Comentar evento:</label>
-                                                                <input asp-for="Comentarios" class="form-control rounded" placeholder="Deja un comentario acerca del evento" required />
-
-                                                                <span asp-validation-for="Comentarios" class="text-danger"></span>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-lg btn-yellow">Calificar</button>
-
-                                                            <button type="button" class="btn btn-primary">Send message</button>
-                                                        </div>
-                                                    </form>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-dark" id="exampleModalLabel">Calificar evento</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
+                                                <form asp-controller="Comensales" asp-action="Reservas" method="post">
+                                                    <div class="modal-body">
+
+                                                        <div class="mb-3">
+                                                            <label asp-for="@Model.Calificacione.Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
+
+                                                            <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" />
+                                                            <span asp-validation-for="@Model.Calificacione.Calificacion" class="text-danger"></span>
+
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="message-text" class="col-form-label text-dark text-start">Comentar evento:</label>
+                                                            <input asp-for="@Model.Calificacione.Comentarios" class="form-control rounded" placeholder="Deja un comentario acerca del evento" required />
+
+                                                            <span asp-validation-for="@Model.Calificacione.Comentarios" class="text-danger"></span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Calificar</button>
+
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </div>*@
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -201,7 +201,7 @@
                 <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
                     @*Card eventos cancelados*@
 
-                    @foreach (var evento in Model)
+                    @foreach (var evento in Model.Eventos)
                     {
                         if (evento.Estado == 2)
                         {

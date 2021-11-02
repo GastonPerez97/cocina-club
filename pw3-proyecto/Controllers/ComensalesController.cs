@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using pw3_proyecto.Entities;
 using pw3_proyecto.Entities.Model;
+using pw3_proyecto.Entities.Models;
 using pw3_proyecto.Filters;
 using pw3_proyecto.Services.Interfaces;
 using System.Collections.Generic;
@@ -29,7 +30,9 @@ namespace pw3_proyecto.Controllers
         {
             int userId = (int)HttpContext.Session.GetInt32("UserId");
 
-            return View(_eventoService.GetAllEventosByUser(userId));
+            Calificacione calificacione = new Calificacione();
+            EventosCalificaciones eventosCalificaciones = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), calificacione);
+            return View(eventosCalificaciones);
         }
 
         [HttpPost]
