@@ -145,6 +145,34 @@
                                         </p>
                                     </div>
 
+                                    @*<form asp-controller="Comensales" asp-action="Reservas" method="post">
+                                            <div class="modal-body">
+
+                                                <div class="mb-3">
+                                                    <input type="hidden" asp-for="@Model.Calificacione.IdEvento" value="@evento.IdEvento" />
+                                                    <input type="hidden" asp-for="@Model.Calificacione.IdComensal" value="@Model.IdUsuarioSession" />
+
+                                                    <label asp-for="@Model.Calificacione.Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
+
+                                                    <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" value="1" />
+                                                    <span asp-validation-for="@Model.Calificacione.Calificacion" class="text-danger"></span>
+
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="message-text" class="col-form-label text-dark text-start">Comentar evento:</label>
+                                                    <input asp-for="@Model.Calificacione.Comentarios" class="form-control rounded" placeholder="Deja un comentario acerca del evento" required />
+
+                                                    <span asp-validation-for="@Model.Calificacione.Comentarios" class="text-danger"></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Calificar</button>
+
+                                            </div>
+                                        </form>*@
+
                                     <div class="text-center">
                                         <a class="btn btn-outline-light text-center" data-bs-toggle="modal" data-bs-target="#exampleModal">Calificar evento</a>
 
@@ -160,9 +188,11 @@
                                                     <div class="modal-body">
 
                                                         <div class="mb-3">
+                                                            <input type="hidden" asp-for="@Model.Calificacione.IdEvento" value="@evento.IdEvento" />
+                                                            <input type="hidden" asp-for="@Model.Calificacione.IdComensal" value="@Model.IdUsuarioSession" />
                                                             <label asp-for="@Model.Calificacione.Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
 
-                                                            <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" />
+                                                            <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" value="1" />
                                                             <span asp-validation-for="@Model.Calificacione.Calificacion" class="text-danger"></span>
 
                                                         </div>

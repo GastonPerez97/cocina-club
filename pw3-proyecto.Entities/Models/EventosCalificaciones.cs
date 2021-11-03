@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,12 @@ namespace pw3_proyecto.Entities.Models
 
         public Calificacione Calificacione { get; set; }
 
-        public EventosCalificaciones(List<Evento> eventos, Calificacione calificacione)
+        public int IdUsuarioSession { get; set; }
+
+        public EventosCalificaciones(List<Evento> eventos, int idUsuarioSession)
         {
             this.Eventos = eventos;
-            this.Calificacione = calificacione;
+            this.IdUsuarioSession = idUsuarioSession;
 
         }
 

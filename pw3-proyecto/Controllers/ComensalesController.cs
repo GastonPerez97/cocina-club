@@ -14,11 +14,13 @@ namespace pw3_proyecto.Controllers
     {
         private readonly IReservaService _reservaService;
         private readonly IEventoService _eventoService;
+        private readonly ICalificacionService _calificacionService;
 
-        public ComensalesController(IReservaService reservaService, IEventoService eventoService)
+        public ComensalesController(IReservaService reservaService, IEventoService eventoService, ICalificacionService calificacionService)
         {
             _reservaService = reservaService;
             _eventoService = eventoService;
+            _calificacionService = calificacionService;
         }
 
         public IActionResult Index()
@@ -31,15 +33,15 @@ namespace pw3_proyecto.Controllers
             int userId = (int)HttpContext.Session.GetInt32("UserId");
 
             Calificacione calificacione = new Calificacione();
-            EventosCalificaciones eventosCalificaciones = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), calificacione);
+            EventosCalificaciones eventosCalificaciones = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), userId);
             return View(eventosCalificaciones);
         }
 
         [HttpPost]
         public IActionResult Reservas(Calificacione calificacione)
         {
-
-            return View();
+            _calificacionService.Save(calificacione);
+            return RedirectToAction("Reservas");
 
         }
 
