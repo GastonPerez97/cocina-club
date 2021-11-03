@@ -1,4 +1,4 @@
-﻿@model List<pw3_proyecto.Entities.Evento>
+﻿@model pw3_proyecto.Entities.Models.EventosCalificaciones;
 
 @{
     ViewData["Title"] = "Mis Reservas";
@@ -28,37 +28,39 @@
                     </svg> Pendientes
                 </a>
                 <a class="list-group-item list-group-item-action" href="#section2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                    </svg> Finalizadas
+                </a>
+                <a class="list-group-item list-group-item-action" href="#section3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                     </svg> Canceladas
-                </a>
-                <a class="list-group-item list-group-item-action" href="#section3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                    </svg> Realizadas
                 </a>
             </div>
 
         </div>
 
         <div class="col-10">
-            @foreach (var evento in Model)
-            {
 
-                if (evento.Estado == 0)
-                {
+            <div id="section1" class="container-fluid text-white" style="padding:0px 10px 40px 0px;">
+                <h3 class="text-dark ms-3 mb-1">Reservas pendientes</h3>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
 
-                    <div id="section1" class="container-fluid text-white" style="padding:0px 10px 40px 0px;">
-                        <h3 class="text-dark ms-3 mb-1">Reservas pendientes</h3>
-                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
+                    @*Cards eventos pendientes*@
 
-                            @*Cards eventos pendientes*@
+                    @foreach (var evento in Model.Eventos)
+                    {
+
+                        if (evento.Estado == 0)
+                        {
 
                             <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url('/img/events/@evento.Foto');
         background-size: cover;
         background-position: center;">
+
                                 <div class="card-body text-white">
                                     <h5 class="card-title text-white">@evento.Nombre</h5>
                                     <p class="card-text text-white">
@@ -93,26 +95,147 @@
                                     </div>
                                 </div>
                             </div>
+                        }
 
+                    }
 
+                    @*Fin card eventos pendientes*@
 
+                </div>
+            </div>
 
-                            @*Fin card eventos pendientes*@
+            <div id="section2" class="container-fluid" style="padding:40px 10px;">
+                <h3 class="ms-3 mb-1">Reservas finalizadas</h3>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
+                    @*Card eventos realizados*@
 
-                        </div>
-                    </div>
-
-                }
-
-                if (evento.Estado == 2)
-                {
-
-                    <div id="section2" class="container-fluid" style="padding:40px 10px;">
-                        <h3 class="ms-3 mb-1">Reservas canceladas</h3>
-                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
-
-                            @*Card eventos cancelados*@
+                    @foreach (var evento in Model.Eventos)
+                    {
+                        if (evento.Estado == 1)
+                        {
                             <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url('/img/events/@evento.Foto');
+        background-size: cover;
+        background-position: center;">
+                                <div class="card-body text-white">
+                                    <h5 class="card-title text-white">@evento.Nombre</h5>
+                                    <p class="card-text text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16" style="margin-bottom:4px;">
+                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp @evento.Fecha
+                                    </p>
+
+                                    <hr />
+
+                                    <b class="text-light">$ @evento.Precio</b>
+                                    <br />
+                                    <b class="text-light">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin-bottom:4px;">
+                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                        </svg>&nbsp @evento.Ubicacion
+                                    </b>
+
+
+                                    <div class="my-4">
+                                        <p class="m-0 text-white">
+                                            Estado: Finalizado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:greenyellow">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                            </svg>
+                                        </p>
+                                    </div>
+
+                                    @*<form asp-controller="Comensales" asp-action="Reservas" method="post">
+                                            <div class="modal-body">
+
+                                                <div class="mb-3">
+                                                    <input type="hidden" asp-for="@Model.Calificacione.IdEvento" value="@evento.IdEvento" />
+                                                    <input type="hidden" asp-for="@Model.Calificacione.IdComensal" value="@Model.IdUsuarioSession" />
+
+                                                    <label asp-for="@Model.Calificacione.Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
+
+                                                    <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" value="1" />
+                                                    <span asp-validation-for="@Model.Calificacione.Calificacion" class="text-danger"></span>
+
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="message-text" class="col-form-label text-dark text-start">Comentar evento:</label>
+                                                    <input asp-for="@Model.Calificacione.Comentarios" class="form-control rounded" placeholder="Deja un comentario acerca del evento" required />
+
+                                                    <span asp-validation-for="@Model.Calificacione.Comentarios" class="text-danger"></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Calificar</button>
+
+                                            </div>
+                                        </form>*@
+
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-light text-center" data-bs-toggle="modal" data-bs-target="#exampleModal">Calificar evento</a>
+
+                                    </div>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-dark" id="exampleModalLabel">Calificar evento</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form asp-controller="Comensales" asp-action="Reservas" method="post">
+                                                    <div class="modal-body">
+
+                                                        <div class="mb-3">
+                                                            <input type="hidden" asp-for="@Model.Calificacione.IdEvento" value="@evento.IdEvento" />
+                                                            <input type="hidden" asp-for="@Model.Calificacione.IdComensal" value="@Model.IdUsuarioSession" />
+                                                            <label asp-for="@Model.Calificacione.Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
+
+                                                            <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" value="1" />
+                                                            <span asp-validation-for="@Model.Calificacione.Calificacion" class="text-danger"></span>
+
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="message-text" class="col-form-label text-dark text-start">Comentar evento:</label>
+                                                            <input asp-for="@Model.Calificacione.Comentarios" class="form-control rounded" placeholder="Deja un comentario acerca del evento" required />
+
+                                                            <span asp-validation-for="@Model.Calificacione.Comentarios" class="text-danger"></span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Calificar</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        }
+                    }
+
+                    @*Fin card eventos realizados*@
+
+                </div>
+            </div>
+
+            <div id="section3" class="container-fluid text-white" style="padding: 40px 10px;">
+
+                <h3 class="text-dark ms-3 mb-1">Reservas canceladas</h3>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
+                    @*Card eventos cancelados*@
+
+                    @foreach (var evento in Model.Eventos)
+                    {
+                        if (evento.Estado == 2)
+                        {
+                            <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%);
         background-size: cover;
         background-position: center;">
                                 <div class="card-body text-white">
@@ -150,65 +273,16 @@
                                 </div>
                             </div>
 
-                            @*Fin card eventos cancelados*@
-                        </div>
-                    </div>
+                        }
+                    }
 
-                }
+                    @*Fin card eventos cancelados*@
 
-                if (evento.Estado == 1)
-                {
+                </div>
 
-                    <div id="section3" class="container-fluid text-white" style="padding: 40px 10px;">
-
-                        <h3 class="text-dark ms-3 mb-1">Reservas realizadas</h3>
-                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
-
-                            @*Card eventos realizados*@
-                            <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url('/img/events/@evento.Foto');
-        background-size: cover;
-        background-position: center;">
-                                <div class="card-body text-white">
-                                    <h5 class="card-title text-white">@evento.Nombre</h5>
-                                    <p class="card-text text-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16" style="margin-bottom:4px;">
-                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                        </svg>&nbsp @evento.Fecha
-                                    </p>
-
-                                    <hr />
-
-                                    <b class="text-light">$ @evento.Precio</b>
-                                    <br />
-                                    <b class="text-light">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin-bottom:4px;">
-                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                                        </svg>&nbsp @evento.Ubicacion
-                                    </b>
+            </div>
 
 
-                                    <div class="my-4">
-                                        <p class="m-0 text-white">
-                                            Estado: Realizado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:greenyellow">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                            </svg>
-                                        </p>
-                                    </div>
-
-                                    <div class="text-center">
-                                        <a class="btn btn-outline-light" href="#">Ver Más</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            @*Fin card eventos realizados*@
-                        </div>
-
-                    </div>
-                }
-            }
 
         </div>
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using pw3_proyecto.Entities;
 using pw3_proyecto.Entities.Model;
+using pw3_proyecto.Entities.Models;
 using pw3_proyecto.Filters;
 using pw3_proyecto.Services.Interfaces;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace pw3_proyecto.Controllers
     {
         private readonly IReservaService _reservaService;
         private readonly IEventoService _eventoService;
+        private readonly ICalificacionService _calificacionService;
 
-        public ComensalesController(IReservaService reservaService, IEventoService eventoService)
+        public ComensalesController(IReservaService reservaService, IEventoService eventoService, ICalificacionService calificacionService)
         {
             _reservaService = reservaService;
             _eventoService = eventoService;
+            _calificacionService = calificacionService;
         }
 
         public IActionResult Index()
@@ -29,7 +32,17 @@ namespace pw3_proyecto.Controllers
         {
             int userId = (int)HttpContext.Session.GetInt32("UserId");
 
-            return View(_eventoService.GetAllEventosByUser(userId));
+            Calificacione calificacione = new Calificacione();
+            EventosCalificaciones eventosCalificaciones = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), userId);
+            return View(eventosCalificaciones);
+        }
+
+        [HttpPost]
+        public IActionResult Reservas(Calificacione calificacione)
+        {
+            _calificacionService.Save(calificacione);
+            return RedirectToAction("Reservas");
+
         }
 
         public IActionResult Reserva()
