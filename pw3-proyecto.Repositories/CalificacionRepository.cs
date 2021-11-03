@@ -22,6 +22,18 @@ namespace pw3_proyecto.Repositories
             _dbContext.Calificaciones.Add(calificacione);
         }
 
+        public List<Calificacione> FindCalificacionByIdEventoAndIdComensal(int idEvento, int idComensal)
+        {
+
+            var query = from c in _dbContext.Calificaciones
+                        where c.IdEvento == idEvento
+                        && c.IdComensal == idComensal
+                        select c;
+
+            return query.ToList();
+
+        }
+
         public void SaveChanges()
         {
             _dbContext.SaveChanges();
