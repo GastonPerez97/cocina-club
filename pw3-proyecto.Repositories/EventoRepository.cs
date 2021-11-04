@@ -78,6 +78,18 @@ namespace pw3_proyecto.Repositories
 
         }
 
+        public List<Evento> GetAllEventosByUserCalificacion(int idUser)
+        {
+
+            var eventos = from e in _dbContext.Eventos
+                          join c in _dbContext.Calificaciones on e.IdEvento equals c.IdEvento
+                          where c.IdComensal == idUser
+                          select e;
+
+            return eventos.ToList();
+
+        }
+
         public void SaveChanges()
         {
             _dbContext.SaveChanges();

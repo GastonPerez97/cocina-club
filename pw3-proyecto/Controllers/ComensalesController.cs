@@ -31,7 +31,7 @@ namespace pw3_proyecto.Controllers
         public IActionResult Reservas()
         {
             int userId = (int)HttpContext.Session.GetInt32("UserId");
-            EventosCalificaciones eventosCalificaciones = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), userId);
+            EventosCalificaciones eventosCalificaciones = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), userId, _eventoService.GetAllEventosByUserCalificacion(userId));
             return View(eventosCalificaciones);
         }
 
@@ -39,26 +39,18 @@ namespace pw3_proyecto.Controllers
         public IActionResult Reservas(Calificacione calificacione)
         {
 
+
             int userId = (int)HttpContext.Session.GetInt32("UserId");
-            EventosCalificaciones eventosCalificaciones = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), userId);
+            _eventoService.GetAllEventosByUserCalificacion(userId);
 
-            if (_calificacionService.FindCalificacionByIdEventoAndIdComensal(calificacione.IdEvento, calificacione.IdComensal) == null)
+            if (ModelState.IsValid)
             {
+                _calificacionService.Save(calificacione);
 
-                if (ModelState.IsValid)
-                {
-                    _calificacionService.Save(calificacione);
-                    return RedirectToAction("Reservas");
-                }
-                else
-                {
-
-                    return View(calificacione);
-
-                }
+                return RedirectToAction("Reservas");
             }
-
-            return View(eventosCalificaciones);
+            EventosCalificaciones eventosCalificaciones1 = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), userId, _eventoService.GetAllEventosByUserCalificacion(userId));
+            return View(eventosCalificaciones1);
 
         }
 

@@ -14,5 +14,7 @@ namespace pw3_proyecto.Services.Interfaces
 
         public List<Evento> GetAllEventosByUser(int idUser);
 
+        public List<Evento> GetAllEventosByUserCalificacion(int idUser);
+
     }
 }

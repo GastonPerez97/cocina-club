@@ -11,14 +11,17 @@ namespace pw3_proyecto.Entities.Models
     {
         public List<Evento> Eventos { get; set; }
 
+        public List<Evento> EventosConCalificacionDelUsuario { get; set; }
+
         public Calificacione Calificacione { get; set; }
 
         public int IdUsuarioSession { get; set; }
 
-        public EventosCalificaciones(List<Evento> eventos, int idUsuarioSession)
+        public EventosCalificaciones(List<Evento> eventos, int idUsuarioSession, List<Evento> eventosCalificacionDelUsuario)
         {
             this.Eventos = eventos;
             this.IdUsuarioSession = idUsuarioSession;
+            this.EventosConCalificacionDelUsuario = eventosCalificacionDelUsuario;
 
         }
 
