@@ -13,7 +13,16 @@ namespace pw3_proyecto.Services
         public CalificacionService(ICalificacionRepository calificacionRepository)
         {
             _calificacionRepository = calificacionRepository;
+        }
 
+        public bool verifyIfCalificacionExists(int idEvento, int idComensal)
+        {
+            return _calificacionRepository.verifyIfCalificacionExists(idEvento, idComensal);
+        }
+
+        public List<Calificacione> FindCalificacionByUser(int idComensal)
+        {
+            return _calificacionRepository.FindCalificacionByUser(idComensal);
         }
 
         public void Save(Calificacione calificacione)
