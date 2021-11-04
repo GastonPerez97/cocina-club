@@ -8,7 +8,8 @@ namespace pw3_proyecto.Repositories.Interfaces
 
         public void Save(Calificacione calificacione);
 
-        public List<Calificacione> FindCalificacionByIdEventoAndIdComensal(int idEvento, int idComensal);
+        public bool verifyIfCalificacionExists(int idEvento, int idComensal);
+        public List<Calificacione> FindCalificacionByUser(int idComensal);
         public void SaveChanges();
 
     }

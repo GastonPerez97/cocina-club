@@ -22,15 +22,35 @@ namespace pw3_proyecto.Repositories
             _dbContext.Calificaciones.Add(calificacione);
         }
 
-        public List<Calificacione> FindCalificacionByIdEventoAndIdComensal(int idEvento, int idComensal)
+        public List<Calificacione> FindCalificacionByUser(int idComensal)
         {
 
             var query = from c in _dbContext.Calificaciones
-                        where c.IdEvento == idEvento
-                        && c.IdComensal == idComensal
+                        where c.IdComensal == idComensal
                         select c;
 
-            return query.ToList();
+            return query != null ? query.ToList() : null;
+
+        }
+
+
+        public bool verifyIfCalificacionExists(int idEvento, int idComensal)
+        {
+
+            bool calificacionEncontrada = false;
+
+            var query = from c in _dbContext.Calificaciones
+                        where c.IdEvento == idEvento
+                        where c.IdComensal == idComensal
+                        select c;
+
+            foreach (Calificacione cal in query)
+            {
+                calificacionEncontrada = cal != null ? true : false;
+
+            }
+
+            return calificacionEncontrada;
 
         }
 
