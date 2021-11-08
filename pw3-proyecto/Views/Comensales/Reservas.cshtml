@@ -243,7 +243,7 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     @foreach (var evento in Model.Eventos)
                     {
-                        if (evento.Estado == 2)
+                        if (evento.Estado == EventStates.Cancelado)
                         {
                             <div class="col">
                                 <div class="card border-0 border-radius-15px shadow bg-eventImage bg-size-cover bg-pos-center"
