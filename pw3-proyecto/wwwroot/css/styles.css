@@ -14,6 +14,14 @@
     font-family: 'Rubik', sans-serif !important;
 }
 
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 .header-rounded-corners {
     border-radius: 0 0 25px 25px;
 }
@@ -76,6 +84,27 @@
 .error-section {
     min-height: calc(70vh - 29px);
 }
+
+.mb-3px {
+    margin-bottom: 3px;
+}
+
+.mb-4px {
+    margin-bottom: 4px;
+}
+
+.bg-size-cover {
+    background-size: cover;
+}
+
+.bg-pos-center {
+    background-position: center;
+}
+
+.text-gold {
+    color: gold;
+}
+
 
 /* ------------- Available Rubik's Font Weights ------------- */
 .fw-300 {

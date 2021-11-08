@@ -1,379 +1,297 @@
-﻿@model pw3_proyecto.Entities.Models.EventosCalificaciones;
+﻿@using pw3_proyecto.Entities;
+@model pw3_proyecto.Entities.Models.EventosCalificaciones;
 
 @{
     ViewData["Title"] = "Mis Reservas";
     Layout = "_LayoutComensal";
 }
 
-<div class="container mt-5">
-
+<div class="mt-5">
     <p class="display-6 fw-bold text-center mb-5">@TempData["CalificacionOk"]</p>
     <p class="display-6 fw-bold text-center mb-5">@ViewBag.CalificacionError</p>
 
-    <div class="row">
+    <h1>Mis Reservas</h1>
 
-        <h2>Mis Reservas comensal</h2>
-
-    </div>
-
-
-    <div class="row mt-4" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
-
-
-        <div class="container-fluid col-2">
-
-            <div id="list-example" class="list-group bg-white">
-                <a class="list-group-item list-group-item-action" href="#section1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16" style="margin-bottom:3px">
-                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                    </svg> Pendientes
+    <div class="row mt-5">
+        <section class="col-12 col-lg-2 mb-4 mb-lg-0">
+            <div class="list-group bg-white">
+                <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-center justify-content-lg-start" href="#section1">
+                    <i class="far fa-clock fs-6 mb-3px"></i>
+                    <p class="m-0 ms-2">Pendientes</p>
                 </a>
-                <a class="list-group-item list-group-item-action" href="#section2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                    </svg> Finalizadas
+                <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-center justify-content-lg-start" href="#section2">
+                    <i class="far fa-check-circle fs-6 mb-3px"></i>
+                    <p class="m-0 ms-2">Finalizadas</p>
                 </a>
-                <a class="list-group-item list-group-item-action" href="#section3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                    </svg> Canceladas
+                <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-center justify-content-lg-start" href="#section3">
+                    <i class="far fa-times-circle fs-6 mb-3px"></i>
+                    <p class="m-0 ms-2">Canceladas</p>
                 </a>
             </div>
+        </section>
 
-        </div>
+        <section class="col-12 col-lg-10">
+            <div id="section1" class="text-white">
+                <h3 class="text-dark mb-4">Reservas pendientes:</h3>
 
-        <div class="col-10">
-
-            <div id="section1" class="container-fluid text-white" style="padding:0px 10px 40px 0px;">
-                <h3 class="text-dark ms-3 mb-1">Reservas pendientes</h3>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
-
-                    @*Cards eventos pendientes*@
-
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     @foreach (var evento in Model.Eventos)
                     {
-
-                        if (evento.Estado == 0)
+                        if (evento.Estado == EventStates.Pendiente)
                         {
+                            <div class="col">
+                                <div class="card border-0 border-radius-15px shadow bg-eventImage bg-size-cover bg-pos-center"
+                                     style="background-image: linear-gradient(180deg, rgba(79, 79, 79, 0.84) 100%,
+                                                              rgba(139,139,139,0.77) 100%),
+                                                              url('../img/events/@evento.Foto')">
 
-                            <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url('/img/events/@evento.Foto');
-        background-size: cover;
-        background-position: center;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@evento.Nombre</h5>
 
-                                <div class="card-body text-white">
-                                    <h5 class="card-title text-white">@evento.Nombre</h5>
-                                    <p class="card-text text-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16" style="margin-bottom:4px;">
-                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                        </svg>&nbsp @evento.Fecha
-                                    </p>
+                                        <div class="d-flex align-items-center">
+                                            <i class="far fa-calendar"></i>
+                                            <p class="m-0 ms-2">@evento.Fecha</p>
+                                        </div>
+                                        
+                                        <hr />
 
-                                    <hr />
+                                        <div class="d-flex flex-column">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-dollar-sign"></i>
+                                                <p class="m-0 ms-2 fw-600">@evento.Precio</p>
+                                            </div>
+                                            
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <p class="m-0 ms-2 fw-600">@evento.Ubicacion</p>
+                                            </div>
+                                        </div>
 
-                                    <b class="text-light">$ @evento.Precio</b>
-                                    <br />
-                                    <b class="text-light">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin-bottom:4px;">
-                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                                        </svg>&nbsp @evento.Ubicacion
-                                    </b>
-
-
-                                    <div class="my-4">
-                                        <p class="m-0 text-white">
-                                            Estado: Pendiente <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:gold">
-                                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                            </svg>
-                                        </p>
-                                    </div>
-
-                                    <div class="text-center">
-                                        <a class="btn btn-outline-light" href="#">Ver Más</a>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                    }
-
-                    @*Fin card eventos pendientes*@
-
-                </div>
-            </div>
-
-            <div id="section2" class="container-fluid" style="padding:40px 10px;">
-                <h3 class="ms-3 mb-1">Reservas finalizadas</h3>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
-                    @*Card eventos realizados*@
-
-                    @foreach (var evento in Model.Eventos)
-                    {
-                        if (evento.Estado == 1)
-                        {
-                            <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%), url('/img/events/@evento.Foto');
-        background-size: cover;
-        background-position: center;">
-                                <div class="card-body text-white">
-                                    <h5 class="card-title text-white">@evento.Nombre</h5>
-                                    <p class="card-text text-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16" style="margin-bottom:4px;">
-                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                        </svg>&nbsp @evento.Fecha
-                                    </p>
-
-                                    <hr />
-
-                                    <b class="text-light">$ @evento.Precio</b>
-                                    <br />
-                                    <b class="text-light">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin-bottom:4px;">
-                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                                        </svg>&nbsp @evento.Ubicacion
-                                    </b>
-
-
-                                    <div class="my-4">
-                                        <p class="m-0 text-white">
-                                            Estado: Finalizado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color:greenyellow">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                            </svg>
-                                        </p>
-                                    </div>
-
-                                    @if (!@Model.EventosConCalificacionDelUsuario.Contains(evento))
-                                    {
+                                        <div class="my-4">
+                                            <p class="m-0">
+                                                <div class="d-flex align-items-center">
+                                                    <p class="m-0 me-1">Estado: Pendiente</p>
+                                                    <i class="far fa-clock text-gold"></i>
+                                                </div>
+                                            </p>
+                                        </div>
 
                                         <div class="text-center">
-                                            <a class="btn btn-outline-light text-center" data-bs-toggle="modal" id="btnModal" data-even="@evento.IdEvento" data-comen="@Model.IdUsuarioSession" data-bs-target="#exampleModal">Calificar evento</a>
+                                            <a class="btn btn-outline-light" href="#">Ver Más</a>
                                         </div>
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-dark" id="exampleModalLabel">Calificar evento</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <form asp-controller="Comensales" asp-action="Reservas" method="post">
-                                                        <div class="modal-body">
-
-                                                            <div class="mb-3">
-                                                                <input type="hidden" asp-for="@Model.Calificacione.IdEvento" id="eventoIdjs" />
-                                                                <input type="hidden" asp-for="@Model.Calificacione.IdComensal" id="comensalIdJs" />
-                                                                <label asp-for="@Model.Calificacione.Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
-
-                                                                <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" value="1" />
-                                                                <span asp-validation-for="@Model.Calificacione.Calificacion" class="text-danger"></span>
-
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="message-text" class="col-form-label text-dark text-start">Comentar evento:</label>
-                                                                <input asp-for="@Model.Calificacione.Comentarios" class="form-control rounded" placeholder="Deja un comentario acerca del evento" required />
-
-                                                                <span asp-validation-for="@Model.Calificacione.Comentarios" class="text-danger"></span>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Calificar</button>
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    else
-                                    {
-
-                                        <div class="text-center d-flex flex-column">
-                                            <div>
-                                                Tu calificación:
-                                            </div>
-                                            <div class="d-flex justify-content-center">
-                                                @switch (@Model.buscarCalificacion(evento.IdEvento).Calificacion)
-                                                {
-                                                    case 1:
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-
-
-                                                        break;
-
-                                                    case 2:
-
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        break;
-
-                                                    case 3:
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        break;
-
-                                                    case 4:
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        break;
-
-                                                    case 5:
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color:gold">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                        break;
-
-
-                                                }
-
-                                            </div>
-                                        </div>
-
-                                    }
-
+                                    </div>
                                 </div>
                             </div>
-
                         }
                     }
-
-                    @*Fin card eventos realizados*@
-
                 </div>
             </div>
 
-            <div id="section3" class="container-fluid text-white" style="padding: 40px 10px;">
+            <div id="section2" class="mt-5 text-white">
+                <h3 class="text-dark mb-4">Reservas finalizadas:</h3>
 
-                <h3 class="text-dark ms-3 mb-1">Reservas canceladas</h3>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr">
-                    @*Card eventos cancelados*@
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    @foreach (var evento in Model.Eventos)
+                    {
+                        if (evento.Estado == EventStates.Finalizado)
+                        {
+                            <div class="col">
+                                <div class="card border-0 border-radius-15px shadow bg-eventImage bg-size-cover bg-pos-center"
+                                     style="background-image: linear-gradient(180deg, rgba(79, 79, 79, 0.84) 100%,
+                                                              rgba(139,139,139,0.77) 100%),
+                                                              url('../img/events/@evento.Foto')">
 
+                                    <div class="card-body">
+                                        <h5 class="card-title">@evento.Nombre</h5>
+
+                                        <div class="d-flex align-items-center">
+                                            <i class="far fa-calendar"></i>
+                                            <p class="m-0 ms-2">@evento.Fecha</p>
+                                        </div>
+                                        
+                                        <hr />
+
+                                        <div class="d-flex flex-column">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-dollar-sign"></i>
+                                                <p class="m-0 ms-2 fw-600">@evento.Precio</p>
+                                            </div>
+                                            
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <p class="m-0 ms-2 fw-600">@evento.Ubicacion</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="my-4">
+                                            <p class="m-0">
+                                                <div class="d-flex align-items-center">
+                                                    <p class="m-0 me-1">Estado: Finalizado</p>
+                                                    <i class="far fa-check-circle text-gold"></i>
+                                                </div>
+                                            </p>
+                                        </div>
+
+                                        @if (!@Model.EventosConCalificacionDelUsuario.Contains(evento))
+                                        {
+                                            <div class="text-center mb-2">
+                                                <a class="btn btn-outline-light text-center" data-bs-toggle="modal" id="btnModal" data-even="@evento.IdEvento" data-comen="@Model.IdUsuarioSession" data-bs-target="#exampleModal">Calificar evento</a>
+                                            </div>
+
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-dark" id="exampleModalLabel">Calificar evento</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                                                        </div>
+
+                                                        <form asp-controller="Comensales" asp-action="Reservas" method="post">
+                                                            <div class="modal-body">
+                                                                <div class="mb-3">
+                                                                    <input type="hidden" asp-for="@Model.Calificacione.IdEvento" id="eventoIdjs" />
+                                                                    <input type="hidden" asp-for="@Model.Calificacione.IdComensal" id="comensalIdJs" />
+                                                                    <label asp-for="@Model.Calificacione.Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
+
+                                                                    <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" value="1" />
+                                                                    <span asp-validation-for="@Model.Calificacione.Calificacion" class="text-danger"></span>
+
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="message-text" class="col-form-label text-dark text-start">Comentar evento:</label>
+                                                                    <input asp-for="@Model.Calificacione.Comentarios" class="form-control rounded" placeholder="Deja un comentario acerca del evento" required />
+
+                                                                    <span asp-validation-for="@Model.Calificacione.Comentarios" class="text-danger"></span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                                <button type="submit" class="btn btn-primary">Calificar</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="text-center d-flex flex-column mb-1">
+                                                <p class="mb-1">Tu calificación:</p>
+                                                
+                                                <div class="d-flex justify-content-center">
+                                                    @switch (@Model.buscarCalificacion(evento.IdEvento).Calificacion)
+                                                    {
+                                                        case 1:
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            break;
+
+                                                        case 2:
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+
+                                                            break;
+
+                                                        case 3:
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+
+                                                            break;
+
+                                                        case 4:
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star"></i>
+
+                                                            break;
+
+                                                        case 5:
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+                                                            <i class="fas fa-star text-gold"></i>
+
+                                                            break;
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div id="section3" class="mt-5 text-white">
+                <h3 class="text-dark mb-4">Reservas canceladas:</h3>
+
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     @foreach (var evento in Model.Eventos)
                     {
                         if (evento.Estado == 2)
                         {
-                            <div class="card col border-0 mt-3 ms-3 border-radius-15px shadow" style="background-image: linear-gradient(180deg, rgba(79,79,79,0.8435749299719888) 100%, rgba(139,139,139,0.773546918767507) 100%);
-        background-size: cover;
-        background-position: center;">
-                                <div class="card-body text-white">
-                                    <h5 class="card-title text-white">@evento.Nombre</h5>
-                                    <p class="card-text text-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16" style="margin-bottom:4px;">
-                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                        </svg>&nbsp @evento.Fecha
-                                    </p>
+                            <div class="col">
+                                <div class="card border-0 border-radius-15px shadow bg-eventImage bg-size-cover bg-pos-center"
+                                     style="background-image: linear-gradient(180deg, rgba(79, 79, 79, 0.84) 100%,
+                                                              rgba(139,139,139,0.77) 100%),
+                                                              url('../img/events/@evento.Foto')">
 
-                                    <hr />
+                                    <div class="card-body">
+                                        <h5 class="card-title">@evento.Nombre</h5>
 
-                                    <b class="text-light">$ @evento.Precio</b>
-                                    <br />
-                                    <b class="text-light">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin-bottom:4px;">
-                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                                        </svg>&nbsp @evento.Ubicacion
-                                    </b>
+                                        <div class="d-flex align-items-center">
+                                            <i class="far fa-calendar"></i>
+                                            <p class="m-0 ms-2">@evento.Fecha</p>
+                                        </div>
 
+                                        <hr />
 
-                                    <div class="my-4">
-                                        <p class="m-0 text-white">
-                                            Estado: Cancelado <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle me-1" viewBox="0 0 16 16" style="margin-bottom:3px; color: red;">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                            </svg>
-                                        </p>
-                                    </div>
+                                        <div class="d-flex flex-column">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-dollar-sign"></i>
+                                                <p class="m-0 ms-2 fw-600">@evento.Precio</p>
+                                            </div>
 
-                                    <div class="text-center">
-                                        <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <p class="m-0 ms-2 fw-600">@evento.Ubicacion</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="my-4">
+                                            <p class="m-0">
+                                                <div class="d-flex align-items-center">
+                                                    <p class="m-0 me-1">Estado: Cancelado</p>
+                                                    <i class="far fa-times-circle text-gold"></i>
+                                                </div>
+                                            </p>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         }
                     }
-
-                    @*Fin card eventos cancelados*@
-
                 </div>
-
             </div>
-
-
-
-        </div>
-
+        </section>
     </div>
-
-
 </div>
