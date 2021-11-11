@@ -32,8 +32,9 @@ namespace pw3_proyecto.Repositories
             int Cantidad = 0;
 
             var queryDispo = from eventos in _dbContext.Eventos.Include("Reservas")
-                             where eventos.Fecha > DateTime.Now
+                             where eventos.Fecha > DateTime.Now && eventos.Estado == EventStates.Pendiente
                              select eventos;
+
             foreach (Evento evento in queryDispo)
             {
                 foreach (Reserva reserva in evento.Reservas)
@@ -87,7 +88,11 @@ namespace pw3_proyecto.Repositories
                           select e;
 
             return eventos.ToList();
+        }
 
+        public List<Evento> GetFinishedEvents()
+        {
+            return _dbContext.Eventos.Where(evento => evento.Estado == EventStates.Finalizado).ToList();
         }
 
         public void SaveChanges()

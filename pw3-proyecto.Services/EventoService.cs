@@ -73,5 +73,9 @@ namespace pw3_proyecto.Services
             return _eventoRepo.GetAllEventosByUserCalificacion(idUser);
         }
 
+        public List<Evento> GetFinishedEvents()
+        {
+            return _eventoRepo.GetFinishedEvents();
+        }
     }
 }

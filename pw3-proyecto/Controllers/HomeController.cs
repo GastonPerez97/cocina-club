@@ -1,15 +1,30 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using pw3_proyecto.Entities;
+using pw3_proyecto.Services.Interfaces;
+using System.Collections.Generic;
 
 namespace pw3_proyecto.Controllers
 {
 	public class HomeController : Controller
 	{
-		public IActionResult Index()
+        private readonly IEventoService _eventoService;
+
+        public HomeController(IEventoService eventoService)
+        {
+            _eventoService = eventoService;
+        }
+
+        public IActionResult Index()
         {
             SelectLayout();
-            return View();
+
+            List<Evento> finishedEvents = _eventoService.GetFinishedEvents();
+
+            if (finishedEvents.Count >= 6)
+                finishedEvents = finishedEvents.GetRange(0, 6);
+
+            return View(finishedEvents);
         }
 
         public IActionResult Error()
