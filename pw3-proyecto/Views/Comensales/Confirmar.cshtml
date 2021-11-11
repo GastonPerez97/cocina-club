@@ -5,39 +5,49 @@
     Layout = "~/Views/Shared/_LayoutComensal.cshtml";
 }
 
-<h4>Confirma tu Reserva</h4>
-<hr />
+<h4 class="my-4">Confirma tu Reserva</h4>
+<h3 class="text-center">@TempData["ReservaError"]</h3>
+
+<hr class="mt-4" />
 <div class="row justify-content-center">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Confirmar" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group m-1">
-                
-                <input hidden asp-for="IdEvento"  class="form-control" asp-items="ViewBag.IdEvento" value="@Model.IdEvento"></input>
+
+            <input hidden asp-for="IdEvento"  class="form-control" asp-items="ViewBag.IdEvento" value="@Model.IdEvento">
+            <input hidden asp-for="IdComensal"  class ="form-control" asp-items="ViewBag.IdComensal" value="@Model.IdComensal">
+
+            <div class="form-group mt-2 mb-4">
+                <label asp-for="recetas" class="control-label d-block mb-3"></label>
+
+                <div class="row input-group d-flex me-0" data-masonry='{"percentPosition": true }'>
+                    @foreach (var receta in Model.recetas)
+                    {
+                        <div class="input-group mb-3 col-6 w-50">
+                            <div class="input-group-text">
+                                <input type="radio" id="@String.Concat("receta", @receta.IdReceta)" name="IdRecetaElegida" class="form-check-input m-0" value="@receta.IdReceta">
+                            </div>
+
+                            <label class="form-check-label form-control" for="@String.Concat("receta", @receta.IdReceta)">@receta.Nombre</label>
+                        </div>
+                    }
+                </div>
             </div>
+
             <div class="form-group">
-                
-                <input hidden asp-for="IdComensal"  class ="form-control" asp-items="ViewBag.IdComensal" value="@Model.IdComensal"></input>
-            </div>
-            <div class="form-group m-1">
-                <label asp-for="recetas" class="control-label"></label><br />
-                @foreach (var receta in Model.recetas)
-            {
-                <input name="IdRecetaElegida" type="radio" value="@receta.IdReceta" class="m-2 form-check-input"/> @receta.Nombre
-            }
-            </div>
-            <div class="form-group">
-                <label asp-for="CantidadComensales" class="control-label"></label>
-                <input asp-for="CantidadComensales" max="@ViewBag.ComensalesAvailable" class="form-control" value="" />
-                <p>Solo quedan @ViewBag.ComensalesAvailable lugares disponibles</p>
+                <label asp-for="CantidadComensales" class="control-label mb-1"></label>
+                <input asp-for="CantidadComensales" min="1" max="@ViewBag.ComensalesAvailable" class="form-control" value="" />
+
+                <p class="m-0 mt-1">Solo quedan @ViewBag.ComensalesAvailable lugares disponibles.</p>
                 <span asp-validation-for="CantidadComensales" class="text-danger"></span>
             </div>
             
-            <div class="form-group m-2">
-                <input type="submit" value="Reservar" class="btn btn-primary" />
-                <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+            <div class="form-group mt-5 d-flex justify-content-center">
+                <input type="submit" value="Reservar" class="btn btn-yellow me-3" />
+                <a class="btn btn-danger" asp-action="Reserva">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>

@@ -1,52 +1,46 @@
-﻿
-@model IList<pw3_proyecto.Entities.Evento>
+﻿@model IList<pw3_proyecto.Entities.Evento>
 
 @{
     ViewData["Title"] = "Reserva";
     Layout = "_LayoutComensal";
 }
 
-<section class="container my-5">
-    <h2 class="display-3 fw-500 mb-4 mb-lg-5">Reservar</h2>
-@if(Model != null)
-            {
+<section class="my-5">
+    <h1 class="mb-5">Reservar evento</h1>
 
-    <div class="gx-0 gy-5 g-sm-5 row row-cols-1 row-cols-md-2 row-cols-lg-3">
-        @foreach(var evento in Model)
-            {
+    @if(Model != null)
+    {
+        <div class="gx-0 gy-5 g-sm-5 row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            @foreach(var evento in Model)
+                {
+                    <article class="col">
+                        <div class="card h-100 border-radius-15px shadow">
+                            <img src="~/img/events/@evento.Foto" class="card-event-img border-radius-top-15px" alt="Foto de evento">
 
-                <article class="col">
-                    <div class="card border-radius-15px shadow">
-                        <img src="~/img/events/@evento.Foto" class="card-img-top border-radius-top-15px" alt="Foto de evento">
-                        <div class="card-body">
-                            <h5 class="card-title">@evento.Nombre</h5>
-                            <p class="card-text">@evento.Precio</p>
+                            <div class="card-body">
+                                <h5 class="card-title">@evento.Nombre</h5>
+                                <p class="card-text">@evento.Precio</p>
 
-                            <hr />
+                                <hr />
 
-                            <b>Fecha: @evento.Fecha</b>
+                                <b>Fecha: @evento.Fecha</b>
 
                                 <div class="my-4">
-                                    <p class="m-0">Cantidad: @evento.CantidadComensales</p>
+                                    <p class="m-0">Cantidad de comensales: @evento.CantidadComensales</p>
                                     <p class="m-0">Ubicación: @evento.Ubicacion</p>
                                 </div>
 
-                            <div class="text-center">
-                                <a class="btn btn-primary" asp-action="Confirmar" asp-route-id="@evento.IdEvento">Reservar</a>
+                                <div class="text-center">
+                                    <a class="btn btn-yellow" asp-action="Confirmar" asp-route-id="@evento.IdEvento">Reservar</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </article>
-            }
-        
-    </div>
-            }
-            else
-            {
-                <h3>No hay eventos disponibles</h3>
-            }
- </section>
-        <div>
-            <a class="btn btn-primary" asp-action="Reserva">Volver</a>
+                    </article>
+                }
         </div>
-
+    }
+    else
+    {
+        <h3>No hay eventos disponibles</h3>
+    }
+</section>

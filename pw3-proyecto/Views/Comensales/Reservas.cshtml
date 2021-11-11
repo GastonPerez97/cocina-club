@@ -11,7 +11,7 @@
     <p class="display-6 fw-bold text-center mb-5">@ViewBag.CalificacionError</p>
 
     <h1>Mis Reservas</h1>
-
+    
     <div class="row mt-5">
         <section class="col-12 col-lg-2 mb-4 mb-lg-0">
             <div class="list-group bg-white">
@@ -31,6 +31,11 @@
         </section>
 
         <section class="col-12 col-lg-10">
+            @if (@TempData["ReservaOk"] != null)
+            {
+                <h2 class="mb-4 text-center">@TempData["ReservaOk"]</h2>
+            }
+
             <div id="section1" class="text-white">
                 <h3 class="text-dark mb-4">Reservas pendientes:</h3>
 
@@ -52,7 +57,7 @@
                                             <i class="far fa-calendar"></i>
                                             <p class="m-0 ms-2">@evento.Fecha</p>
                                         </div>
-                                        
+
                                         <hr />
 
                                         <div class="d-flex flex-column">
@@ -60,7 +65,7 @@
                                                 <i class="fas fa-dollar-sign"></i>
                                                 <p class="m-0 ms-2 fw-600">@evento.Precio</p>
                                             </div>
-                                            
+
                                             <div class="d-flex align-items-center">
                                                 <i class="fas fa-map-marker-alt"></i>
                                                 <p class="m-0 ms-2 fw-600">@evento.Ubicacion</p>
@@ -108,7 +113,7 @@
                                             <i class="far fa-calendar"></i>
                                             <p class="m-0 ms-2">@evento.Fecha</p>
                                         </div>
-                                        
+
                                         <hr />
 
                                         <div class="d-flex flex-column">
@@ -116,7 +121,7 @@
                                                 <i class="fas fa-dollar-sign"></i>
                                                 <p class="m-0 ms-2 fw-600">@evento.Precio</p>
                                             </div>
-                                            
+
                                             <div class="d-flex align-items-center">
                                                 <i class="fas fa-map-marker-alt"></i>
                                                 <p class="m-0 ms-2 fw-600">@evento.Ubicacion</p>
@@ -178,7 +183,7 @@
                                         {
                                             <div class="text-center d-flex flex-column mb-1">
                                                 <p class="mb-1">Tu calificación:</p>
-                                                
+
                                                 <div class="d-flex justify-content-center">
                                                     @switch (@Model.buscarCalificacion(evento.IdEvento).Calificacion)
                                                     {

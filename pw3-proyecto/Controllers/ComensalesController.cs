@@ -80,19 +80,19 @@ namespace pw3_proyecto.Controllers
         public IActionResult Confirmar(ConfirmarReserva confirmarReserva)
         {
             int comensalesAvailable = _eventoService.ComensalesAvailable(confirmarReserva.IdEvento);
-            if (ModelState.IsValid)
+
+            if (ModelState.IsValid && (comensalesAvailable >= confirmarReserva.CantidadComensales))
             {
-                if (comensalesAvailable >= confirmarReserva.CantidadComensales)
-                {
-                    _reservaService.SaveReserva(confirmarReserva);
-                    return RedirectToAction("Reservas");
+                _reservaService.SaveReserva(confirmarReserva);
+                TempData["ReservaOk"] = "¡Tu reserva fue confirmada!";
 
-                }
-                else
-                    return RedirectToAction("Confirmar", confirmarReserva.IdEvento);
+                return RedirectToAction("Reservas");
             }
-
-            return RedirectToAction("Reserva");
+            else
+            {
+                TempData["ReservaError"] = "Ocurrió un error al confirmar la reserva, intente nuevamente.";
+                return RedirectToAction("Confirmar", confirmarReserva.IdEvento);
+            }
         }
     }
 }

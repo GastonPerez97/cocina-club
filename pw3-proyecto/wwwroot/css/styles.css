@@ -105,6 +105,11 @@ img {
     color: gold;
 }
 
+.card-event-img {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
 
 /* ------------- Available Rubik's Font Weights ------------- */
 .fw-300 {
@@ -159,9 +164,19 @@ img {
 
 /* ------------- Media Queries ------------- */
 
+@media screen and (max-width: 1199px) {
+    .card-event-img {
+        height: 18vw;
+    }
+}
+
 @media screen and (max-width: 991px) {
     .home-banner-text {
         font-size: 4rem;
+    }
+
+    .card-event-img {
+        height: 22vw;
     }
 }
 
@@ -177,6 +192,10 @@ img {
     .home-recipe-text {
         left: 50px;
     }
+
+    .card-event-img {
+        height: 35vw;
+    }
 }
 
 @media screen and (max-width: 575px) {
@@ -190,5 +209,9 @@ img {
 
     .home-recipe-text {
         left: 50px;
+    }
+
+    .card-event-img {
+        height: 40vw;
     }
 }
