@@ -133,6 +133,10 @@
                                         </div>
                                     </div>
                                 }
+                                else if (evento.Estado == EventStates.Pendiente && (evento.Fecha - DateTime.Now).Days >= 1)
+                                {
+                                    <a class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#finalizeEventModal">Cancelar Evento</a>
+                                }
                             </div>
                         </div>
                     </div>
