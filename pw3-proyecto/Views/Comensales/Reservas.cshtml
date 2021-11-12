@@ -82,7 +82,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                            <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
                                         </div>
                                     </div>
                                 </div>
@@ -236,6 +236,10 @@
                                                 <p class="mt-4">"@Model.buscarCalificacion(evento.IdEvento).Comentarios"</p>
                                             </div>
                                         }
+
+                                        <div class="text-center">
+                                            <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -290,7 +294,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                            <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
                                         </div>
                                     </div>
                                 </div>

@@ -5,8 +5,8 @@
     Layout = "_LayoutComensal";
 }
 
-<section class="my-5">
-    <h1 class="mb-5">Reservar evento</h1>
+<section class="my-4">
+    <h1 class="mb-4">Reservar evento</h1>
 
     @if(Model != null)
     {
@@ -31,7 +31,8 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <a class="btn btn-yellow" asp-action="Confirmar" asp-route-id="@evento.IdEvento">Reservar</a>
+                                    <a class="btn btn-yellow me-2" asp-action="Confirmar" asp-route-id="@evento.IdEvento">Reservar</a>
+                                    <a class="btn btn-outline-dark" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Detalles</a>
                                 </div>
                             </div>
                         </div>
