@@ -1,10 +1,15 @@
-﻿@{
+﻿@using pw3_proyecto.Entities;
+
+@{
     ViewData["Title"] = "Mi Perfil";
     Layout = "_LayoutCocinero";
 }
 
+<h2 class="text-center mt-5">@TempData["FinalizeEventError"]</h2>
+<h2 class="text-center mt-5">@TempData["FinalizeEventOk"]</h2>
+
 <section class="container mt-5">
-    <article class="profile text-light mb-5 p-4 px-md-5 border-radius-15px 
+    <article class="profile text-light mb-5 p-4 px-md-5 border-radius-15px
                     shadow d-flex flex-column flex-md-row justify-content-end justify-content-md-between">
 
         <div class="p-3 align-self-md-end shadow border-radius-15px bg-custom-dark">
@@ -12,7 +17,7 @@
             <p class="mb-4">@ViewBag.User.Email</p>
             <p class="mb-0">Registrado el @ViewBag.User.FechaRegistracion.ToString("dd/MM/yyyy")</p>
         </div>
-        
+
         <div class="d-flex justify-content-center justify-content-end p-3 mt-3 mt-md-0
                     align-self-md-end shadow border-radius-15px bg-custom-dark">
 
@@ -22,7 +27,7 @@
             </div>
 
             <span class="border-end border-dark"></span>
-            
+
             <div class="d-flex flex-column pe-md-3 mx-auto ms-md-4">
                 <p class="fs-3 m-0 fw-600 text-center">@ViewBag.EventCount</p>
                 <p class="fs-5 m-0">Eventos</p>
@@ -32,6 +37,12 @@
 
     <article>
         <h2 class="display-5 fw-600 mb-4">Recetas</h2>
+
+        @if (ViewBag.Recipes.Count == 0)
+        {
+            <h3 class="text-center">Aún no has creado ninguna receta.</h3>
+        }
+
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" data-masonry='{"percentPosition": true }'>
             @foreach (var recipe in ViewBag.Recipes)
             {
@@ -40,7 +51,7 @@
                         <div class="text-center">
                             <img class="note-pin" src="~/img/paper-note-pin.png" alt="Pin de nota" />
                         </div>
-                        
+
                         <h4 class="mb-4">@recipe.Nombre</h4>
                         <p class="mb-4"><b>Ingredientes: </b>@recipe.Ingredientes</p>
                         <p><b>Descripción: </b>@recipe.Descripcion</p>
@@ -57,6 +68,11 @@
     <article>
         <h2 class="display-5 fw-600 mt-5 mb-4">Eventos</h2>
 
+        @if (ViewBag.Events.Count == 0)
+        {
+            <h3 class="text-center mb-5">Aún no has creado ningún evento.</h3>
+        }
+
         <div class="g-5 row row-cols-1 row-cols-md-2 row-cols-lg-3">
             @foreach (var evento in ViewBag.Events)
             {
@@ -71,23 +87,57 @@
                             <p><b>Reservas realizadas: </b>@evento.Reservas.Count</p>
                             <p>
                                 <b>Estado: </b>
-                                @if (evento.Estado == 0)
+                                @if (evento.Estado == EventStates.Pendiente)
                                 {
                                     <span>Pendiente</span>
+                                    <i class="far fa-clock"></i>
                                 }
-                                else if (evento.Estado == 1)
+                                else if (evento.Estado == EventStates.Finalizado)
                                 {
                                     <span>Finalizado</span>
+                                    <i class="far fa-check-circle"></i>
                                 }
                                 else
                                 {
                                     <span>Cancelado</span>
+                                    <i class="far fa-times-circle"></i>
                                 }
                             </p>
+
+                            <div class="text-center my-1">
+                                <a class="btn btn-yellow mx-auto" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Detalles</a>
+
+                                @if (evento.Estado == EventStates.Pendiente && evento.Fecha < DateTime.Now)
+                                {
+                                    <a class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#finalizeEventModal">Finalizar Evento</a>
+
+                                    <div class="modal fade" id="finalizeEventModal" tabindex="-1" aria-labelledby="finalizeEventModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="finalizeEventModalLabel">Finalizar Evento</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="my-3">¿Estás seguro de querer finalizar este evento?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-yellow" data-bs-dismiss="modal">Cancelar</button>
+
+                                                    <form asp-controller="Cocineros" asp-action="FinalizarEvento" method="POST">
+                                                        <input type="hidden" name="IdEvento" value="@evento.IdEvento" />
+                                                        <button type="submit" class="btn btn-outline-danger">Finalizar Evento</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
                 </article>
-             }
+            }
         </div>
     </article>
 </section>

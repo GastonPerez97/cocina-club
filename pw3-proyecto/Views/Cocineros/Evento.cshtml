@@ -1,0 +1,170 @@
+﻿@using pw3_proyecto.Entities;
+@model pw3_proyecto.Entities.Evento
+
+@{
+    ViewData["Title"] = Model.Nombre;
+    Layout = ViewBag.Layout;
+}
+
+<div class="d-flex justify-content-between my-4">
+    <h2 class="m-0">Detalles del evento:</h2>
+    <a class="btn btn-outline-dark" href="javascript:history.back()">Volver</a>
+</div>
+
+<hr class="mb-4" />
+
+<article class="row d-flex flex-column flex-md-row-reverse justify-inverda">
+    <section class="col-12 col-md-6 mb-4 mb-md-0">
+        <img class="img-fluid rounded-3 float-end" src="~/img/events/@Model.Foto" alt="Foto del evento" />
+    </section>
+
+    <section class="col-12 col-md-6">
+        <div class="d-flex">
+            <span class="fw-600 m-0 me-2">Nombre del evento:</span>
+            <p>@Model.Nombre</p>
+        </div>
+
+        <div class="d-flex">
+            <span class="fw-600 m-0 me-2">Precio:</span>
+            <p>$ @Model.Precio</p>
+        </div>
+
+        <div class="d-flex">
+            <span class="fw-600 m-0 me-2">Fecha:</span>
+            <p>@Model.Fecha</p>
+        </div>
+
+        <div class="d-flex mb-3">
+            <div class="d-flex align-items-center">
+                @switch (Model.Estado)
+                {
+                    case EventStates.Pendiente:
+                        <span class="fw-600 m-0 me-2">Estado:</span>
+                        <p class="m-0 me-2">Pendiente</p>
+                        <i class="far fa-clock"></i>
+                        break;
+
+                    case EventStates.Finalizado:
+                        <span class="fw-600 m-0 me-2">Estado:</span>
+                        <p class="m-0 me-2">Finalizado</p>
+                        <i class="far fa-check-circle"></i>
+                        break;
+
+                    case EventStates.Cancelado:
+                        <span class="fw-600 m-0 me-2">Estado:</span>
+                        <p class="m-0 me-2">Cancelado</p>
+                        <i class="far fa-times-circle"></i>
+                        break;
+                }
+            </div>
+        </div>
+
+        <div class="d-flex">
+            <span class="fw-600 m-0 me-2">Ubicación:</span>
+            <p>@Model.Ubicacion</p>
+        </div>
+
+        <div class="d-flex">
+            <span class="fw-600 m-0 me-2">Cantidad de comensales:</span>
+            <p>@Model.CantidadComensales</p>
+        </div>
+
+        <div class="d-flex">
+            <span class="fw-600 m-0 me-2">Cocinero:</span>
+            <p>@Model.IdCocineroNavigation.Nombre</p>
+        </div>
+
+        <div class="d-flex">
+            <span class="fw-600 m-0">Recetas:</span>
+            <ul class="p-0 ps-2">
+                @foreach (EventosReceta receta in Model.EventosReceta)
+                {
+                    <li class="badge bg-dark mb-2">&bullet; @receta.IdRecetaNavigation.Nombre</li>
+                }
+            </ul>
+        </div>
+    </section>
+
+    @if (Model.Estado == EventStates.Finalizado && Model.Calificaciones.Count >= 1)
+    {
+        <section class="col-12 mt-4">
+            @{
+                float avgCalification = 0;
+
+                foreach (var calification in Model.Calificaciones)
+                {
+                    avgCalification += calification.Calificacion;
+                }
+
+                avgCalification = avgCalification / Model.Calificaciones.Count;
+
+                <h2 class="mb-4">Reseñas (promedio: @avgCalification.ToString("0.0")/5):</h2>
+            }
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" data-masonry='{"percentPosition": true }'>
+                @foreach (Calificacione calificacion in Model.Calificaciones)
+                {
+                    <div class="col">
+                        <div class="card border-radius-15px shadow">
+                            <div class="card-header text-center">
+                                @switch (@calificacion.Calificacion)
+                                {
+                                    case 1:
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        break;
+
+                                    case 2:
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+
+                                        break;
+
+                                    case 3:
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+
+                                        break;
+
+                                    case 4:
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="far fa-star"></i>
+
+                                        break;
+
+                                    case 5:
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+                                        <i class="fas fa-star text-gold"></i>
+
+                                        break;
+                                }
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p>@calificacion.Comentarios</p>
+                                    <footer class="blockquote-footer">@calificacion.IdComensalNavigation.Nombre</footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+</article>
+
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>

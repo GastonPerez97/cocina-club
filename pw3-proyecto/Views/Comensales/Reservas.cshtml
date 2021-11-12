@@ -36,6 +36,12 @@
                 <h2 class="mb-4 text-center">@TempData["ReservaOk"]</h2>
             }
 
+            @if (Model.Eventos.Count == 0)
+            {
+                <h2 class="text-center mb-5 text-dark">Todavía no tienes ninguna reserva.</h2>
+            }
+            else
+            {
             <div id="section1" class="text-white">
                 <h3 class="text-dark mb-4">Reservas pendientes:</h3>
 
@@ -82,7 +88,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                            <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
                                         </div>
                                     </div>
                                 </div>
@@ -141,6 +147,7 @@
                                         {
                                             <div class="text-center mb-2">
                                                 <a class="btn btn-outline-light text-center" data-bs-toggle="modal" id="btnModal" data-even="@evento.IdEvento" data-comen="@Model.IdUsuarioSession" data-bs-target="#exampleModal">Calificar evento</a>
+                                                <a class="btn btn-outline-light ms-2" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
                                             </div>
 
                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -171,8 +178,8 @@
                                                             </div>
 
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                                <button type="submit" class="btn btn-primary">Calificar</button>
+                                                                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancelar</button>
+                                                                <button type="submit" class="btn btn-yellow">Calificar</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -234,6 +241,10 @@
                                                 </div>
 
                                                 <p class="mt-4">"@Model.buscarCalificacion(evento.IdEvento).Comentarios"</p>
+
+                                                <div class="text-center">
+                                                    <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
+                                                </div>
                                             </div>
                                         }
                                     </div>
@@ -290,7 +301,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <a class="btn btn-outline-light" href="#">Ver Más</a>
+                                            <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
                                         </div>
                                     </div>
                                 </div>
@@ -299,6 +310,7 @@
                     }
                 </div>
             </div>
+            }
         </section>
     </div>
 </div>

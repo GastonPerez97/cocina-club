@@ -5,10 +5,10 @@
     Layout = "_LayoutComensal";
 }
 
-<section class="my-5">
-    <h1 class="mb-5">Reservar evento</h1>
+<section class="my-4">
+    <h1 class="mb-4">Reservar evento</h1>
 
-    @if(Model != null)
+    @if(Model.Count > 0)
     {
         <div class="gx-0 gy-5 g-sm-5 row row-cols-1 row-cols-md-2 row-cols-lg-3">
             @foreach(var evento in Model)
@@ -19,7 +19,7 @@
 
                             <div class="card-body">
                                 <h5 class="card-title">@evento.Nombre</h5>
-                                <p class="card-text">@evento.Precio</p>
+                                <p class="card-text">$ @evento.Precio</p>
 
                                 <hr />
 
@@ -31,7 +31,8 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <a class="btn btn-yellow" asp-action="Confirmar" asp-route-id="@evento.IdEvento">Reservar</a>
+                                    <a class="btn btn-yellow me-2" asp-action="Confirmar" asp-route-id="@evento.IdEvento">Reservar</a>
+                                    <a class="btn btn-outline-dark" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Detalles</a>
                                 </div>
                             </div>
                         </div>
@@ -41,6 +42,6 @@
     }
     else
     {
-        <h3>No hay eventos disponibles</h3>
+        <h3>No hay eventos disponibles para reservar en estos momentos.</h3>
     }
 </section>

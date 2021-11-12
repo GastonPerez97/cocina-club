@@ -40,25 +40,25 @@
 
                 <div class="row mb-3">
                     <div class="col">
-                        <label asp-for="Descripcion" class="form-label"></label>
+                        <label asp-for="Ingredientes" class="form-label"></label>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-list-ol fa-fw"></i></span>
-                            <textarea asp-for="Descripcion" class="form-control rounded" placeholder="Ingresa la descripción y los pasos a seguir"> </textarea>
+                            <span class="input-group-text"><i class="fas fa-list-alt fa-fw"></i></span>
+                            <textarea asp-for="Ingredientes" class="form-control rounded" placeholder="Ingresa los ingredientes"></textarea>
                         </div>
 
-                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        <span asp-validation-for="Ingredientes" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col">
-                        <label asp-for="Ingredientes" class="form-label"></label>
+                        <label asp-for="Descripcion" class="form-label"></label>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-list-alt fa-fw"></i></span>
-                            <input asp-for="Ingredientes" class="form-control rounded" placeholder="Ingresa los ingredientes" />
+                            <span class="input-group-text"><i class="fas fa-list-ol fa-fw"></i></span>
+                            <textarea asp-for="Descripcion" class="form-control rounded" placeholder="Ingresa la descripción y los pasos a seguir"></textarea>
                         </div>
 
-                        <span asp-validation-for="Ingredientes" class="text-danger"></span>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
                     </div>
                 </div>
 

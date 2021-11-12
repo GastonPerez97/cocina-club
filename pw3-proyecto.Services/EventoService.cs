@@ -77,5 +77,18 @@ namespace pw3_proyecto.Services
         {
             return _eventoRepo.GetFinishedEvents();
         }
+
+        public bool CheckIfEventBelongsToUser(int eventId, int userId)
+        {
+            Evento evento = _eventoRepo.FindById(eventId);
+            return evento.IdCocinero == userId;
+        }
+
+        public void ChangeEventStateTo(int eventState, int eventId)
+        {
+            Evento evento = _eventoRepo.FindById(eventId);
+            evento.Estado = eventState;
+            _eventoRepo.SaveChanges();
+        }
     }
 }

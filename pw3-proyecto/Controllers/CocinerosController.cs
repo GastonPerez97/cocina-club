@@ -131,6 +131,46 @@ namespace pw3_proyecto.Controllers
             return View(evento);
         }
 
+        [SkipControllerFilterAttribute]
+        [Route("evento/{id}")]
+        public IActionResult Evento(int id)
+        {
+            Evento evento = _eventoService.FindById(id);
+
+            if (evento == null)
+                return RedirectToAction("Index", "Home");
+
+            SelectLayout();
+            return View(evento);
+        }
+
+        [HttpPost]
+        public IActionResult FinalizarEvento()
+        {
+            try
+            {
+                int eventId = int.Parse(Request.Form["IdEvento"]);
+                int currentUserId = (int) HttpContext.Session.GetInt32("UserId");
+
+                if (_eventoService.CheckIfEventBelongsToUser(eventId, currentUserId))
+                {
+                    _eventoService.ChangeEventStateTo(EventStates.Finalizado, eventId);
+                    TempData["FinalizeEventOk"] = "Evento finalizado correctamente.";
+                }
+                else
+                {
+                    TempData["FinalizeEventError"] = "Ocurrió un error al intentar finalizar el evento, intente nuevamente.";
+                }
+
+                return RedirectToAction("Perfil");
+            }
+            catch (Exception)
+            {
+                TempData["FinalizeEventError"] = "Ocurrió un error al intentar finalizar el evento, intente nuevamente.";
+                return RedirectToAction("Perfil");
+            }
+        }
+
         public List<int> GetRecipesIdsFromForm()
         {
             List<int> eventoRecetasId = new List<int>();
@@ -144,6 +184,25 @@ namespace pw3_proyecto.Controllers
             }
 
             return eventoRecetasId;
+        }
+
+        private void SelectLayout()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var userProfile = HttpContext.Session.GetInt32("Profile");
+
+            if (userId == null)
+            {
+                ViewBag.Layout = "_LayoutAnonimo";
+            }
+            else if (userId != null && userProfile == Profiles.Comensal)
+            {
+                ViewBag.Layout = "_LayoutComensal";
+            }
+            else
+            {
+                ViewBag.Layout = "_LayoutCocinero";
+            }
         }
     }
 }
