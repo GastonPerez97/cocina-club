@@ -8,26 +8,23 @@
 
 <header class="@("bg-yellow " + (currentPath == "/" ? "" : "header-rounded-corners"))">
     <nav class="navbar navbar-expand-lg navbar-light py-4">
-        <div class="container-fluid col-8 fw-500">
+        <div class="container-fluid col-8 col-lg-10 col-xl-8 fw-500">
             <a asp-controller="Home" asp-action="Index" class="navbar-brand me-5">CocinaClub</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-                    <li class="nav-item me-4">
-                        <a asp-controller="Comensales" asp-action="Reserva" class="nav-link active" aria-current="page">Reservar Evento</a>
+                    <li class="nav-item me-1 me-xl-4">
+                        <a asp-controller="Comensales" asp-action="Reserva" class="nav-link active p-0 pt-3 p-lg-2" aria-current="page">Reservar Evento</a>
                     </li>
-                    <li class="nav-item me-4">
-                        <a asp-controller="Comensales" asp-action="Reservas" class="nav-link active" aria-current="page">Mis Reservas</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a asp-controller="Comensales" asp-action="Comentarios" class="nav-link active" aria-current="page">Eventos Finalizados</a>
+                    <li class="nav-item">
+                        <a asp-controller="Comensales" asp-action="Reservas" class="nav-link active p-0 pt-2 p-lg-2" aria-current="page">Mis Reservas</a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto d-inline d-lg-flex align-items-center">
-                    <li class="me-4">
+                    <li class="me-1 me-xl-4">
                         <p class="m-0">Hola <b>@userName</b>!</p>
                     </li>
 
