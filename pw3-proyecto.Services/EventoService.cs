@@ -77,5 +77,12 @@ namespace pw3_proyecto.Services
         {
             return _eventoRepo.GetFinishedEvents();
         }
+
+        public void ChangeEventStateTo(int eventState, int eventId)
+        {
+            Evento evento = _eventoRepo.FindById(eventId);
+            evento.Estado = eventState;
+            _eventoRepo.SaveChanges();
+        }
     }
 }

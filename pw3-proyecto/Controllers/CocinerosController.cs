@@ -144,6 +144,23 @@ namespace pw3_proyecto.Controllers
             return View(evento);
         }
 
+        [HttpPost]
+        public IActionResult FinalizarEvento()
+        {
+            try
+            {
+                int eventId = int.Parse(Request.Form["IdEvento"]);
+                _eventoService.ChangeEventStateTo(EventStates.Finalizado, eventId);
+                TempData["FinalizeEventOk"] = "Evento finalizado correctamente.";
+                return RedirectToAction("Perfil");
+            }
+            catch (Exception)
+            {
+                TempData["FinalizeEventError"] = "Ocurrió un error al intentar finalizar el evento, intente nuevamente.";
+                return RedirectToAction("Perfil");
+            }
+        }
+
         public List<int> GetRecipesIdsFromForm()
         {
             List<int> eventoRecetasId = new List<int>();
