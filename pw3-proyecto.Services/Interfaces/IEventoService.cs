@@ -15,5 +15,6 @@ namespace pw3_proyecto.Services.Interfaces
         public List<Evento> GetAllEventosByUserCalificacion(int idUser);
         public List<Evento> GetFinishedEvents();
         public void ChangeEventStateTo(int eventState, int eventId);
+        public bool CheckIfEventBelongsToUser(int eventId, int userId);
     }
 }

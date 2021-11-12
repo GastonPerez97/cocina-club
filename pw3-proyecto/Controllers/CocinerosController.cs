@@ -150,8 +150,18 @@ namespace pw3_proyecto.Controllers
             try
             {
                 int eventId = int.Parse(Request.Form["IdEvento"]);
-                _eventoService.ChangeEventStateTo(EventStates.Finalizado, eventId);
-                TempData["FinalizeEventOk"] = "Evento finalizado correctamente.";
+                int currentUserId = (int) HttpContext.Session.GetInt32("UserId");
+
+                if (_eventoService.CheckIfEventBelongsToUser(eventId, currentUserId))
+                {
+                    _eventoService.ChangeEventStateTo(EventStates.Finalizado, eventId);
+                    TempData["FinalizeEventOk"] = "Evento finalizado correctamente.";
+                }
+                else
+                {
+                    TempData["FinalizeEventError"] = "Ocurrió un error al intentar finalizar el evento, intente nuevamente.";
+                }
+
                 return RedirectToAction("Perfil");
             }
             catch (Exception)
