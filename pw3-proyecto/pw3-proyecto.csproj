@@ -18,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\pw3-proyecto.Entities\pw3-proyecto.Entities.csproj" />
     <ProjectReference Include="..\pw3-proyecto.Services\pw3-proyecto.Services.csproj" />
-    <ProjectReference Include="..\ReservasWebApi\ReservasWebApi.csproj" />
   </ItemGroup>
 
 </Project>
