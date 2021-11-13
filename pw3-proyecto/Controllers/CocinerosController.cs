@@ -8,6 +8,9 @@ using pw3_proyecto.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace pw3_proyecto.Controllers
 {
@@ -43,7 +46,7 @@ namespace pw3_proyecto.Controllers
 
         public IActionResult Perfil()
         {
-            int userId = (int) HttpContext.Session.GetInt32("UserId");
+            int userId = (int)HttpContext.Session.GetInt32("UserId");
 
             List<Receta> recipes = _recetaService.GetAllByChef(userId);
             List<Evento> eventos = _eventoService.GetAllBy(userId);
@@ -150,7 +153,7 @@ namespace pw3_proyecto.Controllers
             try
             {
                 int eventId = int.Parse(Request.Form["IdEvento"]);
-                int currentUserId = (int) HttpContext.Session.GetInt32("UserId");
+                int currentUserId = (int)HttpContext.Session.GetInt32("UserId");
 
                 if (_eventoService.CheckIfEventBelongsToUser(eventId, currentUserId))
                 {
@@ -204,5 +207,23 @@ namespace pw3_proyecto.Controllers
                 ViewBag.Layout = "_LayoutCocinero";
             }
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> CancelarEvento(int IdEvento)
+        //{
+
+        //    Evento evento = _eventoService.FindById(IdEvento);
+
+
+        //    var client = new HttpClient();
+        //    client.BaseAddress = new Uri("https://localhost:44381/");
+
+        //    HttpResponseMessage response = await client.PutAsJsonAsync($"api/Event/{evento.IdEvento}", evento);
+            
+        //    evento = await response.Content.ReadFromJsonAsync<Evento>();
+
+        //    return RedirectToAction("Perfil");
+        //}
+
     }
 }
