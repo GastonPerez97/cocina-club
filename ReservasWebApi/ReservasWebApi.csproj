@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\pw3-proyecto.Entities\pw3-proyecto.Entities.csproj" />
+    <ProjectReference Include="..\pw3-proyecto.Repositories\pw3-proyecto.Repositories.csproj" />
     <ProjectReference Include="..\pw3-proyecto.Services\pw3-proyecto.Services.csproj" />
   </ItemGroup>
 

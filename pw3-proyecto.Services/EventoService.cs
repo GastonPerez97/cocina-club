@@ -90,5 +90,12 @@ namespace pw3_proyecto.Services
             evento.Estado = eventState;
             _eventoRepo.SaveChanges();
         }
+
+        public void CancelEvent(int eventId)
+        {
+            _eventoRepo.CancelEvent(eventId);
+            _eventoRepo.SaveChanges();
+        }
+
     }
 }

@@ -95,9 +95,20 @@ namespace pw3_proyecto.Repositories
             return _dbContext.Eventos.Where(evento => evento.Estado == EventStates.Finalizado).ToList();
         }
 
+
+        public void CancelEvent(int eventId)
+        {
+
+            Evento evento = (from e in _dbContext.Eventos
+                             where e.IdEvento == eventId
+                             select e).First();
+            evento.Estado = 2;
+
+        }
         public void SaveChanges()
         {
             _dbContext.SaveChanges();
         }
+
     }
 }

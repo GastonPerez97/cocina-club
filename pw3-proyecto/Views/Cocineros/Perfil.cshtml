@@ -135,7 +135,29 @@
                                 }
                                 else if (evento.Estado == EventStates.Pendiente && (evento.Fecha - DateTime.Now).Days >= 1)
                                 {
-                                    <a class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#finalizeEventModal">Cancelar Evento</a>
+                                    <a class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#cancelEventModal">Cancelar Evento</a>
+
+                                    <div class="modal fade" id="cancelEventModal" tabindex="-1" aria-labelledby="cancelEventModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="cancelEventModalLabel">Cancelar Evento</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="my-3">¿Estás seguro de querer cancelar este evento?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-yellow" data-bs-dismiss="modal">Cancelar</button>
+
+                                                    @*<form asp-controller="Cocineros" asp-action="CancelarEvento" method="POST">
+                                                        <input type="hidden" name="IdEvento" value="@evento.IdEvento" />*@
+                                                        <button type="submit" class="btn btn-outline-danger" id="btnCancelar" >Cancelar Evento</button>
+                                                    @*</form>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
                             </div>
                         </div>
