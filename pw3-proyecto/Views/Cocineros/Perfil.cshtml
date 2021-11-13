@@ -152,7 +152,16 @@
 
                                                     @*<form asp-controller="Cocineros" asp-action="CancelarEvento" method="POST">
                                                         <input type="hidden" name="IdEvento" value="@evento.IdEvento" />*@
-                                                        <button type="submit" class="btn btn-outline-danger" id="btnCancelar" >Cancelar Evento</button>
+                                                    <input type="hidden" id="IdEvento" value="@evento.IdEvento" />
+                                                    <input type="hidden" id="Nombre" value="@evento.Nombre" />
+                                                    <input type="hidden" id="Fecha" value="@evento.Fecha" />
+                                                    <input type="hidden" id="CantidadComensales" value="@evento.CantidadComensales" />
+                                                    <input type="hidden" id="Ubicacion" value="@evento.Ubicacion" />
+                                                    <input type="hidden" id="Foto" value="@evento.Foto" />
+                                                    <input type="hidden" id="Precio" value="@evento.Precio" />
+                                                    <input type="hidden" id="Estado" value="@evento.Estado" />
+                                                    <button type="button" class="btn btn-outline-danger" id="btnCancelar">Cancelar Evento</button>
+                                                    <h1 id="error"></h1>
                                                     @*</form>*@
                                                 </div>
                                             </div>
