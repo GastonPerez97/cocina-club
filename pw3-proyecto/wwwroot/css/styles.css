@@ -114,6 +114,17 @@ img {
     object-fit: cover;
 }
 
+.btn-profile {
+    transition: 0.3s;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.btn-profile:hover {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255, 0.07);
+}
+
 /* ------------- Available Rubik's Font Weights ------------- */
 .fw-300 {
     font-weight: 300;

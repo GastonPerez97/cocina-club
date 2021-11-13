@@ -38,33 +38,40 @@ namespace pw3_proyecto.Controllers
         [HttpPost]
         public IActionResult Reservas(Calificacione calificacione)
         {
-
-            int userId = (int)HttpContext.Session.GetInt32("UserId");
+            int userId = (int) HttpContext.Session.GetInt32("UserId");
 
             if (_calificacionService.verifyIfCalificacionExists(calificacione.IdEvento, calificacione.IdComensal) == false)
             {
-
                 if (ModelState.IsValid)
                 {
                     _calificacionService.Save(calificacione);
                     TempData["CalificacionOk"] = "¡Calificación agregada correctamente!";
                     return RedirectToAction("Reservas");
                 }
-                EventosCalificaciones eventosCalificaciones1 = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), userId, _eventoService.GetAllEventosByUserCalificacion(userId), _calificacionService.FindCalificacionByUser(userId));
+
+                EventosCalificaciones eventosCalificaciones1 = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId),
+                                                                                         userId,
+                                                                                         _eventoService.GetAllEventosByUserCalificacion(userId),
+                                                                                         _calificacionService.FindCalificacionByUser(userId));
 
                 ViewBag.CalificacionError = "Ocurrió un error al momento de registrar la calificación, intente nuevamente.";
                 return View(eventosCalificaciones1);
 
             }
-            EventosCalificaciones eventosCalificaciones2 = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), userId, _eventoService.GetAllEventosByUserCalificacion(userId), _calificacionService.FindCalificacionByUser(userId));
+
+            EventosCalificaciones eventosCalificaciones2 = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId),
+                                                                                     userId,
+                                                                                     _eventoService.GetAllEventosByUserCalificacion(userId),
+                                                                                     _calificacionService.FindCalificacionByUser(userId));
+
             ViewBag.CalificacionError = "Ocurrió un error al momento de registrar la calificación, intente nuevamente.";
             return View(eventosCalificaciones2);
-
         }
 
         public IActionResult Reserva()
         {
-            List<Evento> eventos = _eventoService.EventAvailable();
+            int currentUserId = (int) HttpContext.Session.GetInt32("UserId");
+            List<Evento> eventos = _eventoService.getAvailableEventsOf(currentUserId);
             return View(eventos);
         }
 
