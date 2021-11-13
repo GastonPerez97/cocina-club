@@ -53,10 +53,17 @@
 
                                 avgCalification = avgCalification / evento.Calificaciones.Count;
 
-                                <b>Puntuación: @avgCalification.ToString("0.0")/5</b>
+                                <div class="d-flex justify-content-between">
+                                    <b>Puntuación: @avgCalification.ToString("0.0")/5</b>
 
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-comments"></i>
+                                        <p class="m-0 ms-2">@evento.Calificaciones.Count</p>
+                                    </div>
+                                </div>
+                                
                                 <div class="my-4">
-                                    <p class="m-0">@evento.Calificaciones.FirstOrDefault().IdComensalNavigation.Nombre (@evento.Calificaciones.FirstOrDefault().Calificacion):</p>
+                                    <p class="m-0">@evento.Calificaciones.FirstOrDefault().IdComensalNavigation.Nombre (@evento.Calificaciones.FirstOrDefault().Calificacion/5):</p>
                                     <p class="m-0">"@evento.Calificaciones.FirstOrDefault().Comentarios"</p>
                                 </div>
                             }
