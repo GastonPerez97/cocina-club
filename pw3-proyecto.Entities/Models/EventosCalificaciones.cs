@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace pw3_proyecto.Entities.Models
 {
@@ -25,13 +21,11 @@ namespace pw3_proyecto.Entities.Models
             this.IdUsuarioSession = idUsuarioSession;
             this.EventosConCalificacionDelUsuario = eventosCalificacionDelUsuario;
             this.calificaciones = calif;
-
         }
 
         public Calificacione buscarCalificacion(int idEvento)
         {
             return calificaciones.FirstOrDefault(o => o.IdEvento == idEvento);
         }
-
     }
 }

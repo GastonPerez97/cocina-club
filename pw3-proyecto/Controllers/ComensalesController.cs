@@ -30,8 +30,13 @@ namespace pw3_proyecto.Controllers
 
         public IActionResult Reservas()
         {
-            int userId = (int)HttpContext.Session.GetInt32("UserId");
-            EventosCalificaciones eventosCalificaciones = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId), userId, _eventoService.GetAllEventosByUserCalificacion(userId), _calificacionService.FindCalificacionByUser(userId));
+            int userId = (int) HttpContext.Session.GetInt32("UserId");
+            ViewBag.currentUserId = userId;
+
+            EventosCalificaciones eventosCalificaciones = new EventosCalificaciones(_eventoService.GetAllEventosByUser(userId),
+                                                                                    userId,
+                                                                                    _eventoService.GetAllEventosByUserCalificacion(userId),
+                                                                                    _calificacionService.FindCalificacionByUser(userId));
             return View(eventosCalificaciones);
         }
 
