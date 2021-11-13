@@ -20,23 +20,23 @@
 
         <div class="d-flex justify-content-center justify-content-end p-3 mt-3 mt-md-0
                     align-self-md-end shadow border-radius-15px bg-custom-dark">
-
-            <div class="d-flex flex-column ps-md-3 me-md-4 mx-auto">
+            
+            <a href="#recipes" class="d-flex flex-column py-1 px-3 me-md-3 mx-auto text-light btn-profile">
                 <p class="fs-3 m-0 fw-600 text-center">@ViewBag.RecipeCount</p>
                 <p class="fs-5 m-0">Recetas</p>
-            </div>
+            </a>
 
             <span class="border-end border-dark"></span>
-
-            <div class="d-flex flex-column pe-md-3 mx-auto ms-md-4">
+            
+            <a href="#events" class="d-flex flex-column py-1 px-3 ms-md-3 mx-auto text-light btn-profile">
                 <p class="fs-3 m-0 fw-600 text-center">@ViewBag.EventCount</p>
                 <p class="fs-5 m-0">Eventos</p>
-            </div>
+            </a>
         </div>
     </article>
 
     <article>
-        <h2 class="display-5 fw-600 mb-4">Recetas</h2>
+        <h2 id="recipes" class="display-5 fw-600 mb-4">Recetas</h2>
 
         @if (ViewBag.Recipes.Count == 0)
         {
@@ -66,7 +66,7 @@
     </article>
 
     <article>
-        <h2 class="display-5 fw-600 mt-5 mb-4">Eventos</h2>
+        <h2 id="events" class="display-5 fw-600 mt-5 mb-4">Eventos</h2>
 
         @if (ViewBag.Events.Count == 0)
         {
@@ -109,13 +109,13 @@
 
                                 @if (evento.Estado == EventStates.Pendiente && evento.Fecha < DateTime.Now)
                                 {
-                                    <a class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#finalizeEventModal">Finalizar Evento</a>
+                                    <a class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#finalizeEventModal-@evento.IdEvento">Finalizar Evento</a>
 
-                                    <div class="modal fade" id="finalizeEventModal" tabindex="-1" aria-labelledby="finalizeEventModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="finalizeEventModal-@evento.IdEvento" tabindex="-1" aria-labelledby="finalizeEventModalLabel-@evento.IdEvento" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="finalizeEventModalLabel">Finalizar Evento</h5>
+                                                    <h5 class="modal-title" id="finalizeEventModalLabel-@evento.IdEvento">Finalizar Evento</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">

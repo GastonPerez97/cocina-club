@@ -7,7 +7,7 @@ namespace pw3_proyecto.Repositories.Interfaces
     {
         public void Save(Evento evento);
         public List<Evento> GetAllBy(int userId);
-        public List<Evento> EventAvailable();
+        public List<Evento> getAvailableEventsOf(int userId);
         public Evento FindById(int id);
         public Evento FindEventoReserva(int id);
         public List<Evento> GetAllEventosByUser(int idUser);

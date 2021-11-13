@@ -26,13 +26,14 @@ namespace pw3_proyecto.Repositories
             _dbContext.Eventos.Add(evento);
         }
 
-        public List<Evento> EventAvailable()
+        public List<Evento> getAvailableEventsOf(int userId)
         {
             List<Evento> eventAvailable = new List<Evento>();
             int Cantidad = 0;
 
             var queryDispo = from eventos in _dbContext.Eventos.Include("Reservas")
                              where eventos.Fecha > DateTime.Now && eventos.Estado == EventStates.Pendiente
+                             && !eventos.Reservas.Any(reserva => reserva.IdComensal == userId)
                              select eventos;
 
             foreach (Evento evento in queryDispo)
@@ -41,6 +42,7 @@ namespace pw3_proyecto.Repositories
                 {
                     Cantidad += reserva.CantidadComensales;
                 }
+
                 if (Cantidad < evento.CantidadComensales)
                 {
                     eventAvailable.Add(evento);
