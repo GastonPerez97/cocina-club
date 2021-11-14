@@ -10,11 +10,14 @@ using pw3_proyecto.Repositories;
 using pw3_proyecto.Repositories.Interfaces;
 using pw3_proyecto.Services;
 using pw3_proyecto.Services.Interfaces;
+using System;
 
 namespace pw3_proyecto.API
 {
     public class Startup
     {
+        private readonly string _MyCors = "MyCors";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -37,6 +40,16 @@ namespace pw3_proyecto.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "pw3_proyecto.API", Version = "v1" });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: _MyCors, builder =>
+                {
+                    builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
+
             services.AddRouting(options => options.LowercaseUrls = true);
         }
 
@@ -53,6 +66,8 @@ namespace pw3_proyecto.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(_MyCors);
 
             app.UseAuthorization();
 
