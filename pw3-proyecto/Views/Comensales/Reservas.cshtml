@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Mis Reservas";
     Layout = "_LayoutComensal";
-    int currentUserId = (int) ViewBag.currentUserId;
+    int currentUserId = (int)ViewBag.currentUserId;
 }
 
 <div class="mt-5">
@@ -12,7 +12,7 @@
     <p class="display-6 fw-bold text-center mb-5">@ViewBag.CalificacionError</p>
 
     <h1>Mis Reservas</h1>
-    
+
     <div class="row mt-5">
         <section class="col-12 col-lg-2 mb-4 mb-lg-0">
             <div class="list-group bg-white">
@@ -43,55 +43,55 @@
             }
             else
             {
-            <div id="section1" class="text-white">
-                <h3 class="text-dark mb-4">Reservas pendientes:</h3>
+                <div id="section1" class="text-white">
+                    <h3 class="text-dark mb-4">Reservas pendientes:</h3>
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                    @foreach (var evento in Model.Eventos)
-                    {
-                        if (evento.Estado == EventStates.Pendiente)
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        @foreach (var evento in Model.Eventos)
                         {
-                            <div class="col">
-                                <div class="card border-0 border-radius-15px shadow bg-eventImage bg-size-cover bg-pos-center"
-                                     style="background-image: linear-gradient(180deg, rgba(79, 79, 79, 0.84) 100%,
+                            if (evento.Estado == EventStates.Pendiente)
+                            {
+                                <div class="col">
+                                    <div class="card border-0 border-radius-15px shadow bg-eventImage bg-size-cover bg-pos-center"
+                                         style="background-image: linear-gradient(180deg, rgba(79, 79, 79, 0.84) 100%,
                                                               rgba(139,139,139,0.77) 100%),
                                                               url('../img/events/@evento.Foto')">
 
-                                    <div class="card-body">
-                                        <h5 class="card-title">@evento.Nombre</h5>
+                                        <div class="card-body">
+                                            <h5 class="card-title">@evento.Nombre</h5>
 
-                                        <div class="d-flex align-items-center">
-                                            <i class="far fa-calendar"></i>
-                                            <p class="m-0 ms-2">@evento.Fecha</p>
-                                        </div>
-
-                                        <hr />
-
-                                        <div class="d-flex flex-column">
                                             <div class="d-flex align-items-center">
-                                                <i class="fas fa-dollar-sign"></i>
-                                                <p class="m-0 ms-2 fw-600">@evento.Precio</p>
+                                                <i class="far fa-calendar"></i>
+                                                <p class="m-0 ms-2">@evento.Fecha</p>
                                             </div>
 
-                                            <div class="d-flex align-items-center mt-2">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                                <p class="m-0 ms-2 fw-600 lh-sm">@evento.Ubicacion</p>
-                                            </div>
+                                            <hr />
 
-                                            <div class="d-flex align-items-center mt-2">
-                                                <i class="fas fa-utensils"></i>
-                                                <p class="m-0 ms-2 fw-600 lh-sm">
-                                                    @evento.Reservas.First(reserva => reserva.IdComensal == currentUserId).IdRecetaNavigation.Nombre
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="my-4">
-                                            <p class="m-0">
+                                            <div class="d-flex flex-column">
                                                 <div class="d-flex align-items-center">
-                                                    <p class="m-0 me-1">Estado: Pendiente</p>
-                                                    <i class="far fa-clock text-gold"></i>
+                                                    <i class="fas fa-dollar-sign"></i>
+                                                    <p class="m-0 ms-2 fw-600">@evento.Precio</p>
                                                 </div>
+
+                                                <div class="d-flex align-items-center mt-2">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                    <p class="m-0 ms-2 fw-600 lh-sm">@evento.Ubicacion</p>
+                                                </div>
+
+                                                <div class="d-flex align-items-center mt-2">
+                                                    <i class="fas fa-utensils"></i>
+                                                    <p class="m-0 ms-2 fw-600 lh-sm">
+                                                        @evento.Reservas.First(reserva => reserva.IdComensal == currentUserId).IdRecetaNavigation.Nombre
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="my-4">
+                                                <p class="m-0">
+                                                    <div class="d-flex align-items-center">
+                                                <p class="m-0 me-1">Estado: Pendiente</p>
+                                                <i class="far fa-clock text-gold"></i>
+                                            </div>
                                             </p>
                                         </div>
 
@@ -103,7 +103,7 @@
                             </div>
                         }
                     }
-                </div>
+                    </div>
             </div>
 
             <div id="section2" class="mt-5 text-white">
@@ -152,121 +152,145 @@
                                         <div class="my-4">
                                             <p class="m-0">
                                                 <div class="d-flex align-items-center">
-                                                    <p class="m-0 me-1">Estado: Finalizado</p>
-                                                    <i class="far fa-check-circle text-gold"></i>
-                                                </div>
-                                            </p>
+                                            <p class="m-0 me-1">Estado: Finalizado</p>
+                                            <i class="far fa-check-circle text-gold"></i>
+                                        </div>
+                                        </p>
+                                    </div>
+
+                                    @if (!@Model.EventosConCalificacionDelUsuario.Contains(evento))
+                                    {
+
+                                        <div class="text-center d-flex flex-column mb-1">
+                                            <p>Calificá el evento.</p>
+
+                                            <a class="btn btn-outline-light text-center mb-2" data-bs-toggle="modal" id="btnModal" data-even="@evento.IdEvento" data-comen="@Model.IdUsuarioSession" data-bs-target="#exampleModal">Calificar</a>
+                                            <br />
+
+                                            <div class="text-center">
+                                                <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
+                                            </div>
                                         </div>
 
-                                        @if (!@Model.EventosConCalificacionDelUsuario.Contains(evento))
-                                        {
-                                            <div class="text-center mb-2">
-                                                <a class="btn btn-outline-light text-center" data-bs-toggle="modal" id="btnModal" data-even="@evento.IdEvento" data-comen="@Model.IdUsuarioSession" data-bs-target="#exampleModal">Calificar evento</a>
-                                                <a class="btn btn-outline-light ms-2" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
-                                            </div>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-dark" id="exampleModalLabel">Calificar evento</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                                                    </div>
 
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-dark" id="exampleModalLabel">Calificar evento</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                                                    <form asp-controller="Comensales" asp-action="Reservas" method="post">
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <input type="hidden" asp-for="@Model.Calificacione.IdEvento" id="eventoIdjs" />
+                                                                <input type="hidden" asp-for="@Model.Calificacione.IdComensal" id="comensalIdJs" />
+                                                                <label asp-for="@Model.Calificacione.Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
+
+                                                                <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" value="1" />
+                                                                <span asp-validation-for="@Model.Calificacione.Calificacion" class="text-danger"></span>
+
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="message-text" class="col-form-label text-dark text-start">Comentar evento:</label>
+                                                                <input asp-for="@Model.Calificacione.Comentarios" class="form-control rounded" placeholder="Deja un comentario acerca del evento" required />
+
+                                                                <span asp-validation-for="@Model.Calificacione.Comentarios" class="text-danger"></span>
+                                                            </div>
                                                         </div>
 
-                                                        <form asp-controller="Comensales" asp-action="Reservas" method="post">
-                                                            <div class="modal-body">
-                                                                <div class="mb-3">
-                                                                    <input type="hidden" asp-for="@Model.Calificacione.IdEvento" id="eventoIdjs" />
-                                                                    <input type="hidden" asp-for="@Model.Calificacione.IdComensal" id="comensalIdJs" />
-                                                                    <label asp-for="@Model.Calificacione.Calificacion" class="col-form-label text-dark text-start">Puntuar evento:</label>
-
-                                                                    <input asp-for="@Model.Calificacione.Calificacion" class="form-control rounded" value="1" />
-                                                                    <span asp-validation-for="@Model.Calificacione.Calificacion" class="text-danger"></span>
-
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="message-text" class="col-form-label text-dark text-start">Comentar evento:</label>
-                                                                    <input asp-for="@Model.Calificacione.Comentarios" class="form-control rounded" placeholder="Deja un comentario acerca del evento" required />
-
-                                                                    <span asp-validation-for="@Model.Calificacione.Comentarios" class="text-danger"></span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancelar</button>
-                                                                <button type="submit" class="btn btn-yellow">Calificar</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancelar</button>
+                                                            <button type="submit" class="btn btn-yellow">Calificar</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="text-center d-flex flex-column mb-1">
-                                                <p class="mb-1">Tu calificación:</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="text-center d-flex flex-column mb-1">
+                                            <p class="mb-1">Tu calificación:</p>
 
-                                                <div class="d-flex justify-content-center">
-                                                    @switch (@Model.buscarCalificacion(evento.IdEvento).Calificacion)
-                                                    {
-                                                        case 1:
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            break;
+                                            <div class="d-flex justify-content-center">
+                                                @switch (@Model.buscarCalificacion(evento.IdEvento).Calificacion)
+                                                {
+                                                    case 1:
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        break;
 
-                                                        case 2:
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
+                                                    case 2:
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
 
-                                                            break;
+                                                        break;
 
-                                                        case 3:
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
+                                                    case 3:
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
 
-                                                            break;
+                                                        break;
 
-                                                        case 4:
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star"></i>
+                                                    case 4:
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star"></i>
 
-                                                            break;
+                                                        break;
 
-                                                        case 5:
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
-                                                            <i class="fas fa-star text-gold"></i>
+                                                    case 5:
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
+                                                        <i class="fas fa-star text-gold"></i>
 
-                                                            break;
-                                                    }
-                                                </div>
+                                                        break;
+                                                }
+                                            </div>
 
+                                            @if (Model.buscarCalificacion(evento.IdEvento).Comentarios.Length <= 32)
+                                            {
                                                 <p class="mt-4">"@Model.buscarCalificacion(evento.IdEvento).Comentarios"</p>
 
-                                                <div class="text-center">
-                                                    <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
-                                                </div>
+                                            }
+                                            else
+                                            {
+
+                                                char[] array = @Model.buscarCalificacion(evento.IdEvento).Comentarios.ToCharArray(0, 21);
+                                                string convertido = new string(array);
+
+                                                <p class="mt-4">
+                                                    "@convertido<span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="top" data-bs-content="''@Model.buscarCalificacion(evento.IdEvento).Comentarios''">
+                                                        <a class="text-decoration-none text-white">...</a>
+                                                    </span>"
+                                                </p>
+
+                                            }
+
+                                            <div class="text-center">
+                                                <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
                                             </div>
-                                        }
-                                    </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
-                        }
+                        </div>
                     }
+                }
                 </div>
             </div>
 
@@ -316,23 +340,23 @@
                                         <div class="my-4">
                                             <p class="m-0">
                                                 <div class="d-flex align-items-center">
-                                                    <p class="m-0 me-1">Estado: Cancelado</p>
-                                                    <i class="far fa-times-circle text-gold"></i>
-                                                </div>
-                                            </p>
+                                            <p class="m-0 me-1">Estado: Cancelado</p>
+                                            <i class="far fa-times-circle text-gold"></i>
                                         </div>
+                                        </p>
+                                    </div>
 
-                                        <div class="text-center">
-                                            <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
-                                        </div>
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
                                     </div>
                                 </div>
                             </div>
-                        }
+                        </div>
                     }
+                }
                 </div>
-            </div>
+                </div>
             }
-        </section>
-    </div>
-</div>
+            </section>
+            </div>
+            </div>
