@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ReservasWebApi
+namespace pw3_proyecto.API
 {
     public class Program
     {

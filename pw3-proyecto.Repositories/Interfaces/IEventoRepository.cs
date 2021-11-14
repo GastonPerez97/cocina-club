@@ -13,8 +13,6 @@ namespace pw3_proyecto.Repositories.Interfaces
         public List<Evento> GetAllEventosByUser(int idUser);
         public List<Evento> GetAllEventosByUserCalificacion(int idUser);
         public List<Evento> GetFinishedEvents();
-        public void CancelEvent(int eventId);
-
         public void SaveChanges();
     }
 }

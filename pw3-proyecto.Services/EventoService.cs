@@ -91,11 +91,10 @@ namespace pw3_proyecto.Services
             _eventoRepo.SaveChanges();
         }
 
-        public void CancelEvent(int eventId)
+        public bool EventExists(int eventId)
         {
-            _eventoRepo.CancelEvent(eventId);
-            _eventoRepo.SaveChanges();
+            Evento evento = _eventoRepo.FindById(eventId);
+            return evento != null;
         }
-
     }
 }

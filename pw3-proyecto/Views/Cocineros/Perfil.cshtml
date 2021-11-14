@@ -89,8 +89,8 @@
                                 <b>Estado: </b>
                                 @if (evento.Estado == EventStates.Pendiente)
                                 {
-                                    <span>Pendiente</span>
-                                    <i class="far fa-clock"></i>
+                                    <span id="statePendiente-@evento.IdEvento">Pendiente</span>
+                                    <i id="statePendienteIcon-@evento.IdEvento" class="far fa-clock"></i>
                                 }
                                 else if (evento.Estado == EventStates.Finalizado)
                                 {
@@ -135,34 +135,31 @@
                                 }
                                 else if (evento.Estado == EventStates.Pendiente && (evento.Fecha - DateTime.Now).Days >= 1)
                                 {
-                                    <a class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#cancelEventModal">Cancelar Evento</a>
+                                    <a id="cancelEventModalBtnCancel-@evento.IdEvento" class="btn btn-outline-danger ms-2"
+                                       data-bs-toggle="modal" data-bs-target="#cancelEventModal-@evento.IdEvento">
 
-                                    <div class="modal fade" id="cancelEventModal" tabindex="-1" aria-labelledby="cancelEventModalLabel" aria-hidden="true">
+                                        Cancelar Evento
+                                    </a>
+
+                                    <div class="modal fade" id="cancelEventModal-@evento.IdEvento" tabindex="-1" aria-labelledby="cancelEventModalLabel-@evento.IdEvento" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="cancelEventModalLabel">Cancelar Evento</h5>
+                                                    <h5 class="modal-title" id="cancelEventModalLabel-@evento.IdEvento">Cancelar Evento</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p class="my-3">¿Estás seguro de querer cancelar este evento?</p>
+                                                    <p id="cancelEventModalBodyMessage-@evento.IdEvento" class="my-3">¿Estás seguro de querer cancelar este evento?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-yellow" data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="button" class="btn btn-yellow cancelEventModalBtn-@evento.IdEvento" data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="button" class="btn btn-outline-danger cancelEventModalBtn-@evento.IdEvento"
+                                                            onclick="cancelEvent(@evento.IdEvento, @ViewBag.User.IdUsuario);">
 
-                                                    @*<form asp-controller="Cocineros" asp-action="CancelarEvento" method="POST">
-                                                        <input type="hidden" name="IdEvento" value="@evento.IdEvento" />*@
-                                                    <input type="hidden" id="IdEvento" value="@evento.IdEvento" />
-                                                    <input type="hidden" id="Nombre" value="@evento.Nombre" />
-                                                    <input type="hidden" id="Fecha" value="@evento.Fecha" />
-                                                    <input type="hidden" id="CantidadComensales" value="@evento.CantidadComensales" />
-                                                    <input type="hidden" id="Ubicacion" value="@evento.Ubicacion" />
-                                                    <input type="hidden" id="Foto" value="@evento.Foto" />
-                                                    <input type="hidden" id="Precio" value="@evento.Precio" />
-                                                    <input type="hidden" id="Estado" value="@evento.Estado" />
-                                                    <button type="button" class="btn btn-outline-danger" id="btnCancelar">Cancelar Evento</button>
-                                                    <h1 id="error"></h1>
-                                                    @*</form>*@
+                                                        Confirmar
+                                                    </button>
+
+                                                    <button type="button" id="cancelEventModalBtnClose-@evento.IdEvento" class="btn btn-yellow d-none" data-bs-dismiss="modal">Cerrar</button>
                                                 </div>
                                             </div>
                                         </div>
