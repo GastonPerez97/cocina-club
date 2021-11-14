@@ -89,11 +89,11 @@
                                             <div class="my-4">
                                                 <p class="m-0">
                                                     <div class="d-flex align-items-center">
-                                                <p class="m-0 me-1">Estado: Pendiente</p>
-                                                <i class="far fa-clock text-gold"></i>
+                                                        <p class="m-0 me-1">Estado: Pendiente</p>
+                                                        <i class="far fa-clock text-gold"></i>
+                                                    </div>
+                                                </p>
                                             </div>
-                                            </p>
-                                        </div>
 
                                         <div class="text-center">
                                             <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
@@ -120,54 +120,54 @@
                                                               rgba(139,139,139,0.77) 100%),
                                                               url('../img/events/@evento.Foto')">
 
-                                    <div class="card-body">
-                                        <h5 class="card-title">@evento.Nombre</h5>
+                                <div class="card-body d-flex flex-column min-height-460px">
+                                    <h5 class="card-title">@evento.Nombre</h5>
 
+                                    <div class="d-flex align-items-center">
+                                        <i class="far fa-calendar"></i>
+                                        <p class="m-0 ms-2">@evento.Fecha</p>
+                                    </div>
+
+                                    <hr />
+
+                                    <div class="d-flex flex-column">
                                         <div class="d-flex align-items-center">
-                                            <i class="far fa-calendar"></i>
-                                            <p class="m-0 ms-2">@evento.Fecha</p>
+                                            <i class="fas fa-dollar-sign"></i>
+                                            <p class="m-0 ms-2 fw-600">@evento.Precio</p>
                                         </div>
 
-                                        <hr />
+                                        <div class="d-flex align-items-center mt-2">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <p class="m-0 ms-2 fw-600 lh-sm">@evento.Ubicacion</p>
+                                        </div>
 
-                                        <div class="d-flex flex-column">
+                                        <div class="d-flex align-items-center mt-2">
+                                            <i class="fas fa-utensils"></i>
+                                            <p class="m-0 ms-2 fw-600 lh-sm">
+                                                @evento.Reservas.First(reserva => reserva.IdComensal == currentUserId).IdRecetaNavigation.Nombre
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-4">
+                                        <p class="m-0">
                                             <div class="d-flex align-items-center">
-                                                <i class="fas fa-dollar-sign"></i>
-                                                <p class="m-0 ms-2 fw-600">@evento.Precio</p>
+                                                <p class="m-0 me-1">Estado: Finalizado</p>
+                                                <i class="far fa-check-circle text-gold"></i>
                                             </div>
-
-                                            <div class="d-flex align-items-center mt-2">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                                <p class="m-0 ms-2 fw-600 lh-sm">@evento.Ubicacion</p>
-                                            </div>
-
-                                            <div class="d-flex align-items-center mt-2">
-                                                <i class="fas fa-utensils"></i>
-                                                <p class="m-0 ms-2 fw-600 lh-sm">
-                                                    @evento.Reservas.First(reserva => reserva.IdComensal == currentUserId).IdRecetaNavigation.Nombre
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="my-4">
-                                            <p class="m-0">
-                                                <div class="d-flex align-items-center">
-                                            <p class="m-0 me-1">Estado: Finalizado</p>
-                                            <i class="far fa-check-circle text-gold"></i>
-                                        </div>
                                         </p>
                                     </div>
 
                                     @if (!@Model.EventosConCalificacionDelUsuario.Contains(evento))
                                     {
-
-                                        <div class="text-center d-flex flex-column mb-1">
-                                            <p>Calificá el evento.</p>
-
-                                            <a class="btn btn-outline-light text-center mb-2" data-bs-toggle="modal" id="btnModal" data-even="@evento.IdEvento" data-comen="@Model.IdUsuarioSession" data-bs-target="#exampleModal">Calificar</a>
-                                            <br />
-
+                                        <div class="text-center d-flex flex-column mt-auto">
                                             <div class="text-center">
+                                                <a class="btn btn-outline-light text-center" data-bs-toggle="modal" id="btnModal"
+                                                   data-even="@evento.IdEvento" data-comen="@Model.IdUsuarioSession" data-bs-target="#exampleModal">
+
+                                                    Calificar
+                                                </a>
+
                                                 <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
                                             </div>
                                         </div>
@@ -210,7 +210,7 @@
                                     }
                                     else
                                     {
-                                        <div class="text-center d-flex flex-column mb-1">
+                                        <div class="text-center d-flex flex-column mt-auto">
                                             <p class="mb-1">Tu calificación:</p>
 
                                             <div class="d-flex justify-content-center">
@@ -265,23 +265,22 @@
                                             @if (Model.buscarCalificacion(evento.IdEvento).Comentarios.Length <= 32)
                                             {
                                                 <p class="mt-4">"@Model.buscarCalificacion(evento.IdEvento).Comentarios"</p>
-
                                             }
                                             else
                                             {
-
                                                 char[] array = @Model.buscarCalificacion(evento.IdEvento).Comentarios.ToCharArray(0, 21);
                                                 string convertido = new string(array);
 
                                                 <p class="mt-4">
-                                                    "@convertido<span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="top" data-bs-content="''@Model.buscarCalificacion(evento.IdEvento).Comentarios''">
-                                                        <a class="text-decoration-none text-white">...</a>
+                                                    "<span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                           data-bs-placement="top" data-bs-content="''@Model.buscarCalificacion(evento.IdEvento).Comentarios''">
+
+                                                         <a class="text-decoration-none text-white">@convertido...</a>
                                                     </span>"
                                                 </p>
-
                                             }
 
-                                            <div class="text-center">
+                                            <div class="text-center mt-auto">
                                                 <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
                                             </div>
                                         </div>
@@ -340,11 +339,11 @@
                                         <div class="my-4">
                                             <p class="m-0">
                                                 <div class="d-flex align-items-center">
-                                            <p class="m-0 me-1">Estado: Cancelado</p>
-                                            <i class="far fa-times-circle text-gold"></i>
+                                                    <p class="m-0 me-1">Estado: Cancelado</p>
+                                                    <i class="far fa-times-circle text-gold"></i>
+                                                </div>
+                                            </p>
                                         </div>
-                                        </p>
-                                    </div>
 
                                     <div class="text-center">
                                         <a class="btn btn-outline-light" asp-controller="Cocineros" asp-action="Evento" asp-route-id="@evento.IdEvento">Ver Más</a>
@@ -355,8 +354,8 @@
                     }
                 }
                 </div>
-                </div>
+            </div>
             }
-            </section>
-            </div>
-            </div>
+        </section>
+    </div>
+</div>
