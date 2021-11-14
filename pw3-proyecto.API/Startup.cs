@@ -26,6 +26,7 @@ namespace pw3_proyecto.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<_20212C_TPContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EFCoreContext")));
+            
             services.AddTransient<_20212C_TPContext>();
             services.AddScoped<IEventoService, EventoService>();
             services.AddScoped<IEventoRepository, EventoRepository>();
@@ -35,6 +36,8 @@ namespace pw3_proyecto.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "pw3_proyecto.API", Version = "v1" });
             });
+
+            services.AddRouting(options => options.LowercaseUrls = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

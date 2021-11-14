@@ -66,24 +66,22 @@ namespace pw3_proyecto.Repositories
             var query = from e in _dbContext.Eventos.Include("Reservas")
                         where e.IdEvento == id
                         select e;
+
             return query.Single();
         }
 
         public List<Evento> GetAllEventosByUser(int idUser)
         {
-
             var eventos = from e in _dbContext.Eventos
                           join r in _dbContext.Reservas on e.IdEvento equals r.IdEvento
                           where r.IdComensal == idUser
                           select e;
 
             return eventos.ToList();
-
         }
 
         public List<Evento> GetAllEventosByUserCalificacion(int idUser)
         {
-
             var eventos = from e in _dbContext.Eventos
                           join c in _dbContext.Calificaciones on e.IdEvento equals c.IdEvento
                           where c.IdComensal == idUser
@@ -97,20 +95,9 @@ namespace pw3_proyecto.Repositories
             return _dbContext.Eventos.Where(evento => evento.Estado == EventStates.Finalizado).ToList();
         }
 
-
-        public void CancelEvent(int eventId)
-        {
-
-            Evento evento = (from e in _dbContext.Eventos
-                             where e.IdEvento == eventId
-                             select e).First();
-            evento.Estado = 2;
-
-        }
         public void SaveChanges()
         {
             _dbContext.SaveChanges();
         }
-
     }
 }

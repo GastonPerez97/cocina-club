@@ -47,7 +47,7 @@ namespace pw3_proyecto
 
             services.AddSession(options =>
             {
-                options.Cookie.Name = ".MiAPP.Session";
+                options.Cookie.Name = "CocinaClub.Session";
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 

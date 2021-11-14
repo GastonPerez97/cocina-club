@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using pw3_proyecto.Services.Interfaces;
 using pw3_proyecto.Entities;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ReservasWebApi.Controllers
 {
@@ -14,8 +8,6 @@ namespace ReservasWebApi.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
-
-
         private readonly IEventoService _eventoService;
 
         public EventController(IEventoService eventoService)
@@ -23,14 +15,25 @@ namespace ReservasWebApi.Controllers
             _eventoService = eventoService;
         }
 
-        // PUT api/<EventController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, Evento evento)
+        [HttpPut("{id}/cancel")]
+        public void Put(int id, [FromBody] int userId)
         {
-            Evento eventoPrueba = evento;
-            _eventoService.CancelEvent(id);
-
+            if (_eventoService.EventExists(id))
+            {
+                if (_eventoService.CheckIfEventBelongsToUser(id, userId))
+                {
+                    _eventoService.ChangeEventStateTo(EventStates.Cancelado, id);
+                    this.HttpContext.Response.StatusCode = 200;
+                }
+                else
+                {
+                    this.HttpContext.Response.StatusCode = 401;
+                }
+            }
+            else
+            {
+                this.HttpContext.Response.StatusCode = 404;
+            }
         }
-
     }
 }
