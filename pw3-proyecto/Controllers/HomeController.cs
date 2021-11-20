@@ -33,6 +33,12 @@ namespace pw3_proyecto.Controllers
             return View();
         }
 
+        public IActionResult PageNotFound()
+        {
+            SelectLayout();
+            return View();
+        }
+
         private void SelectLayout()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
