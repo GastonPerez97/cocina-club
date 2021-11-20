@@ -18,11 +18,10 @@ namespace pw3_proyecto.Controllers
         public IActionResult Index()
         {
             SelectLayout();
-
             List<Evento> finishedEvents = _eventoService.GetFinishedEvents();
 
-            if (finishedEvents.Count >= 6)
-                finishedEvents = finishedEvents.GetRange(0, 6);
+            if (finishedEvents.Count > 6)
+                finishedEvents = _eventoService.GetRandomElements(finishedEvents, 6);
 
             return View(finishedEvents);
         }

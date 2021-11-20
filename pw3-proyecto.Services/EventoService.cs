@@ -1,7 +1,9 @@
 ﻿using pw3_proyecto.Entities;
 using pw3_proyecto.Repositories.Interfaces;
 using pw3_proyecto.Services.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace pw3_proyecto.Services
 {
@@ -95,6 +97,11 @@ namespace pw3_proyecto.Services
         {
             Evento evento = _eventoRepo.FindById(eventId);
             return evento != null;
+        }
+
+        public List<T> GetRandomElements<T>(IEnumerable<T> list, int numberOfElementsToGet)
+        {
+            return list.OrderBy(arg => Guid.NewGuid()).Take(numberOfElementsToGet).ToList();
         }
     }
 }

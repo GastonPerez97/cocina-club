@@ -17,5 +17,6 @@ namespace pw3_proyecto.Services.Interfaces
         public void ChangeEventStateTo(int eventState, int eventId);
         public bool CheckIfEventBelongsToUser(int eventId, int userId);
         public bool EventExists(int eventId);
+        public List<T> GetRandomElements<T>(IEnumerable<T> list, int numberOfElementsToGet);
     }
 }
