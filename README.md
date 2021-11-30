@@ -1,4 +1,4 @@
-# CocinaClub
+# CocinaClub 🍳
 
 _Proyecto creado pensado en la organización de los eventos y la inscripción por parte de los comensales que gustan de la buena comida. Creado para Programación Web III de la Tecnicatura en Desarrollo Web de la UNLaM._
 
@@ -8,10 +8,10 @@ _Para poner en marcha el proyecto clonar el repositorio, abrirlo en Visual Studi
 
 ### Pre-requisitos 📋
 
-_Necesitas tener Visual Studio 2019._
+_Necesitas tener Visual Studio 2019 y SQL Server._
 
 
-## 📝 Respuestas del TP
+## Respuestas del TP 📝
 
 _**a) ¿Qué nota creen que deberían sacar en el tp? (1-10, donde para 7 debe estar toda la funcionalidad pedida) y por qué.**_
 
