@@ -15,6 +15,8 @@ namespace pw3_proyecto
 {
     public class Startup
     {
+        private readonly string _MyCors = "MyCors";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -51,6 +53,16 @@ namespace pw3_proyecto
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: _MyCors, builder =>
+                {
+                    builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
+
             services.AddRouting(options => options.LowercaseUrls = true);
         }
 
@@ -73,6 +85,8 @@ namespace pw3_proyecto
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors(_MyCors);
 
             app.UseAuthorization();
 
