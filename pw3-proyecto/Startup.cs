@@ -57,7 +57,7 @@ namespace pw3_proyecto
             {
                 options.AddPolicy(name: _MyCors, builder =>
                 {
-                    builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                    builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "www.cocinaclub.somee.com")
                            .AllowAnyHeader()
                            .AllowAnyMethod();
                 });
