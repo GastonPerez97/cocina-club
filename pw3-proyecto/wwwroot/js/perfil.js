@@ -1,7 +1,7 @@
 ﻿function cancelEvent(eventId, userId) {
     $.ajax({
         type: "PUT",
-        url: 'https://localhost:44387/api/event/' + eventId + '/cancel',
+        url: 'https://localhost:44364/api/event/' + eventId + '/cancel',
         data: JSON.stringify(userId),
         contentType: "application/json; charset=utf-8",
         success: () => {
