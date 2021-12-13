@@ -1,48 +1,59 @@
-# CocinaClub 🍳
+# 🍳 CocinaClub
 
-_Proyecto creado pensado en la organización de los eventos y la inscripción por parte de los comensales que gustan de la buena comida. Creado para Programación Web III de la Tecnicatura en Desarrollo Web de la UNLaM._
+[http://www.cocinaclub.somee.com/](http://www.cocinaclub.somee.com/)
 
-## Comenzando 🚀
+***Aplicación Web que permite a cocineros registrados crear eventos culinarios, exponiendo sus propias recetas para que sean evaluadas por comensales.***
 
-_Para poner en marcha el proyecto clonar el repositorio, abrirlo en Visual Studio, restaurar paquetes de Nuget y crear la DB. Ejecutar los proyectos pw3-proyecto y pw3-proyecto.API._
+***Cada evento ofrece diferentes recetas para que los comensales elijan qué comer.***
 
-### Pre-requisitos 📋
+***Los comensales podrán realizar las reservas y elegir una de las recetas del evento. Además, tendrán la oportunidad de comentar y evaluar los eventos ya finalizados.***
 
-_Necesitas tener Visual Studio 2019 y SQL Server._
+![www cocinaclub somee com_ (1)](https://user-images.githubusercontent.com/58083159/145864945-f6daf16e-8cce-474d-ac0e-565fb95bbaa6.jpg)
 
+# 🛠️ Tecnologías utilizadas:
 
-## Respuestas del TP 📝
+- .NET 5
+- Entity Framework Core 5
+- C#
+- SQL Server
+- Bootstrap 5
+- Patrón de diseño MVC
 
-_**a) ¿Qué nota creen que deberían sacar en el tp? (1-10, donde para 7 debe estar toda la funcionalidad pedida) y por qué.**_
+# ⚙️ Detalles técnicos:
 
-_Creemos que el proyecto cumple con las mejores prácticas, cumple con todas la funcionalidades solicitadas, y tiene un diseño acorde al modelo de negocio. Pensamos que la nota adecuada sería un 9._
+- Se utiliza una base de datos SQL Server para almacenar los datos.
+- La capa de acceso a datos fue realizada con Entity Framework Core 5.
+- La capa Web fue realizada utilizando el patrón de diseño MVC.
+- Las validaciones se dan tanto del lado del cliente como del servidor.
+- Se utilizan sesiones para el inicio de sesión de los usuarios.
+- Se utiliza BCrypt para el hashing de contraseñas de los usuarios.
+- La funcionalidad Cancelar Evento se realiza mediante una llamada AJAX a un servicio web desarrollado con ASP.NET Core Web API.
+- Todos los errores no capturados redirigen a una vista de error con el fin de no mostrar al usuario detalles de código.
+- Al ingresar una URL inválida la aplicación redirige a una vista de 404.
 
-_**b) ¿Qué cosas creen que podrían mejorarse?**_
+# ✅ Funcionalidades:
 
-- _Un detalle sería que el precio del evento llegue con decimales a la DB (intentamos pero al momento de llegar al controlador .NET no toma bien el formato decimal), probamos con varios DataAnnotations, modificaciones en las vistas y en los controladores, modificaciones en el campo de la DB y aún así no logramos que tome los decimales del precio._
+## ✔️ Generales:
 
-- _Algunos DataAnnotations están en ingles porque estan seteados dinámicamente en algunas vistas (por ejemplo, cuando se usa min y max en el input), y no encontramos forma de traducirlo._
+- Registro e inicio de sesión de cocineros y comensales.
+- Autorización según perfil de usuario en toda la aplicación.
+- Cualquier usuario puede visualizar los detalles de un evento con sus reseñas, puntajes, y puntuación promedio.
 
-- _Se intentó finalizar el evento automaticamente despues de 24 horas en la DB y no pude, los triggers funcionan solo cuando se utiliza INSERT, UPDATE o DELETE, y hacerlo con un SELECT es peligroso. Si bien el enunciado no lo pide, implementar la finalización automática de los eventos después de 24 horas sería una interesante regla de negocio para agregar, así los comensales pueden dejar su reseña después de 24 horas y no esperar al cocinero a que finalice el evento manualmente._
+## 👨‍🍳 Cocinero:
 
-_**c) ¿Qué les resultó más complicado?**_
+- **Crear recetas de cocina:** El cocinero puede crear recetas de cocina que son las que ofrecerá en los eventos.
+- **Crear eventos de comida:** El cocinero creará eventos en donde cocinará algunas de las recetas que ya tiene vinculadas en su perfil dentro del sistema. En los eventos, los cocineros harán una o varias de sus recetas para una cantidad de comensales definida por él.
+- **Cancelar eventos:** El cocinero podrá cancelar eventos pendientes con 1 día o más de antelación.
+- **Finalizar eventos:** El cocinero podrá finalizar un evento una vez haya pasado la fecha del mismo.
+- **Ver su perfil con sus eventos y recetas:** El cocinero dentro de su perfil podrá ver la fecha de registración, su E-Mail y la cantidad de recetas y eventos creados. Además, podrá ver el listado de sus recetas y eventos.
 
-_Nos resulto complicado la creación del evento por las validaciones que lleva, la fecha con un custom DataAnnotation, la carga de imagen que necesita un servicio ad hoc, vincular las recetas elegidas con el evento, etc._
+![www cocinaclub somee com_cocineros_perfil](https://user-images.githubusercontent.com/58083159/145865062-359804c4-c4dc-4e25-875a-e9f6819313b1.jpg)
 
+## 🧑 Comensal:
 
-## Construido con 🛠️
+- **Reservar evento:** Los comensales podrán reservar su asistencia a un evento, elegiendo una de las recetas del mismo y anotando la cantidad de comensales que asistirán.
+- **Ver sus reservas:** El comensal podrá ver el listado de todas las reservas que tiene asociadas (pendientes,
+canceladas y finalizadas).
+- **Puntuar y opinar eventos finalizados asistidos:** El comensal tiene la opción de agregar un comentario y una puntuación (de 1 a 5 estrellas) a los eventos finalizados que haya asistido.
 
-_Menciona las herramientas que utilizaste para crear tu proyecto._
-
-* [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0) 
-* [Entity Framework Core 5](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-6.0)
-* [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
-* [SQL Server](https://www.microsoft.com/es-es/sql-server/)
-* [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-* [Patrón de diseño MVC](https://es.wikipedia.org/wiki/Modelo%E2%80%93vista%E2%80%93controlador)
-
-## Autores ✒️
-
-* **Gastón Pérez**   - [GastonPerez97](https://github.com/GastonPerez97)
-* **Ivan Kek**       - [ivankek](https://github.com/ivankek)
-* **Mariano Perri**  - [marianoperri](https://github.com/marianoperri)
+![www cocinaclub somee com_comensales_reservas (1)](https://user-images.githubusercontent.com/58083159/145865079-deaf1598-133e-488d-b276-15eca42c2d62.jpg)
